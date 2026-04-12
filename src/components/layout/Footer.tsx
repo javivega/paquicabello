@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 
 import logoUrl from '@/img/logo.svg'
 import { cn } from '@/lib/utils'
@@ -83,8 +84,8 @@ export function Footer({ className }: FooterProps) {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-20">
         <div className="flex flex-col gap-16">
           <div className="flex flex-col flex-wrap items-start gap-x-16 gap-y-10 lg:flex-row lg:gap-x-[116px]">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="shrink-0 focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-strong"
             >
               <img
@@ -95,7 +96,7 @@ export function Footer({ className }: FooterProps) {
                 className="size-[92px] object-contain brightness-0 invert"
                 decoding="async"
               />
-            </a>
+            </Link>
 
             <div className="flex min-w-0 flex-1 flex-col flex-wrap items-start gap-x-10 gap-y-10 sm:flex-row sm:justify-end">
               <FooterColumn title="Educa en positivo">

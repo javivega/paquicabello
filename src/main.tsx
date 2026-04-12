@@ -5,9 +5,13 @@ import { BrowserRouter } from 'react-router-dom'
 import './styles/globals.css'
 import App from './App.tsx'
 
+const rawBase = import.meta.env.BASE_URL
+const routerBasename =
+  rawBase === '/' ? undefined : rawBase.replace(/\/$/, '') || undefined
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={routerBasename}>
       <App />
     </BrowserRouter>
   </StrictMode>,
