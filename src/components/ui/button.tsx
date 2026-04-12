@@ -1,58 +1,211 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
-import { cva, type VariantProps } from "class-variance-authority"
+import { Button as ButtonPrimitive } from '@base-ui/react/button'
+import type { VariantProps } from 'class-variance-authority'
+import { ArrowUpRight } from 'lucide-react'
+import type { ReactNode } from 'react'
+import { Link, type LinkProps } from 'react-router-dom'
 
-import { cn } from "@/lib/utils"
+import {
+  brandButtonVariants,
+  iconRingVariants,
+  labelVariants,
+} from '@/components/ui/button-variants'
+import { cn } from '@/lib/utils'
 
-const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
-        outline:
-          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-        ghost:
-          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
-        destructive:
-          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
-        link: "text-primary underline-offset-4 hover:underline",
-      },
-      size: {
-        default:
-          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        icon: "size-8",
-        "icon-xs":
-          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm":
-          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
-        "icon-lg": "size-9",
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-    },
-  }
-)
+type BrandVariant = VariantProps<typeof brandButtonVariants>['brandVariant']
+type BrandSize = VariantProps<typeof brandButtonVariants>['brandSize']
 
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+function BrandButtonLabel({
+  brandVariant: brandVariantProp,
+  brandSize: brandSizeProp,
+  children,
+}: {
+  brandVariant?: BrandVariant
+  brandSize?: BrandSize
+  children: ReactNode
+}) {
+  const brandVariant = brandVariantProp ?? 'primary'
+  const brandSize = brandSizeProp ?? 'md'
   return (
-    <ButtonPrimitive
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
+    <span
+      className={labelVariants({ brandVariant, brandSize })}
+      data-part="label"
+    >
+      {brandVariant === 'secondary' && brandSize === 'md' ? (
+        <span className="inline-flex h-5 items-center px-2">{children}</span>
+      ) : brandVariant === 'secondary' && brandSize === 'lg' ? (
+        <span className="inline-flex items-center px-2">{children}</span>
+      ) : (
+        children
+      )}
+    </span>
   )
 }
 
-export { Button, buttonVariants }
+type BrandButtonProps = Omit<ButtonPrimitive.Props, 'className'> &
+  VariantProps<typeof brandButtonVariants> & {
+    className?: string
+    leftSlot?: ReactNode | null
+    rightSlot?: ReactNode | null
+    presentation?: 'interactive' | 'hover'
+  }
+
+function brandButtonClassName({
+  brandVariant,
+  brandSize,
+  presentation,
+  className,
+}: Pick<
+  BrandButtonProps,
+  'brandVariant' | 'brandSize' | 'presentation' | 'className'
+>) {
+  return cn(
+    brandButtonVariants({
+      brandVariant,
+      brandSize,
+      presentation,
+    }),
+    presentation === 'hover' &&
+      brandVariant === 'primary' &&
+      '!shadow-[4px_4px_0px_0px_rgba(104,66,255,0.2),0px_0px_15px_0px_rgba(117,36,0,0.21)]',
+    presentation === 'hover' &&
+      brandVariant === 'secondary' &&
+      '!shadow-[0px_0px_15px_0px_rgba(117,36,0,0.21)]',
+    className,
+  )
+}
+
+function BrandButton({
+  className,
+  brandVariant = 'primary',
+  brandSize = 'md',
+  presentation = 'interactive',
+  leftSlot,
+  rightSlot,
+  children,
+  type,
+  ...props
+}: BrandButtonProps) {
+  const showLeft = leftSlot !== null
+  const showRight = rightSlot !== null
+  const left =
+    leftSlot === undefined ? (
+      <ArrowUpRight aria-hidden strokeWidth={1.5} />
+    ) : (
+      leftSlot
+    )
+  const right =
+    rightSlot === undefined ? (
+      <ArrowUpRight aria-hidden strokeWidth={1.5} />
+    ) : (
+      rightSlot
+    )
+
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      type={type ?? 'button'}
+      className={brandButtonClassName({
+        brandVariant,
+        brandSize,
+        presentation,
+        className,
+      })}
+      {...props}
+    >
+      {showLeft ? (
+        <span
+          className={iconRingVariants({ brandVariant, brandSize })}
+          data-part="icon-left"
+        >
+          {left}
+        </span>
+      ) : null}
+      <BrandButtonLabel brandVariant={brandVariant} brandSize={brandSize}>
+        {children}
+      </BrandButtonLabel>
+      {showRight ? (
+        <span
+          className={iconRingVariants({ brandVariant, brandSize })}
+          data-part="icon-right"
+        >
+          {right}
+        </span>
+      ) : null}
+    </ButtonPrimitive>
+  )
+}
+
+type BrandLinkButtonProps = Omit<LinkProps, 'className'> &
+  VariantProps<typeof brandButtonVariants> & {
+    className?: string
+    leftSlot?: ReactNode | null
+    rightSlot?: ReactNode | null
+    presentation?: 'interactive' | 'hover'
+  }
+
+/** Same visuals as {@link BrandButton}, rendered as a client-side router link. */
+function BrandLinkButton({
+  className,
+  brandVariant = 'primary',
+  brandSize = 'md',
+  presentation = 'interactive',
+  leftSlot,
+  rightSlot,
+  children,
+  ...props
+}: BrandLinkButtonProps) {
+  const showLeft = leftSlot !== null
+  const showRight = rightSlot !== null
+  const left =
+    leftSlot === undefined ? (
+      <ArrowUpRight aria-hidden strokeWidth={1.5} />
+    ) : (
+      leftSlot
+    )
+  const right =
+    rightSlot === undefined ? (
+      <ArrowUpRight aria-hidden strokeWidth={1.5} />
+    ) : (
+      rightSlot
+    )
+
+  return (
+    <Link
+      data-slot="link-button"
+      className={cn(
+        brandButtonClassName({
+          brandVariant,
+          brandSize,
+          presentation,
+          className,
+        }),
+        'no-underline',
+      )}
+      {...props}
+    >
+      {showLeft ? (
+        <span
+          className={iconRingVariants({ brandVariant, brandSize })}
+          data-part="icon-left"
+        >
+          {left}
+        </span>
+      ) : null}
+      <BrandButtonLabel brandVariant={brandVariant} brandSize={brandSize}>
+        {children}
+      </BrandButtonLabel>
+      {showRight ? (
+        <span
+          className={iconRingVariants({ brandVariant, brandSize })}
+          data-part="icon-right"
+        >
+          {right}
+        </span>
+      ) : null}
+    </Link>
+  )
+}
+
+const Button = BrandButton
+
+export { BrandButton, BrandLinkButton, Button }

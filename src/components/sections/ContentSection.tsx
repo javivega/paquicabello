@@ -1,3 +1,5 @@
+import { BrandButton } from '@/components/ui/button'
+
 export function ContentSection() {
   return (
     <section
@@ -23,18 +25,12 @@ export function ContentSection() {
         .
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
-        <button
-          type="button"
-          className="paragraph-xs-bold rounded-lg px-4 py-2 text-btn-primary-text transition-colors bg-btn-primary hover:bg-btn-primary-hover active:bg-btn-primary-active"
-        >
+        <BrandButton brandVariant="primary" brandSize="md" type="button">
           Primary
-        </button>
-        <button
-          type="button"
-          className="paragraph-xs-bold rounded-lg border px-4 py-2 transition-[color,box-shadow] bg-btn-secondary-bg text-btn-secondary-text border-btn-secondary-border hover:shadow-[0_1px_3px_rgba(28,28,28,0.08)]"
-        >
+        </BrandButton>
+        <BrandButton brandVariant="secondary" brandSize="md" type="button">
           Secondary
-        </button>
+        </BrandButton>
       </div>
     </section>
   )
