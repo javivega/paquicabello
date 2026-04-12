@@ -1,0 +1,181 @@
+/* Design tokens from Figma — primitives first, then semantic aliases */
+
+:root {
+  --Primitive-color-blue-blue-50: #fbfaff;
+  --Primitive-color-blue-blue-100: #f7f5ff;
+  --Primitive-color-blue-blue-200: #efebfe;
+  --Primitive-color-blue-blue-300: #dfd8fe;
+  --Primitive-color-blue-blue-400: #b8a7fc;
+  --Primitive-color-blue-blue-500: #6842ff;
+  --Primitive-color-blue-blue-600: #4619f7;
+  --Primitive-color-blue-blue-700: #3307de;
+  --Primitive-color-blue-blue-800: #2606a8;
+  --Primitive-color-blue-blue-900: #1c047b;
+
+  --Primitive-color-gray-black: #1c1c1c;
+  --Primitive-color-gray-gray-50: #fcfbfa;
+  --Primitive-color-gray-gray-100: #fff6f2;
+  --Primitive-color-gray-gray-200: #f7eae4;
+  --Primitive-color-gray-gray-300: #e3d5cf;
+  --Primitive-color-gray-gray-400: #c9bdb8;
+  --Primitive-color-gray-gray-500: #b0a5a1;
+  --Primitive-color-gray-gray-600: #948b87;
+  --Primitive-color-gray-gray-700: #7a7370;
+  --Primitive-color-gray-gray-800: #615b59;
+  --Primitive-color-gray-gray-900: #474342;
+  --Primitive-color-gray-white: #fcfcfc;
+
+  --Primitive-color-green-green-500: #13ce66;
+
+  --Primitive-color-orange-orange-50: #fff4f0;
+  --Primitive-color-orange-orange-100: #ffede5;
+  --Primitive-color-orange-orange-200: #ffe1d4;
+  --Primitive-color-orange-orange-300: #ffcfba;
+  --Primitive-color-orange-orange-400: #ffa57d;
+  --Primitive-color-orange-orange-500: #ff4e00;
+  --Primitive-color-orange-orange-600: #e04500;
+  --Primitive-color-orange-orange-700: #ca3e00;
+  --Primitive-color-orange-orange-800: #ad3500;
+  --Primitive-color-orange-orange-900: #752400;
+
+  --Primitive-color-red-red-50: #ffebee;
+  --Primitive-color-red-red-100: #ffcdd2;
+  --Primitive-color-red-red-200: #ef9a9a;
+  --Primitive-color-red-red-300: #e57373;
+  --Primitive-color-red-red-400: #ef5350;
+  --Primitive-color-red-red-500: #f44336;
+  --Primitive-color-red-red-600: #e53935;
+  --Primitive-color-red-red-700: #d32f2f;
+  --Primitive-color-red-red-800: #c62828;
+  --Primitive-color-red-red-900: #b71c1c;
+
+  --Primitive-color-yellow-yellow-500: #ffcc3d;
+
+  --Semantictokens-Color-Background-Layer-0-default: var(
+    --Primitive-color-gray-white
+  );
+  --Semantictokens-Color-Background-Strong-0-active: var(
+    --Primitive-color-orange-orange-700
+  );
+  --Semantictokens-Color-Background-Strong-0-default: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Background-Strong-0-hover: var(
+    --Primitive-color-orange-orange-600
+  );
+  --Semantictokens-Color-Background-Subtle-0-active: var(
+    --Primitive-color-orange-orange-200
+  );
+  --Semantictokens-Color-Background-Subtle-0-default: var(
+    --Primitive-color-orange-orange-50
+  );
+  --Semantictokens-Color-Background-Subtle-0-hover: var(
+    --Primitive-color-orange-orange-100
+  );
+  --Semantictokens-Color-Background-Subtle-1-active: var(
+    --Primitive-color-blue-blue-300
+  );
+  --Semantictokens-Color-Background-Subtle-1-default: var(
+    --Primitive-color-blue-blue-50
+  );
+  --Semantictokens-Color-Background-Subtle-1-hover: var(
+    --Primitive-color-blue-blue-200
+  );
+
+  --Semantictokens-Color-Border-Subtle-0-active: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Border-Subtle-0-default: var(
+    --Primitive-color-orange-orange-100
+  );
+  --Semantictokens-Color-Border-Subtle-0-hover: var(
+    --Primitive-color-orange-orange-300
+  );
+  --Semantictokens-Color-Border-Subtle-1-active: var(
+    --Primitive-color-blue-blue-500
+  );
+  --Semantictokens-Color-Border-Subtle-1-default: var(
+    --Primitive-color-blue-blue-100
+  );
+  --Semantictokens-Color-Border-Subtle-1-hover: var(
+    --Primitive-color-blue-blue-300
+  );
+  --Semantictokens-Color-Border-divider: var(--Primitive-color-gray-gray-400);
+
+  --Semantictokens-Color-Components-Button-Primary-background-default: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Components-Button-Primary-background-default2: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Components-Button-Primary-icon-default: var(
+    --Primitive-color-gray-white
+  );
+  --Semantictokens-Color-Components-Button-Primary-text-default: var(
+    --Primitive-color-gray-white
+  );
+
+  --Semantictokens-Color-Components-Button-Secondary-background-default: var(
+    --Primitive-color-gray-white
+  );
+  --Semantictokens-Color-Components-Button-Secondary-background-default2: var(
+    --Primitive-color-gray-white
+  );
+  --Semantictokens-Color-Components-Button-Secondary-background-default3: var(
+    --Primitive-color-gray-white
+  );
+  --Semantictokens-Color-Components-Button-Secondary-border-default: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Components-Button-Secondary-icon-default: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Components-Button-Secondary-text-default: var(
+    --Primitive-color-orange-orange-500
+  );
+
+  --Semantictokens-Color-Components-NavLink-border-hover2: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Components-navBar-background: var(
+    --Primitive-color-gray-white
+  );
+  --Semantictokens-Color-Components-navLink-background-active: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Components-navLink-border-hover: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Components-navLink-text-active: var(
+    --Primitive-color-gray-white
+  );
+  --Semantictokens-Color-Components-navLink-text-default: var(
+    --Primitive-color-orange-orange-500
+  );
+
+  --Semantictokens-Color-Icon-Accent: var(--Primitive-color-blue-blue-500);
+  --Semantictokens-Color-Icon-Brand-Subtle-0: var(
+    --Primitive-color-orange-orange-300
+  );
+  --Semantictokens-Color-Icon-Brand-Subtle-1: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Icon-Oncolor: var(--Primitive-color-gray-white);
+  --Semantictokens-Color-Icon-Primary: var(--Primitive-color-gray-black);
+  --Semantictokens-Color-Icon-Quaternary: var(--Primitive-color-gray-gray-400);
+  --Semantictokens-Color-Icon-Secondary: var(--Primitive-color-gray-gray-800);
+  --Semantictokens-Color-Icon-Tertiary: var(--Primitive-color-gray-gray-600);
+
+  --Semantictokens-Color-Text-Accent: var(--Primitive-color-blue-blue-500);
+  --Semantictokens-Color-Text-Brand-Subtle-0: var(
+    --Primitive-color-orange-orange-300
+  );
+  --Semantictokens-Color-Text-Brand-Subtle-1: var(
+    --Primitive-color-orange-orange-500
+  );
+  --Semantictokens-Color-Text-Oncolor: var(--Primitive-color-gray-white);
+  --Semantictokens-Color-Text-Primary: var(--Primitive-color-gray-black);
+  --Semantictokens-Color-Text-Quaternary: var(--Primitive-color-gray-gray-400);
+  --Semantictokens-Color-Text-Secondary: var(--Primitive-color-gray-gray-800);
+  --Semantictokens-Color-Text-Tertiary: var(--Primitive-color-gray-gray-600);
+}
