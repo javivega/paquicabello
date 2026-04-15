@@ -396,6 +396,19 @@ html {
   animation-delay: var(--section-enter-delay, 0ms);
 }
 
+/* Home sections reveal on scroll; children keep their own staggered delays. */
+.home-section-reveal .section-enter,
+.home-section-reveal .section-enter-photo,
+.home-section-reveal .section-enter-fade {
+  animation-play-state: paused;
+}
+
+.home-section-reveal[data-inview='true'] .section-enter,
+.home-section-reveal[data-inview='true'] .section-enter-photo,
+.home-section-reveal[data-inview='true'] .section-enter-fade {
+  animation-play-state: running;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .section-enter,
   .section-enter-photo,

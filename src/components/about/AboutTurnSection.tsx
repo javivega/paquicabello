@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 
 export function AboutTurnSection({ className }: { className?: string }) {
   return (
@@ -10,16 +11,23 @@ export function AboutTurnSection({ className }: { className?: string }) {
       aria-labelledby="about-turn-heading"
     >
       <div className="mx-auto flex w-full max-w-[720px] flex-col gap-4 px-4 sm:px-8 lg:px-20">
-        <p className="inline-flex w-fit rounded-lg border border-border-subtle-1 bg-canvas px-2 py-1 text-[14px] leading-4 text-foreground-accent">
+        <p
+          style={sectionEnterStyle(50)}
+          className="section-enter inline-flex w-fit rounded-lg border border-border-subtle-1 bg-canvas px-2 py-1 text-[14px] leading-4 text-foreground-accent"
+        >
           Mi trayectoria
         </p>
         <h2
           id="about-turn-heading"
-          className="text-balance text-[26px] font-semibold leading-8 text-foreground-brand"
+          style={sectionEnterStyle(120)}
+          className="section-enter text-balance text-[26px] font-semibold leading-8 text-foreground-brand"
         >
           ¿Qué me hizo cambiar de rumbo?
         </h2>
-        <div className="space-y-3 text-base leading-6 text-foreground-secondary">
+        <div
+          style={sectionEnterStyle(190)}
+          className="section-enter space-y-3 text-base leading-6 text-foreground-secondary"
+        >
           <p>
             Ver una y otra vez el mismo patrón: soluciones rápidas que no sostenían el
             vínculo, y familias agotadas que solo necesitaban un lenguaje común y un plan

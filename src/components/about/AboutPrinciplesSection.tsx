@@ -12,6 +12,7 @@ import {
 
 import { BrandLinkButton } from '@/components/ui/button'
 import { CONTACT_PATH } from '@/lib/routes'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
 const principles: readonly {
@@ -80,26 +81,34 @@ export function AboutPrinciplesSection({ className }: { className?: string }) {
       aria-labelledby="about-principles-heading"
     >
       <div className="mx-auto flex max-w-[800px] flex-col gap-4 text-center">
-        <p className="mx-auto inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent">
+        <p
+          style={sectionEnterStyle(50)}
+          className="section-enter mx-auto inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"
+        >
           Principios
         </p>
         <h2
           id="about-principles-heading"
-          className="text-balance text-[26px] font-semibold leading-8 text-foreground-brand sm:text-[28px] sm:leading-9"
+          style={sectionEnterStyle(120)}
+          className="section-enter text-balance text-[26px] font-semibold leading-8 text-foreground-brand sm:text-[28px] sm:leading-9"
         >
           Mis principios y compromisos
         </h2>
-        <p className="text-base leading-6 text-foreground-secondary">
+        <p
+          style={sectionEnterStyle(190)}
+          className="section-enter text-base leading-6 text-foreground-secondary"
+        >
           Esto es lo que puedes esperar cuando trabajamos juntos, más allá de técnicas
           sueltas.
         </p>
       </div>
 
       <div className="mx-auto mt-12 grid max-w-[1100px] grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-        {principles.map(({ id, icon: Icon, title, body }) => (
+        {principles.map(({ id, icon: Icon, title, body }, i) => (
           <article
             key={id}
-            className="flex gap-4 rounded-2xl border border-border-subtle-1 bg-canvas p-5 sm:p-6"
+            style={sectionEnterStyle(260 + i * 55)}
+            className="section-enter flex gap-4 rounded-2xl border border-border-subtle-1 bg-canvas p-5 sm:p-6"
             aria-labelledby={`about-principle-${id}`}
           >
             <div className="inline-flex h-fit shrink-0 rounded-xl border border-border-subtle-0 bg-surface-subtle-0 p-2">
@@ -123,6 +132,8 @@ export function AboutPrinciplesSection({ className }: { className?: string }) {
           to={CONTACT_PATH}
           brandVariant="primary"
           brandSize="md"
+          style={sectionEnterStyle(760)}
+          className="section-enter"
           leftSlot={null}
           rightSlot={null}
         >

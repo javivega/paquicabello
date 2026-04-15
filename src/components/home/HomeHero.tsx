@@ -1,5 +1,7 @@
 import heroImage from '@/img/hero.png'
+import multiespecieIcon from '@/img/multiespecie.png'
 import patternImage from '@/img/pattern.png'
+import teacherIcon from '@/img/teacher.png'
 import { BrandButton } from '@/components/ui/button'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
@@ -88,9 +90,12 @@ export function HomeHero({ className }: { className?: string }) {
               style={sectionEnterStyle(400)}
               className={cn('section-enter flex min-w-0 flex-col gap-2')}
             >
-              <div className="inline-flex size-8 items-center justify-center rounded-lg border border-border-subtle-0 bg-canvas">
-                <span
-                  className="size-4 rounded-sm bg-foreground-accent/80"
+              <div className="inline-flex size-8 items-center justify-center rounded-lg border border-border-subtle-0 bg-canvas p-1">
+                <img
+                  src={multiespecieIcon}
+                  alt=""
+                  className="size-full object-contain"
+                  decoding="async"
                   aria-hidden
                 />
               </div>
@@ -115,10 +120,16 @@ export function HomeHero({ className }: { className?: string }) {
             >
               <div className="flex items-center gap-2">
                 <span
-                  className="grid size-8 shrink-0 place-items-center rounded-md bg-surface-subtle-0"
+                  className="grid size-8 shrink-0 place-items-center rounded-md bg-surface-subtle-0 p-1"
                   aria-hidden
                 >
-                  <span className="size-4 rounded bg-foreground-brand/20" />
+                  <img
+                    src={teacherIcon}
+                    alt=""
+                    className="size-full object-contain"
+                    decoding="async"
+                    aria-hidden
+                  />
                 </span>
                 <p className="paragraph-md-bold text-foreground-brand">
                   +7 años

@@ -1,6 +1,7 @@
 import familyImage from '@/img/family.png'
 import { BrandLinkButton } from '@/components/ui/button'
 import { CONTACT_PATH } from '@/lib/routes'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
 export function AboutMethodSection({ className }: { className?: string }) {
@@ -13,7 +14,10 @@ export function AboutMethodSection({ className }: { className?: string }) {
       aria-labelledby="about-method-heading"
     >
       <div className="flex justify-center lg:justify-start">
-        <div className="relative w-full max-w-[min(100%,640px)] lg:max-w-none">
+        <div
+          style={sectionEnterStyle(140)}
+          className="section-enter-photo relative w-full max-w-[min(100%,640px)] lg:max-w-none"
+        >
           <img
             src={familyImage}
             alt="Collage con la palabra familia y retratos de personas y mascotas"
@@ -24,16 +28,23 @@ export function AboutMethodSection({ className }: { className?: string }) {
       </div>
 
       <div className="flex min-w-0 flex-col gap-4">
-        <p className="inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent">
+        <p
+          style={sectionEnterStyle(50)}
+          className="section-enter inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"
+        >
           Método
         </p>
         <h2
           id="about-method-heading"
-          className="text-balance text-[26px] font-semibold leading-8 text-foreground-brand sm:text-[28px] sm:leading-9"
+          style={sectionEnterStyle(120)}
+          className="section-enter text-balance text-[26px] font-semibold leading-8 text-foreground-brand sm:text-[28px] sm:leading-9"
         >
           La Metodología Crianza Multiespecie®
         </h2>
-        <div className="space-y-4 text-base leading-6 text-foreground-secondary">
+        <div
+          style={sectionEnterStyle(190)}
+          className="section-enter space-y-4 text-base leading-6 text-foreground-secondary"
+        >
           <p>
             Es un marco de trabajo propio, pensado para integrar a todas las personas y
             animales que conviven en un mismo hogar. Partimos de la comunicación canina
@@ -59,7 +70,8 @@ export function AboutMethodSection({ className }: { className?: string }) {
           to={CONTACT_PATH}
           brandVariant="primary"
           brandSize="md"
-          className="mt-2 w-fit"
+          style={sectionEnterStyle(260)}
+          className="section-enter mt-2 w-fit"
           leftSlot={null}
           rightSlot={null}
         >

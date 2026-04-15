@@ -21,6 +21,7 @@ import {
   servicePricingAsideProgram8Weeks,
 } from '@/components/services/shared/ServicePricingAside'
 import { ServiceProgramTimelineSection } from '@/components/services/program/ServiceProgramTimelineSection'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
 const paraMiCases: readonly {
@@ -98,7 +99,10 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
       )}
     >
       <div className="order-2 flex min-w-0 flex-1 flex-col gap-14 lg:order-1 lg:gap-16">
-        <section className="flex max-w-[680px] flex-col gap-4 lg:pl-0">
+        <section
+          style={sectionEnterStyle(60)}
+          className="section-enter flex max-w-[680px] flex-col gap-4 lg:pl-0"
+        >
           <h2 className="text-[26px] font-semibold leading-8 text-foreground">
             ¿Sientes que la convivencia con tu perro se ha vuelto estresante, te
             genera dudas o sientes que has perdido el control de la situación?
@@ -120,7 +124,8 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
 
         <section
           id="como-es-programa"
-          className="flex scroll-mt-28 flex-col gap-4"
+          style={sectionEnterStyle(140)}
+          className="section-enter flex scroll-mt-28 flex-col gap-4"
           aria-labelledby="program-8-how-heading"
         >
           <h2
@@ -224,10 +229,13 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
           </div>
         </section>
 
-        <ServiceProgramTimelineSection />
+        <div style={sectionEnterStyle(220)} className="section-enter">
+          <ServiceProgramTimelineSection />
+        </div>
 
         <section
-          className="flex flex-col gap-6"
+          style={sectionEnterStyle(300)}
+          className="section-enter flex flex-col gap-6"
           aria-labelledby="program-8-audience-heading"
         >
           <div className="flex max-w-[600px] flex-col gap-4">
@@ -264,7 +272,11 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
           </ul>
         </section>
 
-        <section className="flex flex-col gap-6" aria-labelledby="program-8-outcomes-heading">
+        <section
+          style={sectionEnterStyle(380)}
+          className="section-enter flex flex-col gap-6"
+          aria-labelledby="program-8-outcomes-heading"
+        >
           <div className="flex max-w-[600px] flex-col gap-4">
             <h2
               id="program-8-outcomes-heading"
@@ -294,13 +306,17 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
           </div>
         </section>
 
-        <ServiceProgramFaq className="pl-0 lg:pl-0" />
+        <div style={sectionEnterStyle(460)} className="section-enter">
+          <ServiceProgramFaq className="pl-0 lg:pl-0" />
+        </div>
       </div>
 
-      <ServicePricingAside
-        {...servicePricingAsideProgram8Weeks}
-        className="order-1 max-lg:mx-auto max-lg:w-full lg:order-2"
-      />
+      <div style={sectionEnterStyle(180)} className="section-enter order-1 lg:order-2">
+        <ServicePricingAside
+          {...servicePricingAsideProgram8Weeks}
+          className="max-lg:mx-auto max-lg:w-full"
+        />
+      </div>
     </div>
   )
 }

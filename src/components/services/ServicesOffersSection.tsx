@@ -2,6 +2,7 @@ import { Check } from 'lucide-react'
 
 import { BrandButton, BrandLinkButton } from '@/components/ui/button'
 import { PROGRAM_8_WEEKS_PATH, SESSION_EXPRESS_PATH } from '@/lib/routes'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
 const basicFeatures = [
@@ -45,16 +46,23 @@ export function ServicesOffersSection({ className }: { className?: string }) {
 
       <div className="relative z-10 mx-auto flex max-w-[1152px] flex-col items-center gap-12 px-4 pb-8 sm:px-8 sm:pb-10 lg:gap-16 lg:px-16 lg:pb-12">
         <div className="flex max-w-[880px] flex-col gap-4 text-center">
-          <p className="inline-flex w-fit self-center rounded-lg border border-border-subtle-1 bg-canvas px-2 py-1 text-[14px] leading-4 text-foreground-accent">
+          <p
+            style={sectionEnterStyle(50)}
+            className="section-enter inline-flex w-fit self-center rounded-lg border border-border-subtle-1 bg-canvas px-2 py-1 text-[14px] leading-4 text-foreground-accent"
+          >
             Servicios
           </p>
           <h1
             id="services-page-heading"
-            className="text-balance text-[clamp(1.75rem,3vw+1rem,2.875rem)] font-semibold leading-tight text-foreground-brand sm:text-[46px] sm:leading-[56px]"
+            style={sectionEnterStyle(120)}
+            className="section-enter text-balance text-[clamp(1.75rem,3vw+1rem,2.875rem)] font-semibold leading-tight text-foreground-brand sm:text-[46px] sm:leading-[56px]"
           >
             Elige la forma que mejor encaje con tu momento y tu perro
           </h1>
-          <p className="max-w-[784px] text-lg leading-6 text-foreground-secondary">
+          <p
+            style={sectionEnterStyle(190)}
+            className="section-enter max-w-[784px] text-lg leading-6 text-foreground-secondary"
+          >
             La convivencia con tu perro no tiene por qué ser complicada. Con la
             guía adecuada, podrás comprender sus señales, anticipar conflictos y
             crear un vínculo seguro y respetuoso. Estoy aquí para acompañarte en
@@ -63,7 +71,10 @@ export function ServicesOffersSection({ className }: { className?: string }) {
         </div>
 
         <div className="grid w-full max-w-5xl gap-6 lg:grid-cols-2">
-          <article className="relative flex flex-col gap-6 rounded-3xl border-2 border-border-subtle-0 bg-canvas px-0.5 pb-6 shadow-[6px_6px_0px_0px_rgba(255,78,0,0.12)]">
+          <article
+            style={sectionEnterStyle(260)}
+            className="section-enter relative flex flex-col gap-6 rounded-3xl border-2 border-border-subtle-0 bg-canvas px-0.5 pb-6 shadow-[6px_6px_0px_0px_rgba(255,78,0,0.12)]"
+          >
             <header className="flex flex-col gap-4 border-b border-border-subtle-0 px-5 pb-4 pt-6 sm:px-6">
               <p className="text-sm font-semibold uppercase tracking-wide text-foreground-brand">
                 Descubre
@@ -120,7 +131,10 @@ export function ServicesOffersSection({ className }: { className?: string }) {
             </div>
           </article>
 
-          <article className="relative flex flex-col gap-6 rounded-3xl border-2 border-btn-primary bg-canvas px-0.5 pb-6 shadow-[4px_4px_0px_0px_rgba(104,66,255,0.2)]">
+          <article
+            style={sectionEnterStyle(340)}
+            className="section-enter relative flex flex-col gap-6 rounded-3xl border-2 border-btn-primary bg-canvas px-0.5 pb-6 shadow-[4px_4px_0px_0px_rgba(104,66,255,0.2)]"
+          >
             <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 -translate-y-1/2 rounded-lg border border-[var(--Primitive-color-blue-blue-600)] bg-foreground-accent px-2 py-1 text-[14px] leading-4 text-on-strong">
               Recomendado
             </div>
@@ -183,7 +197,10 @@ export function ServicesOffersSection({ className }: { className?: string }) {
           </article>
         </div>
 
-        <div className="flex max-w-[880px] flex-col gap-2 border-t border-border-divider px-4 pt-4 text-foreground-secondary sm:px-12">
+        <div
+          style={sectionEnterStyle(430)}
+          className="section-enter flex max-w-[880px] flex-col gap-2 border-t border-border-divider px-4 pt-4 text-foreground-secondary sm:px-12"
+        >
           <p className="text-lg leading-6">
             Profesional Miembro Autorizado de la Red de Expertos de{' '}
             <span className="font-semibold">

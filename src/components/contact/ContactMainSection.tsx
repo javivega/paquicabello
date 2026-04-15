@@ -2,6 +2,7 @@ import contactImage from '@/img/contact.png'
 import patternImage from '@/img/pattern.png'
 import { brandButtonVariants, iconRingVariants, labelVariants } from '@/components/ui/button-variants'
 import { WHATSAPP_CONTACT_HREF } from '@/lib/routes'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 import { MessageCircle } from 'lucide-react'
 
@@ -15,7 +16,7 @@ export function ContactMainSection({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        'relative flex min-h-full w-full flex-1 flex-col overflow-hidden',
+        'relative flex min-h-[100dvh] w-full flex-1 flex-col overflow-hidden',
         className,
       )}
       aria-labelledby="contact-page-heading"
@@ -36,11 +37,14 @@ export function ContactMainSection({ className }: { className?: string }) {
 
       <div
         className={cn(
-          'relative z-10 mx-auto flex min-h-full w-full max-w-[1440px] flex-1 flex-col justify-center gap-10 px-4 py-20 sm:px-8 sm:py-24 lg:flex-row lg:items-center lg:gap-16 lg:px-20 lg:py-24',
+          'relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-[1440px] flex-1 flex-col justify-center gap-10 px-4 py-20 sm:px-8 sm:py-24 lg:flex-row lg:items-center lg:gap-16 lg:px-20 lg:py-24',
         )}
       >
         <div className="flex min-w-0 flex-1 flex-col gap-6 lg:max-w-[720px]">
-          <p className="inline-flex w-fit items-center gap-1 self-start rounded-lg border border-border-subtle-1 bg-surface-subtle-1 py-1 pr-2 pl-1.5 text-[14px] leading-4 text-foreground-accent">
+          <p
+            style={sectionEnterStyle(50)}
+            className="section-enter inline-flex w-fit items-center gap-1 self-start rounded-lg border border-border-subtle-1 bg-surface-subtle-1 py-1 pr-2 pl-1.5 text-[14px] leading-4 text-foreground-accent"
+          >
             <span
               className="size-2 shrink-0 rounded-full bg-foreground-accent"
               aria-hidden
@@ -48,7 +52,10 @@ export function ContactMainSection({ className }: { className?: string }) {
             Disponible
           </p>
 
-          <div className="flex flex-col gap-4">
+          <div
+            style={sectionEnterStyle(120)}
+            className="section-enter flex flex-col gap-4"
+          >
             <h1
               id="contact-page-heading"
               className="text-balance text-[clamp(1.875rem,3vw+1rem,46px)] font-semibold leading-[1.22] text-foreground-brand sm:leading-[56px]"
@@ -66,7 +73,9 @@ export function ContactMainSection({ className }: { className?: string }) {
             href={WHATSAPP_CONTACT_HREF}
             target="_blank"
             rel="noreferrer"
+            style={sectionEnterStyle(210)}
             className={cn(
+              'section-enter',
               brandButtonVariants({ brandVariant: 'primary', brandSize: 'md' }),
               'no-underline',
             )}
@@ -84,7 +93,10 @@ export function ContactMainSection({ className }: { className?: string }) {
         </div>
 
         <div className="flex w-full shrink-0 justify-center lg:w-[678px] lg:justify-end">
-          <div className="relative h-[424px] w-full max-w-[678px] overflow-hidden rounded-lg">
+          <div
+            style={sectionEnterStyle(180)}
+            className="section-enter-photo relative h-[424px] w-full max-w-[678px] overflow-hidden rounded-lg"
+          >
             <img
               src={contactImage}
               alt="Paqui con sus perros en la montaña"

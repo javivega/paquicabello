@@ -28,34 +28,34 @@ function usePrefersReducedMotion() {
 
 const situations = [
   {
-    title: 'Mi perro se aleja cuando tengo a mi bebé en brazos',
-    accent: true as const,
+    title: 'Los paseos son una lucha de tirones y volvemos a casa más estresados de lo que salimos',
+    accent: false as const,
     rotate: '-rotate-1' as const,
   },
   {
-    title: 'Mi perro mira fijamente a mi bebé  cuando está en casa',
+    title: 'Me preocupa su reacción cuando hay comida o juguetes de por medio y no sé cómo gestionarlo',
     accent: false as const,
     rotate: 'rotate-2' as const,
   },
   {
-    title: 'Mi perro ladra o gruñe cuando el bebé llora',
+    title: 'Siento que mi perro vive con miedo o ansiedad y no sé cómo ayudarle a ganar confianza',
     accent: false as const,
     rotate: '-rotate-1' as const,
   },
   {
-    title: 'Mi perro tira de la correa cuando salimos a pasear',
+    title: 'Le ladra a otros perros o personas y me da miedo sacarlo por lo que pueda pasar',
     accent: false as const,
     rotate: 'rotate-1' as const,
   },
   {
-    title: 'Mi perro no me hace caso y no sé qué más probar',
+    title: 'He probado mil métodos pero sigue sin hacerme caso; siento que nuestra relación está rota',
     accent: false as const,
     rotate: '-rotate-1' as const,
   },
   {
-    title: 'Mi perro roba juguetes y cosas del bebé',
-    accent: true as const,
-    rotate: '-rotate-1' as const,
+    title: 'En casa no sabe estar tranquilo y me agota sentir que siempre está demandando algo',
+    accent: false as const,
+    rotate: 'rotate-2' as const,
   },
 ] as const
 

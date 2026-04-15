@@ -1,5 +1,6 @@
 import aboutMainImage from '@/img/about-main.png'
 import patternImage from '@/img/pattern.png'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
 const heroMeshBackground = [
@@ -38,22 +39,32 @@ export function AboutHero({ className }: { className?: string }) {
             'max-w-[880px] lg:justify-self-start',
           )}
         >
-          <p className="inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent">
+          <p
+            style={sectionEnterStyle(50)}
+            className="section-enter inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"
+          >
             ¿Quién soy?
           </p>
           <h1
             id="about-hero-heading"
-            className="text-balance text-[clamp(2.25rem,4vw+1rem,52px)] font-semibold leading-[1.08] text-foreground-brand sm:leading-[56px]"
+            style={sectionEnterStyle(120)}
+            className="section-enter text-balance text-[clamp(2.25rem,4vw+1rem,52px)] font-semibold leading-[1.08] text-foreground-brand sm:leading-[56px]"
           >
             👋 ¡Hola!
           </h1>
-          <p className="max-w-[784px] text-[26px] leading-8 text-foreground-secondary">
+          <p
+            style={sectionEnterStyle(190)}
+            className="section-enter max-w-[784px] text-[26px] leading-8 text-foreground-secondary"
+          >
             Soy Paqui,{' '}
             <span className="font-semibold">educadora canina profesional</span>
             {', especializada en convivencia entre perros y peques gracias a la '}
             <span className="font-semibold">Metodología Crianza Multiespecie</span>.
           </p>
-          <div className="max-w-[784px] space-y-2 text-[18px] leading-6 text-foreground-secondary">
+          <div
+            style={sectionEnterStyle(260)}
+            className="section-enter max-w-[784px] space-y-2 text-[18px] leading-6 text-foreground-secondary"
+          >
             <p>
               Trabajo <span className="font-semibold">acompañando a familias</span> que
               quieren crear un hogar tranquilo y respetuoso para todos sus miembros, tanto
@@ -82,7 +93,10 @@ export function AboutHero({ className }: { className?: string }) {
             'flex w-full justify-center lg:col-start-1 lg:row-start-1 lg:justify-start',
           )}
         >
-          <div className="relative w-full max-w-[577px] shrink-0">
+          <div
+            style={sectionEnterStyle(220)}
+            className="section-enter-photo relative w-full max-w-[577px] shrink-0"
+          >
             <img
               src={aboutMainImage}
               alt="Paqui Cabello, educadora canina"

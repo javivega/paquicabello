@@ -14,6 +14,7 @@ import {
   ServicePricingAside,
   servicePricingAsideSessionExpress,
 } from '@/components/services/shared/ServicePricingAside'
+import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
 const esParaMiCases = [
@@ -55,7 +56,8 @@ export function ServiceSessionExpressMainColumn({
     >
       <div className="order-2 flex min-w-0 flex-1 flex-col gap-14 lg:order-1 lg:gap-16">
         <section
-          className="flex max-w-[680px] flex-col gap-4 lg:pl-0"
+          style={sectionEnterStyle(60)}
+          className="section-enter flex max-w-[680px] flex-col gap-4 lg:pl-0"
           aria-labelledby="session-express-interpret-heading"
         >
           <h2
@@ -86,7 +88,8 @@ export function ServiceSessionExpressMainColumn({
 
         <section
           id="como-es-sesion"
-          className="flex scroll-mt-28 flex-col gap-4"
+          style={sectionEnterStyle(140)}
+          className="section-enter flex scroll-mt-28 flex-col gap-4"
           aria-labelledby="session-express-how-heading"
         >
           <h2
@@ -181,7 +184,8 @@ export function ServiceSessionExpressMainColumn({
         </section>
 
         <section
-          className="flex flex-col gap-6 lg:flex-row lg:gap-6"
+          style={sectionEnterStyle(220)}
+          className="section-enter flex flex-col gap-6 lg:flex-row lg:gap-6"
           aria-labelledby="session-express-audience-heading"
         >
           <div className="flex min-w-0 flex-1 flex-col gap-6">
@@ -222,13 +226,17 @@ export function ServiceSessionExpressMainColumn({
           </div>
         </section>
 
-        <ServiceSessionExpressFaq />
+        <div style={sectionEnterStyle(300)} className="section-enter">
+          <ServiceSessionExpressFaq />
+        </div>
       </div>
 
-      <ServicePricingAside
-        {...servicePricingAsideSessionExpress}
-        className="order-1 max-lg:mx-auto max-lg:w-full lg:order-2"
-      />
+      <div style={sectionEnterStyle(180)} className="section-enter order-1 lg:order-2">
+        <ServicePricingAside
+          {...servicePricingAsideSessionExpress}
+          className="max-lg:mx-auto max-lg:w-full"
+        />
+      </div>
     </div>
   )
 }
