@@ -11,7 +11,7 @@ export function HomeHero({ className }: { className?: string }) {
     <section
       className={cn(
         /* Solid canvas top; floor gradient + mesh tie into HomeLogosBand (surface-subtle-0) */
-        'relative isolate w-full min-h-[min(100vh,800px)] overflow-hidden bg-canvas pb-10 pt-16 sm:pb-12 sm:pt-20 lg:min-h-[800px] lg:pb-16 lg:pt-24',
+        'relative isolate w-full min-h-[min(100vh,800px)] overflow-hidden bg-canvas pb-10 pt-20 sm:pb-12 sm:pt-20 lg:min-h-[800px] lg:pb-16 lg:pt-24',
         className,
       )}
       aria-labelledby="home-hero-heading"
@@ -39,7 +39,7 @@ export function HomeHero({ className }: { className?: string }) {
 
       <div className="relative z-10 mx-auto box-border flex w-full min-w-0 max-w-[1280px] flex-col gap-12 px-4 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 xl:px-12">
         <div className="flex min-w-0 flex-1 flex-col gap-10 lg:max-w-[680px] lg:gap-14">
-          <div className="flex flex-col gap-5 pt-4 sm:gap-6 sm:pt-7">
+          <div className="flex flex-col gap-5 pt-8 sm:gap-6 sm:pt-7">
             <h1
               id="home-hero-heading"
               style={sectionEnterStyle(60)}

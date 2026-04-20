@@ -6,7 +6,15 @@ import { ServiceSessionExpressHero } from '@/components/services/session/Service
 import { ServiceSessionExpressMainColumn } from '@/components/services/session/ServiceSessionExpressMainColumn'
 import { cn } from '@/lib/utils'
 
-function ServiceSectionReveal({ children }: { children: ReactNode }) {
+function ServiceSectionReveal({
+  children,
+  threshold = 0.12,
+  rootMargin = '0px 0px -12% 0px',
+}: {
+  children: ReactNode
+  threshold?: number
+  rootMargin?: string
+}) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [inView, setInView] = useState(false)
 
@@ -23,14 +31,14 @@ function ServiceSectionReveal({ children }: { children: ReactNode }) {
       },
       {
         root: null,
-        rootMargin: '0px 0px -12% 0px',
-        threshold: 0.12,
+        rootMargin,
+        threshold,
       },
     )
 
     observer.observe(node)
     return () => observer.disconnect()
-  }, [])
+  }, [rootMargin, threshold])
 
   return (
     <div ref={sectionRef} className="home-section-reveal" data-inview={inView}>
@@ -54,7 +62,7 @@ export function ServiceSessionExpressPage() {
       <ServiceSectionReveal>
         <HomeLogosBand />
       </ServiceSectionReveal>
-      <ServiceSectionReveal>
+      <ServiceSectionReveal threshold={0.06} rootMargin="0px 0px 16% 0px">
         <ServiceSessionExpressMainColumn />
       </ServiceSectionReveal>
     </div>

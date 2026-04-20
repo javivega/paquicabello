@@ -31,9 +31,9 @@ export function ServiceSessionExpressHero({
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] w-full max-w-[1440px] flex-col items-center justify-center px-4 py-8 sm:px-8 lg:flex-row lg:items-center lg:gap-16 lg:px-20">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-start gap-4 px-4 pb-12 pt-28 sm:px-8 sm:pt-28 lg:min-h-[100dvh] lg:flex-row lg:items-center lg:justify-center lg:gap-16 lg:px-20 lg:pb-12 lg:pt-[124px]">
         {/* Left: text content */}
-        <div className="flex flex-1 flex-col items-center gap-4 text-center lg:items-start lg:text-left lg:max-w-[880px] lg:min-w-0">
+        <div className="flex flex-1 flex-col items-center gap-4 pt-4 text-center sm:pt-0 lg:items-start lg:max-w-[880px] lg:text-left lg:min-w-0">
           <p
             style={sectionEnterStyle(50)}
             className="section-enter inline-flex rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"

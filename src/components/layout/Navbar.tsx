@@ -1,4 +1,6 @@
+import { useEffect, useId, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { Menu, X } from 'lucide-react'
 
 import logoUrl from '@/img/logo.svg'
 import { ABOUT_PATH, CONTACT_PATH } from '@/lib/routes'
@@ -33,12 +35,69 @@ function useNavActiveId(activeIdOverride?: string) {
   return 'contacta'
 }
 
+const CONTACT_NAV_ID = 'contacta'
+
+function navLinkClassName(
+  itemId: string,
+  sectionActive: boolean,
+  layout: 'row' | 'stack',
+) {
+  const isContact = itemId === CONTACT_NAV_ID
+  const padding =
+    layout === 'stack'
+      ? 'inline-flex w-full items-center justify-center rounded-full px-4 py-3'
+      : 'inline-flex items-center justify-center rounded-full px-4 py-2'
+
+  const base = cn(
+    'paragraph-md text-center transition-[color,background-color,border-color,box-shadow]',
+    'border border-transparent',
+    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]',
+    padding,
+  )
+
+  /* Contact stays the solid orange CTA on every route so it stays visually focal. */
+  if (isContact) {
+    return cn(
+      base,
+      'bg-navbar-link-active-bg text-navbar-link-active-fg',
+      'hover:bg-[var(--Primitive-color-orange-orange-600)]',
+    )
+  }
+
+  /* Current section (non-contact): soft highlight so it does not compete with Contact. */
+  if (sectionActive) {
+    return cn(
+      base,
+      'bg-[var(--Primitive-color-orange-orange-100)] text-[var(--Primitive-color-orange-orange-800)]',
+    )
+  }
+
+  return cn(base, 'text-navbar-link', 'hover:border-navbar-link-hover-border')
+}
+
 export function Navbar({
   className,
   items = defaultItems,
   activeId: activeIdProp,
 }: NavbarProps) {
   const activeId = useNavActiveId(activeIdProp)
+  const { pathname, hash } = useLocation()
+  const menuPanelId = useId()
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname, hash])
+
+  useEffect(() => {
+    if (!mobileOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [mobileOpen])
+
   return (
     /* Fixed so the pill stays pinned for the full page scroll. `sticky` inside an
        `absolute` header does not get a tall enough scroll range across the document. */
@@ -52,7 +111,7 @@ export function Navbar({
         <nav
           aria-label="Principal"
           className={cn(
-            'pointer-events-auto mx-auto flex w-full max-w-xl items-center justify-between gap-6 rounded-full py-2 pr-2 pl-6 sm:gap-10',
+            'pointer-events-auto relative mx-auto flex w-full max-w-xl items-center justify-between gap-3 rounded-full py-2 pr-2 pl-4 sm:gap-6 sm:pl-6 md:gap-10',
             'bg-navbar-surface',
             'shadow-[0px_0px_10px_0px_var(--Primitive-color-orange-orange-200)]',
           )}
@@ -60,37 +119,29 @@ export function Navbar({
           <Link
             to="/"
             className="min-w-0 shrink focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]"
+            onClick={() => setMobileOpen(false)}
           >
             <img
               src={logoUrl}
               alt="Paqui cabello"
               width={165}
               height={32}
-              className="h-8 w-[165px] object-contain object-left"
+              className="h-7 w-[140px] object-contain object-left sm:h-8 sm:w-[165px]"
               decoding="async"
             />
           </Link>
 
-          <ul className="flex min-w-0 list-none flex-wrap items-center gap-3 p-0">
+          <ul className="hidden min-w-0 list-none items-center gap-3 p-0 md:flex md:flex-wrap">
             {items.map((item) => {
-              const active = item.id === activeId
+              const sectionActive = item.id === activeId
               return (
                 <li key={item.id}>
                   <Link
                     to={item.to}
-                    className={cn(
-                      'inline-flex items-center justify-center rounded-full px-4 py-2',
-                      'paragraph-md text-center transition-[color,background-color,border-color,box-shadow]',
-                      'border border-transparent',
-                      'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]',
-                      active
-                        ? 'bg-navbar-link-active-bg text-navbar-link-active-fg'
-                        : [
-                            'text-navbar-link',
-                            'hover:border-navbar-link-hover-border',
-                          ].join(' '),
-                    )}
-                    {...(active ? { 'aria-current': 'page' as const } : {})}
+                    className={navLinkClassName(item.id, sectionActive, 'row')}
+                    {...(sectionActive
+                      ? { 'aria-current': 'page' as const }
+                      : {})}
                   >
                     {item.label}
                   </Link>
@@ -98,6 +149,64 @@ export function Navbar({
               )
             })}
           </ul>
+
+          <button
+            type="button"
+            className={cn(
+              'inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full md:hidden',
+              'text-navbar-link transition-[color,background-color]',
+              'hover:bg-navbar-link-active-bg/15',
+              'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]',
+            )}
+            aria-expanded={mobileOpen}
+            aria-controls={menuPanelId}
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            {mobileOpen ? (
+              <X className="size-6" aria-hidden />
+            ) : (
+              <Menu className="size-6" aria-hidden />
+            )}
+            <span className="sr-only">
+              {mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+            </span>
+          </button>
+
+          <div
+            id={menuPanelId}
+            role="region"
+            aria-label="Navegación móvil"
+            className={cn(
+              'absolute top-[calc(100%+0.375rem)] left-0 right-0 z-10 md:hidden',
+              'overflow-hidden rounded-3xl bg-navbar-surface p-2',
+              'shadow-[0px_0px_10px_0px_var(--Primitive-color-orange-orange-200)]',
+              mobileOpen ? 'block' : 'hidden',
+            )}
+          >
+            <ul className="m-0 flex list-none flex-col gap-1 p-0">
+              {items.map((item) => {
+                const sectionActive = item.id === activeId
+                return (
+                  <li key={item.id}>
+                    <Link
+                      to={item.to}
+                      className={navLinkClassName(
+                        item.id,
+                        sectionActive,
+                        'stack',
+                      )}
+                      {...(sectionActive
+                        ? { 'aria-current': 'page' as const }
+                        : {})}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </nav>
       </div>
     </header>

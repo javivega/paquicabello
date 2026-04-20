@@ -62,7 +62,7 @@ export function ServiceProgram8WeeksPage() {
       <ServiceSectionReveal>
         <HomeLogosBand />
       </ServiceSectionReveal>
-      <ServiceSectionReveal threshold={0.02} rootMargin="0px 0px 10% 0px">
+      <ServiceSectionReveal threshold={0.06} rootMargin="0px 0px 16% 0px">
         <ServiceProgramMainColumn />
       </ServiceSectionReveal>
     </div>

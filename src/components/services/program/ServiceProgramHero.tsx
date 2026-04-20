@@ -31,8 +31,8 @@ export function ServiceProgramHero({
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4 px-4 pb-8 pt-24 sm:px-8 sm:pt-28 lg:px-20 lg:pb-12 lg:pt-[124px]">
-        <div className="flex w-full max-w-[880px] flex-col items-center gap-4 text-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center gap-4 px-4 pb-8 pt-28 sm:px-8 sm:pt-28 lg:px-20 lg:pb-12 lg:pt-[124px]">
+        <div className="flex w-full max-w-[880px] flex-col items-center gap-4 pt-4 text-center sm:pt-0">
           <p
             style={sectionEnterStyle(50)}
             className="section-enter inline-flex rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"
