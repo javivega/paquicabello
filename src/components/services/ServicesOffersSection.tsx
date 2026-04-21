@@ -1,7 +1,11 @@
 import { Check } from 'lucide-react'
 
-import { BrandButton, BrandLinkButton } from '@/components/ui/button'
-import { PROGRAM_8_WEEKS_PATH, SESSION_EXPRESS_PATH } from '@/lib/routes'
+import { BrandLinkButton } from '@/components/ui/button'
+import {
+  CONTACT_PATH,
+  PROGRAM_8_WEEKS_PATH,
+  SESSION_EXPRESS_PATH,
+} from '@/lib/routes'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
@@ -108,16 +112,16 @@ export function ServicesOffersSection({ className }: { className?: string }) {
               ))}
             </ul>
             <div className="flex flex-col gap-2 px-6">
-              <BrandButton
+              <BrandLinkButton
+                to={CONTACT_PATH}
                 brandVariant="secondary"
                 brandSize="md"
-                type="button"
                 className="w-full"
                 leftSlot={null}
                 rightSlot={null}
               >
                 Contactar
-              </BrandButton>
+              </BrandLinkButton>
               <BrandLinkButton
                 to={SESSION_EXPRESS_PATH}
                 brandVariant="secondary"
@@ -173,16 +177,16 @@ export function ServicesOffersSection({ className }: { className?: string }) {
               ))}
             </ul>
             <div className="flex flex-col gap-2 px-6">
-              <BrandButton
+              <BrandLinkButton
+                to={CONTACT_PATH}
                 brandVariant="primary"
                 brandSize="md"
-                type="button"
                 className="w-full"
                 leftSlot={null}
                 rightSlot={null}
               >
                 Contactar
-              </BrandButton>
+              </BrandLinkButton>
               <BrandLinkButton
                 to={PROGRAM_8_WEEKS_PATH}
                 brandVariant="secondary"

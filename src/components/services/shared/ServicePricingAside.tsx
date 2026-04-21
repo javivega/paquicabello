@@ -2,7 +2,8 @@ import { Check } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 import avatarImage from '@/img/avatar.png'
-import { BrandButton } from '@/components/ui/button'
+import { BrandLinkButton } from '@/components/ui/button'
+import { CONTACT_PATH } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 export type ServicePricingAsideProps = {
@@ -122,26 +123,26 @@ export function ServicePricingAside({
           </p>
         </div>
         <div className="flex flex-col gap-2 px-5 sm:flex-row sm:flex-wrap sm:px-6 sm:gap-2">
-          <BrandButton
+          <BrandLinkButton
+            to={CONTACT_PATH}
             brandVariant="primary"
             brandSize="md"
-            type="button"
             className="w-full sm:w-auto"
             leftSlot={null}
             rightSlot={null}
           >
             Contactar
-          </BrandButton>
-          <BrandButton
+          </BrandLinkButton>
+          <BrandLinkButton
+            to={CONTACT_PATH}
             brandVariant="secondary"
             brandSize="md"
-            type="button"
             className="w-full sm:w-auto"
             leftSlot={null}
             rightSlot={null}
           >
             Tengo más dudas
-          </BrandButton>
+          </BrandLinkButton>
         </div>
       </div>
     </aside>

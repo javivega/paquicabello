@@ -1,6 +1,7 @@
 import heroImage from '@/img/hero.png'
 import patternImage from '@/img/pattern.png'
-import { BrandButton, BrandLinkButton } from '@/components/ui/button'
+import { BrandLinkButton } from '@/components/ui/button'
+import { CONTACT_PATH } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 const heroMeshBackground = [
@@ -82,15 +83,15 @@ export function ServiceMarketingHero({
             {description}
           </p>
           <div className="mt-2 flex w-full flex-wrap items-center justify-center gap-2 px-6 sm:gap-2">
-            <BrandButton
+            <BrandLinkButton
+              to={CONTACT_PATH}
               brandVariant="primary"
               brandSize="md"
-              type="button"
               leftSlot={null}
               rightSlot={null}
             >
               Contactar
-            </BrandButton>
+            </BrandLinkButton>
             <BrandLinkButton
               to={moreInfoTo}
               brandVariant="secondary"

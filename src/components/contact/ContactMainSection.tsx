@@ -1,10 +1,10 @@
 import contactImage from '@/img/contact.png'
 import patternImage from '@/img/pattern.png'
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import { brandButtonVariants, iconRingVariants, labelVariants } from '@/components/ui/button-variants'
 import { WHATSAPP_CONTACT_HREF } from '@/lib/routes'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
-import { MessageCircle } from 'lucide-react'
 
 const contactMeshBackground = [
   'radial-gradient(ellipse 720px 420px at 100% 0%, rgb(252 252 252) 0%, rgb(255 244 240) 45%, rgb(255 244 240) 100%)',
@@ -84,7 +84,7 @@ export function ContactMainSection({ className }: { className?: string }) {
               className={iconRingVariants({ brandVariant: 'primary', brandSize: 'md' })}
               data-part="icon-left"
             >
-              <MessageCircle className="size-4" aria-hidden strokeWidth={1.75} />
+              <WhatsAppIcon className="size-4" />
             </span>
             <span className={labelVariants({ brandVariant: 'primary', brandSize: 'md' })}>
               Contactar por WhatsApp

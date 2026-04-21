@@ -2,6 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
+import { ConsentProvider } from '@/context/ConsentContext'
+
 import './styles/globals.css'
 import App from './App.tsx'
 
@@ -12,7 +14,9 @@ const routerBasename =
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter basename={routerBasename}>
-      <App />
+      <ConsentProvider>
+        <App />
+      </ConsentProvider>
     </BrowserRouter>
   </StrictMode>,
 )

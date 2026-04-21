@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
+import { FacebookIcon } from '@/components/icons/FacebookIcon'
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import logoUrl from '@/img/logo.svg'
+import { COOKIES_POLICY_PATH, PRIVACY_POLICY_PATH } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 function IconInstagram({ className }: { className?: string }) {
@@ -19,33 +22,6 @@ function IconInstagram({ className }: { className?: string }) {
       <rect x="2" y="2" width="20" height="20" rx="5" />
       <circle cx="12" cy="12" r="4" />
       <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
-
-function IconFacebook({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
-      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-4h2v-1.5C10 8.57 11.57 7 13.5 7H16v4h-2c-.55 0-1 .45-1 1V15h3l-.5 4H15v5.8c4.56-.93 8-4.96 8-9.8z" />
-    </svg>
-  )
-}
-
-function IconWhatsApp({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-      <path d="M9.5 9.5c.2 1.4 1.2 2.5 2.6 2.8" />
-      <path d="M9.5 13.5c.3.5.8 1 1.4 1.2" />
     </svg>
   )
 }
@@ -116,26 +92,26 @@ export function Footer({ className }: FooterProps) {
                   607 340 152
                 </a>
                 <a
-                  href="mailto:paqui@gmail.com"
+                  href="mailto:francisca.cabello2701@gmail.com"
                   className="paragraph-md hover:opacity-90 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-strong"
                 >
-                  paqui@gmail.com
+                  francisca.cabello2701@gmail.com
                 </a>
               </FooterColumn>
 
               <FooterColumn title="Legal">
-                <a
-                  href="#politica-cookies"
+                <Link
+                  to={COOKIES_POLICY_PATH}
                   className="paragraph-md hover:opacity-90 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-strong"
                 >
                   Política de cookies
-                </a>
-                <a
-                  href="#politica-privacidad"
+                </Link>
+                <Link
+                  to={PRIVACY_POLICY_PATH}
                   className="paragraph-md hover:opacity-90 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-strong"
                 >
                   Política de privacidad
-                </a>
+                </Link>
               </FooterColumn>
 
               <div
@@ -152,13 +128,13 @@ export function Footer({ className }: FooterProps) {
                   <IconInstagram className="size-6" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://es-es.facebook.com/francisca.cabellojimenez"
                   target="_blank"
                   rel="noreferrer"
                   className="text-on-strong hover:opacity-90 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-strong"
                   aria-label="Facebook"
                 >
-                  <IconFacebook className="size-6" />
+                  <FacebookIcon className="size-6" />
                 </a>
                 <a
                   href="https://wa.me/34607340152"
@@ -167,7 +143,7 @@ export function Footer({ className }: FooterProps) {
                   className="text-on-strong hover:opacity-90 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-on-strong"
                   aria-label="WhatsApp"
                 >
-                  <IconWhatsApp className="size-6" />
+                  <WhatsAppIcon className="size-6" />
                 </a>
               </div>
             </div>

@@ -4,6 +4,15 @@ export const ABOUT_PATH = '/sobre-mi' as const
 /** Página de contacto (Figma node 1042:6959). */
 export const CONTACT_PATH = '/contacto' as const
 
+/** Política de cookies (contenido alineado con la publicación en Webflow). */
+export const COOKIES_POLICY_PATH = '/politica-de-cookies' as const
+
+/** Política de privacidad (contenido alineado con la publicación en Webflow). */
+export const PRIVACY_POLICY_PATH = '/politica-de-privacidad' as const
+
+/** Listado de servicios. */
+export const SERVICES_PATH = '/servicios' as const
+
 /** WhatsApp (mismo número que en el pie). */
 export const WHATSAPP_CONTACT_HREF = 'https://wa.me/34607340152' as const
 

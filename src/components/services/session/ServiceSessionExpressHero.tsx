@@ -1,9 +1,9 @@
 import patternImage from '@/img/pattern.png'
 import service1Image from '@/img/service1.png'
-import { BrandButton, BrandLinkButton } from '@/components/ui/button'
+import { BrandLinkButton } from '@/components/ui/button'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
-import { SESSION_EXPRESS_PATH } from '@/lib/routes'
+import { CONTACT_PATH, SESSION_EXPRESS_PATH } from '@/lib/routes'
 
 const heroBackground = [
   'radial-gradient(ellipse 343px 198px at 0% 0%, rgb(252 252 252) 0%, rgb(255 244 240) 100%)',
@@ -60,15 +60,15 @@ export function ServiceSessionExpressHero({
             style={sectionEnterStyle(260)}
             className="section-enter mt-2 flex flex-wrap items-center justify-center gap-2 lg:justify-start"
           >
-            <BrandButton
+            <BrandLinkButton
+              to={CONTACT_PATH}
               brandVariant="primary"
               brandSize="md"
-              type="button"
               leftSlot={null}
               rightSlot={null}
             >
               Contactar
-            </BrandButton>
+            </BrandLinkButton>
             <BrandLinkButton
               to={`${SESSION_EXPRESS_PATH}#como-es-sesion`}
               brandVariant="secondary"

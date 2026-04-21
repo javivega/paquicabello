@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom'
 import { RootLayout } from './layout/RootLayout'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
+import { CookiesPolicyPage } from './pages/CookiesPolicyPage'
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage'
 import { HomePage } from './pages/HomePage'
 import { ServiceProgram8WeeksPage } from './pages/ServiceProgram8WeeksPage'
 import { ServiceSessionExpressPage } from './pages/ServiceSessionExpressPage'
@@ -15,6 +17,8 @@ export default function App() {
         <Route index element={<HomePage />} />
         <Route path="sobre-mi" element={<AboutPage />} />
         <Route path="contacto" element={<ContactPage />} />
+        <Route path="politica-de-cookies" element={<CookiesPolicyPage />} />
+        <Route path="politica-de-privacidad" element={<PrivacyPolicyPage />} />
         <Route path="servicios" element={<ServicesPage />} />
         <Route
           path="servicios/sesion-expres"

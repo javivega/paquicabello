@@ -1,9 +1,9 @@
 import patternImage from '@/img/pattern.png'
 import service2Image from '@/img/service2.png'
-import { BrandButton, BrandLinkButton } from '@/components/ui/button'
+import { BrandLinkButton } from '@/components/ui/button'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
-import { PROGRAM_8_WEEKS_PATH } from '@/lib/routes'
+import { CONTACT_PATH, PROGRAM_8_WEEKS_PATH } from '@/lib/routes'
 
 const heroBackground = [
   'radial-gradient(ellipse 343px 198px at 0% 0%, rgb(252 252 252) 0%, rgb(255 244 240) 100%)',
@@ -61,15 +61,15 @@ export function ServiceProgramHero({
           style={sectionEnterStyle(260)}
           className="section-enter flex w-full items-center justify-center gap-2 px-6"
         >
-          <BrandButton
+          <BrandLinkButton
+            to={CONTACT_PATH}
             brandVariant="primary"
             brandSize="md"
-            type="button"
             leftSlot={null}
             rightSlot={null}
           >
             Contactar
-          </BrandButton>
+          </BrandLinkButton>
           <BrandLinkButton
             to={`${PROGRAM_8_WEEKS_PATH}#como-es-programa`}
             brandVariant="secondary"

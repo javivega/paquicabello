@@ -2,7 +2,8 @@ import heroImage from '@/img/hero.png'
 import multiespecieIcon from '@/img/multiespecie.png'
 import patternImage from '@/img/pattern.png'
 import teacherIcon from '@/img/teacher.png'
-import { BrandButton } from '@/components/ui/button'
+import { BrandLinkButton } from '@/components/ui/button'
+import { CONTACT_PATH, SERVICES_PATH } from '@/lib/routes'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
@@ -63,25 +64,25 @@ export function HomeHero({ className }: { className?: string }) {
 
           <div className="flex flex-wrap gap-3">
             <span className="section-enter inline-flex" style={sectionEnterStyle(240)}>
-              <BrandButton
+              <BrandLinkButton
+                to={CONTACT_PATH}
                 brandVariant="primary"
                 brandSize="lg"
-                type="button"
                 leftSlot={null}
               >
                 Contactar
-              </BrandButton>
+              </BrandLinkButton>
             </span>
             <span className="section-enter inline-flex" style={sectionEnterStyle(320)}>
-              <BrandButton
+              <BrandLinkButton
+                to={SERVICES_PATH}
                 brandVariant="secondary"
                 brandSize="lg"
-                type="button"
                 leftSlot={null}
                 rightSlot={null}
               >
                 Explorar servicios
-              </BrandButton>
+              </BrandLinkButton>
             </span>
           </div>
 

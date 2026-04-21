@@ -437,3 +437,54 @@ html {
 .home-help-marquee-wrap:focus-within .home-help-marquee-track {
   animation-play-state: paused;
 }
+
+@keyframes consent-banner-slide-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes consent-modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes consent-modal-pop-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.consent-banner-enter {
+  animation: consent-banner-slide-in 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.consent-modal-backdrop {
+  animation: consent-modal-fade-in 180ms ease-out both;
+}
+
+.consent-modal-enter {
+  animation: consent-modal-pop-in 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consent-banner-enter,
+  .consent-modal-backdrop,
+  .consent-modal-enter {
+    animation: none !important;
+  }
+}

@@ -1,6 +1,7 @@
 import { useSyncExternalStore } from 'react'
 
-import { BrandButton } from '@/components/ui/button'
+import { BrandLinkButton } from '@/components/ui/button'
+import { CONTACT_PATH, SERVICES_PATH } from '@/lib/routes'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
@@ -78,16 +79,16 @@ function SituationCardItem({ card }: { card: SituationCard }) {
         >
           {card.title}
         </h3>
-        <BrandButton
+        <BrandLinkButton
+          to={CONTACT_PATH}
           brandVariant="secondary"
           brandSize="md"
-          type="button"
           className="w-fit"
           leftSlot={null}
           rightSlot={null}
         >
           Evaluar caso
-        </BrandButton>
+        </BrandLinkButton>
       </article>
     </div>
   )
@@ -148,29 +149,29 @@ export function HomeHelpSection({ className }: { className?: string }) {
               className="section-enter inline-flex"
               style={sectionEnterStyle(260)}
             >
-              <BrandButton
+              <BrandLinkButton
+                to={CONTACT_PATH}
                 brandVariant="primary"
                 brandSize="md"
-                type="button"
                 leftSlot={null}
                 rightSlot={null}
               >
                 Contactar
-              </BrandButton>
+              </BrandLinkButton>
             </span>
             <span
               className="section-enter inline-flex"
               style={sectionEnterStyle(320)}
             >
-              <BrandButton
+              <BrandLinkButton
+                to={SERVICES_PATH}
                 brandVariant="secondary"
                 brandSize="md"
-                type="button"
                 leftSlot={null}
                 rightSlot={null}
               >
                 Explorar servicios
-              </BrandButton>
+              </BrandLinkButton>
             </span>
           </div>
         </div>
