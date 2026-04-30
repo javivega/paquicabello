@@ -98,9 +98,11 @@ export function Navbar({
   const { pathname, hash } = useLocation()
   const menuPanelId = useId()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileServiciosOpen, setMobileServiciosOpen] = useState(false)
 
   useEffect(() => {
     setMobileOpen(false)
+    setMobileServiciosOpen(false)
   }, [pathname, hash])
 
   useEffect(() => {
@@ -240,22 +242,76 @@ export function Navbar({
             <ul className="m-0 flex list-none flex-col gap-1 p-0">
               {items.map((item) => {
                 const sectionActive = item.id === activeId
+                const isServicios = item.id === 'servicios'
                 return (
                   <li key={item.id}>
-                    <Link
-                      to={item.to}
-                      className={navLinkClassName(
-                        item.id,
-                        sectionActive,
-                        'stack',
-                      )}
-                      {...(sectionActive
-                        ? { 'aria-current': 'page' as const }
-                        : {})}
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
+                    {isServicios ? (
+                      <div className="flex flex-col gap-1">
+                        <button
+                          type="button"
+                          className={cn(
+                            navLinkClassName(item.id, sectionActive, 'stack'),
+                            'gap-1.5',
+                          )}
+                          aria-expanded={mobileServiciosOpen}
+                          aria-controls="mobile-servicios-submenu"
+                          onClick={() =>
+                            setMobileServiciosOpen((open) => !open)
+                          }
+                        >
+                          <span>{item.label}</span>
+                          <ChevronDown
+                            className={cn(
+                              'size-4 transition-transform duration-200',
+                              mobileServiciosOpen && 'rotate-180',
+                            )}
+                            aria-hidden
+                          />
+                        </button>
+                        <div
+                          id="mobile-servicios-submenu"
+                          className={cn(
+                            'overflow-hidden px-1 transition-[max-height,opacity] duration-200',
+                            mobileServiciosOpen
+                              ? 'max-h-48 opacity-100'
+                              : 'max-h-0 opacity-0',
+                          )}
+                        >
+                          <ul className="m-0 list-none p-0 pb-1">
+                            {serviciosSubItems.map((subItem) => (
+                              <li key={subItem.id}>
+                                <Link
+                                  to={subItem.to}
+                                  className={cn(
+                                    'paragraph-md flex w-full rounded-xl px-4 py-2 text-navbar-link transition-[background-color,color]',
+                                    'hover:bg-[var(--Primitive-color-orange-orange-100)] hover:text-[var(--Primitive-color-orange-orange-800)]',
+                                    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]',
+                                  )}
+                                  onClick={() => setMobileOpen(false)}
+                                >
+                                  {subItem.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    ) : (
+                      <Link
+                        to={item.to}
+                        className={navLinkClassName(
+                          item.id,
+                          sectionActive,
+                          'stack',
+                        )}
+                        {...(sectionActive
+                          ? { 'aria-current': 'page' as const }
+                          : {})}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
                   </li>
                 )
               })}
