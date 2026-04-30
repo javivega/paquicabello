@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 const pillars = [
   {
     title: 'Una familia en la que todos cuentan',
-    body: 'Tu perro no es un añadido, es parte del vínculo, con emociones y formas de comunicarse que merecen ser escuchadas.',
+    body: 'Tu perro no es un añadido más, forma parte del núcleo familiar, con emociones muy parecidas a las tuyas y aunque no habla como nosotras, tiene un repertorio de señales comunicativas que expresan en todo momento su estado emocional.',
   },
   {
     title: 'Libre de violencia',
@@ -14,15 +14,15 @@ const pillars = [
   },
   {
     title: 'Respeto y límites recíprocos',
-    body: 'Fomentamos una relación basada en el respeto mutuo, reconociendo todos los ritmos, necesidades y capacidades.',
+    body: 'Fomentamos una relación basada en el respeto mutuo, reconociendo las necesidades caninas y estableciendolímites seguros y que protejan a todos los miembros de la familia',
   },
   {
-    title: 'Adaptado a cada individuo',
+    title: 'Cada miembro de la familia importa',
     body: 'Cada miembro de la familia importa y es tratado según su forma única de ser, sin importar la especie.',
   },
   {
     title: 'Compromiso de todos',
-    body: 'La convivencia segura se logra cuando los adultos se implican activamente en guiar y supervisar la relación entre niños y perros.',
+    body: 'Una convivencia segura entre niños y perros es posible ¡Por supuesto! Durante años nos han dicho que había que controlar al perro en un transportín, al final el perro se quedaba relegado/apartado de la vida familiar, la realidad es que da mejores resultados integrarlo en la vida familiar con límites que protejan y sean seguros para todos los miembros de la familia.',
   },
 ] as const
 
@@ -152,12 +152,12 @@ export function HomeMethodologySection({ className }: { className?: string }) {
               'section-enter space-y-2 text-lg leading-7 text-foreground-secondary lg:mx-auto lg:max-w-[640px]',
             )}
           >
-            <p>Educar no es corregir, es acompañar sin romper el vínculo.</p>
+            <p>Educar es acompañar y fortalecer el vínculo.</p>
             <p>
-              Trabajamos desde la evidencia y una mirada multiespecie: sin
-              castigos ni dominancia, entendiendo el comportamiento y el entorno.
-              No buscamos obediencia, sino seguridad, equilibrio y relaciones que
-              perduren.
+            Trabajamos desde la
+            evidencia científica y una mirada multiespecie, dejando atrás los castigos y los modelos
+            basados en la dominancia. Nuestro objetivo no es la obediencia, sino construir
+            seguridad, equilibrio emocional y relaciones de confianza.
             </p>
           </div>
         </div>

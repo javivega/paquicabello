@@ -132,15 +132,18 @@ export function HomeHelpSection({ className }: { className?: string }) {
             className={cn('section-enter space-y-2 text-lg leading-6 text-foreground-secondary')}
           >
             <p>
-              La desinformación y las expectativas poco realistas nos hacen
-              interpretar como “problemas” lo que en realidad son intentos de
-              comunicación. Cuando aprendemos a leer sus señales, cambia todo.
+              La desinformación o el exceso de información suelta, muchas veces puede
+              llevarnos a creer en expectativas poco realistas o poco ajustadas a la realidad y lo que
+              interpretamos como “problemas” en realidad son intentos de comunicación. Cuando
+              aprendemos a leer sus señales y las atendemos, cambia nuestra manera de
+              relacionarnos y ahí… cambia todo, esto es un antes y en después en vuestra relación.
             </p>
             <p>
               <span>Te acompaño para que puedas: </span>
               <span className="font-semibold">
-                comprender su comportamiento, ajustar el entorno y las
-                dinámicas, construir una convivencia más tranquila y consciente
+                conocer mejor esa conducta, ir a la raíz del problema y
+                conocer cuál es la emoción que está detrás de ese comportamiento, ajustar el entorno
+                y crear nuevas dinámicas que favorezcan una convivencia más consciente y equilibrada
               </span>
             </p>
           </div>

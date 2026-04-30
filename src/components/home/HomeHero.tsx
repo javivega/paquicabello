@@ -56,9 +56,9 @@ export function HomeHero({ className }: { className?: string }) {
                 'section-enter max-w-[628px] text-pretty text-xl font-semibold leading-6 text-foreground-secondary sm:text-[20px] sm:leading-6',
               )}
             >
-              Convierte tu hogar en un espacio seguro y respetuoso, desde el
-              acompañamiento y entendimiento de las emociones de todas las
-              especies implicadas para construir confianza.
+              Crear un hogar seguro para tu perro implica conocer y acompañar sus emociones,
+              respetando y atendiendo sus necesidades construyendo así relaciones basadas en la
+              confianza y el apego seguro
             </p>
           </div>
 
