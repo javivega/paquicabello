@@ -1,9 +1,14 @@
 import { useEffect, useId, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 
 import logoUrl from '@/img/logo.svg'
-import { ABOUT_PATH, CONTACT_PATH } from '@/lib/routes'
+import {
+  ABOUT_PATH,
+  CONTACT_PATH,
+  PROGRAM_8_WEEKS_PATH,
+  SESSION_EXPRESS_PATH,
+} from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 export type NavbarItem = {
@@ -17,6 +22,15 @@ const defaultItems: NavbarItem[] = [
   { id: 'sobre-mi', label: 'Sobre mí', to: ABOUT_PATH },
   { id: 'contacta', label: 'Contacta', to: CONTACT_PATH },
 ]
+
+const serviciosSubItems = [
+  { id: 'session-express', label: 'Sesión exprés', to: SESSION_EXPRESS_PATH },
+  {
+    id: 'program-8-weeks',
+    label: 'Programa de 8 semanas',
+    to: PROGRAM_8_WEEKS_PATH,
+  },
+] as const
 
 type NavbarProps = {
   className?: string
@@ -111,7 +125,7 @@ export function Navbar({
         <nav
           aria-label="Principal"
           className={cn(
-            'pointer-events-auto relative mx-auto flex w-full max-w-xl items-center justify-between gap-3 rounded-full py-2 pr-2 pl-4 sm:gap-6 sm:pl-6 md:gap-10',
+            'pointer-events-auto relative mx-auto flex w-full max-w-4xl items-center justify-between gap-3 rounded-full py-2 pr-2 pl-4 sm:gap-6 sm:pl-6 md:gap-8',
             'bg-navbar-surface',
             'shadow-[0px_0px_10px_0px_var(--Primitive-color-orange-orange-200)]',
           )}
@@ -131,20 +145,60 @@ export function Navbar({
             />
           </Link>
 
-          <ul className="hidden min-w-0 list-none items-center gap-3 p-0 md:flex md:flex-wrap">
+          <ul className="hidden min-w-0 list-none items-center gap-2 p-0 md:flex md:flex-nowrap">
             {items.map((item) => {
               const sectionActive = item.id === activeId
+              const isServicios = item.id === 'servicios'
               return (
-                <li key={item.id}>
+                <li key={item.id} className={cn(isServicios && 'group relative')}>
                   <Link
                     to={item.to}
-                    className={navLinkClassName(item.id, sectionActive, 'row')}
+                    className={cn(
+                      navLinkClassName(item.id, sectionActive, 'row'),
+                      isServicios && 'gap-1.5',
+                    )}
                     {...(sectionActive
                       ? { 'aria-current': 'page' as const }
                       : {})}
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    {isServicios ? (
+                      <ChevronDown
+                        className="size-4 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                        aria-hidden
+                      />
+                    ) : null}
                   </Link>
+
+                  {isServicios ? (
+                    <div
+                      className={cn(
+                        'absolute left-1/2 top-[calc(100%+0.5rem)] z-20 w-64 -translate-x-1/2',
+                        'invisible opacity-0 transition-[opacity,visibility,transform] duration-200',
+                        'translate-y-1 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100',
+                        'group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100',
+                      )}
+                    >
+                      <div className="rounded-2xl border border-border-subtle-0 bg-navbar-surface p-2 shadow-[0px_0px_10px_0px_var(--Primitive-color-orange-orange-200)]">
+                        <ul className="m-0 list-none p-0">
+                          {serviciosSubItems.map((subItem) => (
+                            <li key={subItem.id}>
+                              <Link
+                                to={subItem.to}
+                                className={cn(
+                                  'paragraph-md flex w-full rounded-xl px-3 py-2.5 text-navbar-link transition-[background-color,color]',
+                                  'hover:bg-[var(--Primitive-color-orange-orange-100)] hover:text-[var(--Primitive-color-orange-orange-800)]',
+                                  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]',
+                                )}
+                              >
+                                {subItem.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ) : null}
                 </li>
               )
             })}
