@@ -46,24 +46,16 @@ export function AboutMethodSection({ className }: { className?: string }) {
           className="section-enter space-y-4 text-base leading-6 text-foreground-secondary"
         >
           <p>
-            Es un marco de trabajo propio, pensado para integrar a todas las personas y
-            animales que conviven en un mismo hogar. Partimos de la comunicación canina
-            real, del respeto mutuo y de límites claros que se pueden adaptar cuando la
-            vida cambia (un bebé, un traslado, un nuevo compañero…).
+          Si tienes peques en casa o estás esperando su llegada, puedo ayudarte a construir una convivencia segura y respetuosa entre perros y niños.
           </p>
           <p>
-            Rechazo la violencia, los castigos y las soluciones “de manual” que ignoran
-            el contexto. Mi referente ético y formativo incluye años de aprendizaje junto
-            a profesionales como{' '}
-            <span className="font-semibold text-foreground">Tamara Hernán</span>, con
-            quien sigo alineando criterios sobre bienestar, supervisión y crianza
-            consciente.
+            Estoy especializada en <span className="font-semibold">Crianza Multiespecie®</span>, una metodología enfocada exclusivamente en la convivencia familiar entre perros y peques, donde se trabaja entre otras muchas cosas la relación y la comunicación dentro de la familia, previniendo conflictos y favoreciendo experiencias positivas y vínculos sanos desde el principio.
           </p>
           <p>
-            Si quieres profundizar en pilares y ejemplos, también lo encontrarás en la
-            sección de metodología de la web. Aquí el objetivo es simple: que tu familia
-            gane calma, seguridad y confianza —sin perder de vista que el amor, bien
-            encauzado, es el mejor combustible.
+            Me he formado profesionalmente con Tamara Hernán, la mayor referente que hay ahora mismo en este ámbito, lo que me permite acompañarte con herramientas prácticas y actuales, basadas en el bienestar emocional tanto de tu perro como del resto de los miembros de la familia.
+          </p>
+          <p>
+            Mi objetivo es ayudarte a crear un hogar donde perros y peques crezcan juntos de forma segura, equilibrada y feliz.
           </p>
         </div>
         <BrandLinkButton

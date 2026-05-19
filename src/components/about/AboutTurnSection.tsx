@@ -29,14 +29,10 @@ export function AboutTurnSection({ className }: { className?: string }) {
           className="section-enter space-y-3 text-base leading-6 text-foreground-secondary"
         >
           <p>
-            Ver una y otra vez el mismo patrón: soluciones rápidas que no sostenían el
-            vínculo, y familias agotadas que solo necesitaban un lenguaje común y un plan
-            respetuoso con todos.
+          Dar vueltas una y otra vez al mismo punto: soluciones rápidas que parecían funcionar al principio, pero que no llegaban a la raíz del problema ni cuidaban el vínculo, y familias cansadas que solo necesitaban entenderse mejor con su perro y tener un plan realista para su día a día.
           </p>
           <p>
-            Decidí apostar por un acompañamiento profundo, basado en comprensión canina
-            real y en la vida cotidiana de cada hogar —porque fuera de vuestro salón, los
-            libros de texto no sirven de mucho.
+          Ahí entendí que quería trabajar de otra manera. Apostar por un acompañamiento más humano, más profundo y adaptado a cada hogar. Porque la convivencia no ocurre en una sesión puntual… ocurre en vuestra casa, en vuestros paseos y en vuestra rutina diaria. Y es ahí donde realmente pasan las cosas importantes.
           </p>
         </div>
       </div>

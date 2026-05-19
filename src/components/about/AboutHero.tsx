@@ -58,32 +58,21 @@ export function AboutHero({ className }: { className?: string }) {
           >
             Soy Paqui,{' '}
             <span className="font-semibold">educadora canina profesional</span>
-            {', especializada en convivencia entre perros y peques gracias a la '}
-            <span className="font-semibold">Metodología Crianza Multiespecie</span>.
+            {', y acompaño a familias que quieren vivir con sus perros '}
+            <span className="font-semibold">desde la calma, el respeto y la comprensión mutua</span>.
           </p>
           <div
             style={sectionEnterStyle(260)}
             className="section-enter max-w-[784px] space-y-2 text-[18px] leading-6 text-foreground-secondary"
           >
             <p>
-              Trabajo <span className="font-semibold">acompañando a familias</span> que
-              quieren crear un hogar tranquilo y respetuoso para todos sus miembros, tanto
-              humanos como no humanos.
+              Detrás de los ladridos, miedos o destrozos, hay un perro intentando comunicarse. Sé que la convivencia no siempre es fácil, pero estoy aquí para ayudaros a entenderle y recuperar el equilibrio familiar.
             </p>
             <p>
-              Ayudo a otras familias a encontrar la calma en medio del caos, a entender
-              lo que hay detrás de un gruñido o una carrera por el pasillo, y a construir
-              una convivencia respetuosa y feliz para todos los miembros del hogar…
-              tengan dos patas o cuatro.
+              Combino mi propia experiencia en una familia multiespecie con mi formación en etología, miedos y reactividad para ofreceros una educación canina respetuosa y sin castigos. En nuestras sesiones personalizadas, os daré herramientas prácticas desde el primer día para generar cambios reales y duraderos.
             </p>
             <p>
-              Conozco de cerca la intensidad y la belleza de criar entre especies. En casa
-              también hemos vivido esa convivencia cada día, entre patas, mochilas y
-              muchas emociones.
-            </p>
-            <p>
-              Y justo por eso decidí dedicarme a ayudar a otras familias a transitar ese
-              mismo camino con más confianza, calma y comprensión.
+              Si queréis volver a disfrutar de vuestra vida juntos, ¡estaré encantada de acompañaros!
             </p>
           </div>
         </div>

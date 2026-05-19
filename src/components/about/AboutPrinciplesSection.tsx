@@ -24,51 +24,46 @@ const principles: readonly {
   {
     id: 'integracion',
     icon: Share2,
-    title: 'Integración real de todos',
-    body: 'Nadie es un extra en su propia casa: escuchamos necesidades humanas y caninas por igual para que el plan sea sostenible.',
+    title: 'Integración',
+    body: 'Tu perro es uno más de la familia. Te ayudo a comprender sus necesidades emocionales y físicas para crear rutinas viables en vuestro día a día. Sin buscar la perfección ni soluciones imposibles; solo cambios reales y sostenibles que os hagan la vida mucho más fácil.',
   },
   {
     id: 'limites',
     icon: Link2,
-    title: 'Límites respetuosos y adaptables',
-    body: 'Estructura y claridad sin rigidez tóxica: los límites protegen y se revisan cuando cambian las etapas o el entorno.',
+    title: 'Límites respetuosos',
+    body: 'Poner límites no es controlar ni cohibir, sino aportar seguridad a toda la familia. Trabajamos desde el respeto, ajustando las normas a vuestra etapa vital para proteger y cuidar, nunca para imponer.'
   },
   {
     id: 'supervision',
     icon: Eye,
-    title: 'Supervisión consciente',
-    body: 'Especialmente con peques, priorizamos anticipación y seguridad física y emocional para todos los involucrados.',
+    title: 'Supervisión',
+    body: 'Priorizamos la anticipación y la prevención, especialmente si hay peques en casa. Os acompaño para crear entornos física y emocionalmente seguros, donde todos podáis convivir con total tranquilidad.',
   },
   {
     id: 'comunicacion',
     icon: MessagesSquare,
-    title: 'Comunicación canina real',
-    body: 'Aprendemos a leer señales, ritmos y tensiones antes de etiquetar conductas como “obediencia” o “desobediencia”.',
+    title: 'Comunicación canina',
+    body: 'Aprendemos a leer señales, ritmos y tensiones antes de etiquetar conductas como “obediencia” o “desobedienciaAprenderemos a descifrar su lenguaje y esas señales sutiles que suelen pasar desapercibidas. No es cuestión de obediencia, sino de entender qué intenta comunicarte y qué necesita realmente tu perro.',
   },
   {
     id: 'empatia',
     icon: Dog,
-    title: 'Empatía sin humanizar',
-    body: 'Reconocemos emociones y motivaciones caninas sin proyectar narrativas humanas que distorsionan lo que el perro necesita.',
+    title: 'Empatía',
+    body: 'Tu perro siente miedo, alegría o frustración, pero lo expresa a su manera. Te ayudaré a interpretar sus emociones desde su perspectiva canina, alejándonos de expectativas humanas para darle justo lo que necesita.',
   },
   {
     id: 'apoyo',
     icon: HandHeart,
     title: 'Apoyo emocional continuo',
-    body: 'El proceso incluye espacio para tus dudas y tu cansancio: el cambio es gradual y merece compañía, no juicio.',
+    body: 'Los cambios llevan tiempo y es normal sentir dudas o cansancio. Durante el acompañamiento tendrás un espacio seguro y sin juicios donde preguntar, aprender y avanzar respetando vuestro ritmo familiar.',
   },
   {
     id: 'amor',
     icon: Heart,
     title: 'Amor como motor de cambio',
-    body: 'El cariño se traduce en coherencia, paciencia y acciones alineadas con el bienestar —no en permisividad que genera inseguridad.',
+    body: 'El verdadero cariño se demuestra con coherencia y paciencia. Fomentamos un amor responsable que sirva de guía y aporte seguridad, huyendo de los métodos aversivos y de la permisividad que genera inseguridad.',
   },
-  {
-    id: 'crianza-peque',
-    icon: Baby,
-    title: 'Crianza consciente desde la etapa del peque',
-    body: 'Si convives con bebés o niños, integramos sus ritmos y curiosidad en el diseño de la convivencia con el perro.',
-  },
+  
 ]
 
 export function AboutPrinciplesSection({ className }: { className?: string }) {
@@ -98,8 +93,8 @@ export function AboutPrinciplesSection({ className }: { className?: string }) {
           style={sectionEnterStyle(190)}
           className="section-enter text-base leading-6 text-foreground-secondary"
         >
-          Esto es lo que puedes esperar cuando trabajamos juntos, más allá de técnicas
-          sueltas.
+          Más allá de técnicas sueltas o ejercicios puntuales, mi trabajo se basa en una forma de acompañar a las familias y a sus perros desde el respeto, la comprensión y la coherencia.
+          Esto es lo que puedes esperar cuando trabajemos juntos:
         </p>
       </div>
 
