@@ -165,11 +165,15 @@ html {
   /* Google Fonts: Quicksand (see index.html). Explicit stack so it wins over any theme utility quirks. */
   html {
     font-family: 'Quicksand', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply m-0 min-h-dvh antialiased bg-background text-foreground;
+    @apply m-0 min-h-dvh bg-background text-foreground;
     font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   #root {

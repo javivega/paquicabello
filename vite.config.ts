@@ -9,6 +9,10 @@ const GITHUB_PAGES_BASE = '/paquicabello/'
 // https://vite.dev/config/
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? GITHUB_PAGES_BASE : '/',
+  server: {
+    // Avoid clashing with other Vite apps that often claim 5173 locally.
+    port: 5190,
+  },
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
