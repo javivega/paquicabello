@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import { FullBleedPage } from '@/components/layout/FullBleedPage'
 import { CONTACT_PATH, COOKIES_POLICY_PATH } from '@/lib/routes'
-import { cn } from '@/lib/utils'
 
 /**
  * Política de privacidad — referencia de contenido:
@@ -9,12 +9,10 @@ import { cn } from '@/lib/utils'
  */
 export function PrivacyPolicyPage() {
   return (
-    <main
+    <FullBleedPage
+      as="main"
       id="politica-de-privacidad"
-      className={cn(
-        'relative w-screen max-w-none flex-1 shrink-0 scroll-mt-28 bg-canvas',
-        'ml-[calc(50%-50vw)]',
-      )}
+      className="flex-1 scroll-mt-28"
     >
       <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <article className="flex flex-col gap-10 text-foreground-secondary">
@@ -175,6 +173,6 @@ export function PrivacyPolicyPage() {
           </section>
         </article>
       </div>
-    </main>
+    </FullBleedPage>
   )
 }

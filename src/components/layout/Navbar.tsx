@@ -6,7 +6,7 @@ import logoUrl from '@/img/logo.svg'
 import {
   ABOUT_PATH,
   CONTACT_PATH,
-  PROGRAM_8_WEEKS_PATH,
+  PROGRAM_4_WEEKS_PATH,
   SESSION_EXPRESS_PATH,
 } from '@/lib/routes'
 import { cn } from '@/lib/utils'
@@ -26,9 +26,9 @@ const defaultItems: NavbarItem[] = [
 const serviciosSubItems = [
   { id: 'session-express', label: 'Sesión exprés', to: SESSION_EXPRESS_PATH },
   {
-    id: 'program-8-weeks',
-    label: 'Programa de 8 semanas',
-    to: PROGRAM_8_WEEKS_PATH,
+    id: 'program-4-weeks',
+    label: 'Programa de 4 semanas',
+    to: PROGRAM_4_WEEKS_PATH,
   },
 ] as const
 
@@ -99,20 +99,24 @@ export function Navbar({
   const menuPanelId = useId()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileServiciosOpen, setMobileServiciosOpen] = useState(false)
+  const [desktopServiciosOpen, setDesktopServiciosOpen] = useState(false)
 
   useEffect(() => {
     setMobileOpen(false)
     setMobileServiciosOpen(false)
+    setDesktopServiciosOpen(false)
   }, [pathname, hash])
 
   useEffect(() => {
-    if (!mobileOpen) return
+    if (!mobileOpen && !desktopServiciosOpen) return
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileOpen(false)
+      if (e.key !== 'Escape') return
+      setMobileOpen(false)
+      setDesktopServiciosOpen(false)
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
-  }, [mobileOpen])
+  }, [mobileOpen, desktopServiciosOpen])
 
   return (
     /* Fixed so the pill stays pinned for the full page scroll. `sticky` inside an
@@ -152,13 +156,38 @@ export function Navbar({
               const sectionActive = item.id === activeId
               const isServicios = item.id === 'servicios'
               return (
-                <li key={item.id} className={cn(isServicios && 'group relative')}>
+                <li
+                  key={item.id}
+                  className={cn(isServicios && 'relative')}
+                  {...(isServicios
+                    ? {
+                        onMouseEnter: () => setDesktopServiciosOpen(true),
+                        onMouseLeave: () => setDesktopServiciosOpen(false),
+                      }
+                    : {})}
+                >
                   <Link
                     to={item.to}
                     className={cn(
                       navLinkClassName(item.id, sectionActive, 'row'),
                       isServicios && 'gap-1.5',
                     )}
+                    {...(isServicios
+                      ? {
+                          'aria-expanded': desktopServiciosOpen,
+                          'aria-haspopup': 'menu' as const,
+                          onFocus: () => setDesktopServiciosOpen(true),
+                          onBlur: (e) => {
+                            if (
+                              !e.currentTarget.parentElement?.contains(
+                                e.relatedTarget as Node | null,
+                              )
+                            ) {
+                              setDesktopServiciosOpen(false)
+                            }
+                          },
+                        }
+                      : {})}
                     {...(sectionActive
                       ? { 'aria-current': 'page' as const }
                       : {})}
@@ -166,7 +195,10 @@ export function Navbar({
                     <span>{item.label}</span>
                     {isServicios ? (
                       <ChevronDown
-                        className="size-4 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                        className={cn(
+                          'size-4 transition-transform duration-200',
+                          desktopServiciosOpen && 'rotate-180',
+                        )}
                         aria-hidden
                       />
                     ) : null}
@@ -176,22 +208,34 @@ export function Navbar({
                     <div
                       className={cn(
                         'absolute left-1/2 top-[calc(100%+0.5rem)] z-20 w-64 -translate-x-1/2',
-                        'invisible opacity-0 transition-[opacity,visibility,transform] duration-200',
-                        'translate-y-1 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100',
-                        'group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100',
+                        'transition-[opacity,visibility,transform] duration-200',
+                        desktopServiciosOpen
+                          ? 'visible translate-y-0 opacity-100'
+                          : 'invisible translate-y-1 opacity-0',
                       )}
+                      onBlurCapture={(e) => {
+                        if (
+                          !e.currentTarget.parentElement?.contains(
+                            e.relatedTarget as Node | null,
+                          )
+                        ) {
+                          setDesktopServiciosOpen(false)
+                        }
+                      }}
                     >
                       <div className="rounded-2xl border border-border-subtle-0 bg-navbar-surface p-2 shadow-[0px_0px_10px_0px_var(--Primitive-color-orange-orange-200)]">
-                        <ul className="m-0 list-none p-0">
+                        <ul className="m-0 list-none p-0" role="menu">
                           {serviciosSubItems.map((subItem) => (
-                            <li key={subItem.id}>
+                            <li key={subItem.id} role="none">
                               <Link
                                 to={subItem.to}
+                                role="menuitem"
                                 className={cn(
                                   'paragraph-md flex w-full rounded-xl px-3 py-2.5 text-navbar-link transition-[background-color,color]',
                                   'hover:bg-[var(--Primitive-color-orange-orange-100)] hover:text-[var(--Primitive-color-orange-orange-800)]',
                                   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]',
                                 )}
+                                onClick={() => setDesktopServiciosOpen(false)}
                               >
                                 {subItem.label}
                               </Link>

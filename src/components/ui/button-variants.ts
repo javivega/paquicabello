@@ -27,6 +27,11 @@ export const brandButtonVariants = cva(
           'bg-btn-secondary-bg border-btn-secondary-border text-btn-secondary-text',
           'hover:shadow-[0px_0px_15px_0px_rgba(117,36,0,0.21)]',
         ].join(' '),
+        tertiary: [
+          'bg-transparent text-foreground-secondary',
+          'shadow-[0_0_7.5px_rgba(117,36,0,0.21)]',
+          'hover:shadow-[0_0_15px_rgba(117,36,0,0.21)]',
+        ].join(' '),
       },
       brandSize: {
         md: '',
@@ -58,6 +63,16 @@ export const brandButtonVariants = cva(
         brandSize: 'lg',
         class: 'px-4 py-3',
       },
+      {
+        brandVariant: 'tertiary',
+        brandSize: 'md',
+        class: 'p-2',
+      },
+      {
+        brandVariant: 'tertiary',
+        brandSize: 'lg',
+        class: 'p-3',
+      },
     ],
     defaultVariants: {
       brandVariant: 'primary',
@@ -74,6 +89,7 @@ export const iconRingVariants = cva(
       brandVariant: {
         primary: 'border-btn-primary-text',
         secondary: 'border-icon-brand',
+        tertiary: 'border-transparent p-0.5 [&_img]:size-5 [&_svg]:size-5',
       },
       brandSize: {
         md: 'border-[1.5px] p-0.5 [&_svg]:size-4',
@@ -85,6 +101,11 @@ export const iconRingVariants = cva(
         brandVariant: 'secondary',
         brandSize: 'lg',
         class: 'size-6',
+      },
+      {
+        brandVariant: 'tertiary',
+        brandSize: 'md',
+        class: 'border-0 p-0.5 [&_svg]:size-5',
       },
     ],
     defaultVariants: {
@@ -99,6 +120,7 @@ export const labelVariants = cva('whitespace-nowrap font-semibold', {
     brandVariant: {
       primary: 'text-btn-primary-text',
       secondary: 'text-btn-secondary-text',
+      tertiary: 'text-foreground-secondary',
     },
     brandSize: {
       md: 'paragraph-md-bold px-1',

@@ -1,5 +1,7 @@
+import { useRef } from 'react'
+
+import tickCircle from '@/img/pricing-tick-circle.svg'
 import {
-  CircleCheck,
   ClipboardList,
   Clock,
   Dog,
@@ -7,7 +9,7 @@ import {
   Home,
   ListTodo,
   MapPin,
-  ShieldAlert,
+  ShieldCheck,
   Sparkles,
   Video,
 } from 'lucide-react'
@@ -21,123 +23,140 @@ import {
   servicePricingAsideProgram8Weeks,
 } from '@/components/services/shared/ServicePricingAside'
 import { ServiceProgramTimelineSection } from '@/components/services/program/ServiceProgramTimelineSection'
-import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
+import { useScrollEnter } from '@/hooks/useScrollEnter'
 import { cn } from '@/lib/utils'
 
-const paraMiCases: readonly {
-  id: string
-  mode: 'plain' | 'split'
-  text?: string
-  strong?: string
-  rest?: string
-}[] = [
+const methodologyPoints = [
+  'No usamos violencia, ni castigos, ni técnicas aversivas.',
+  'Respetamos a todos los individuos.',
+  'Nos adaptamos a cada integrante de la familia',
+] as const
+
+const audienceCases = [
+  {
+    title: 'La convivencia con tu perro se ha vuelto complicada',
+    body: 'Sientes que los paseos, determinadas situaciones o algunos comportamientos generan estrés y ya no sabes cómo ayudarle.',
+  },
+  {
+    title: 'Quieres preparar una convivencia segura entre niños y perros',
+    body: 'Estás embarazada, acaba de llegar un bebé o tienes niños pequeños y quieres que todos convivan con tranquilidad, respeto y seguridad desde el principio.',
+  },
+  {
+    title: 'Acaba de llegar un perro a vuestra familia',
+    body: 'Ya sea un cachorro o un perro adoptado, quieres empezar con buen pie, comprender sus necesidades y sentar las bases de una convivencia equilibrada.',
+  },
+  {
+    title:
+      'Tu perro vive con miedo, ansiedad o le cuesta gestionar algunas situaciones',
+    body: 'Los ruidos, las visitas, quedarse solo o encontrarse con otros perros le generan inseguridad y no sabes cómo acompañarlo para que gane confianza.',
+  },
+  {
+    title: 'Los paseos se han convertido en un momento de tensión',
+    body: 'Tu perro tira de la correa, ladra, se bloquea o permanece en un estado de alerta constante, haciendo que salir a pasear deje de ser un momento agradable para ambos.',
+  },
+] as const
+
+const outcomes: readonly { icon: LucideIcon; title: string; body: string }[] =
+  [
     {
-      id: 'reactividad',
-      mode: 'plain',
-      text: 'Sientes que tu perro tiene miedos, ansiedad o conductas reactivas que no sabes cómo gestionar, y los paseos o el día a día generan tensión.',
+      icon: Dog,
+      title: 'Comprender mejor a tu perro',
+      body: 'Aprenderás a reconocer su lenguaje y a interpretar sus conductas desde la emoción y las necesidades que hay detrás de ellas.',
     },
     {
-      id: 'multiespecie',
-      mode: 'split',
-      strong: 'Buscas una crianza multiespecie segura: ',
-      rest: 'Hay niños pequeños en casa (o un bebé en camino) y necesitas estructurar la convivencia para evitar conflictos y asegurar el bienestar de todos.',
+      icon: Home,
+      title: 'Crear una convivencia más tranquila',
+      body: 'Adaptaremos el entorno y las rutinas para favorecer el bienestar de toda la familia y reducir las situaciones de estrés en casa.',
     },
     {
-      id: 'desde-cero',
-      mode: 'split',
-      strong: 'Empiezas desde cero: ',
-      rest: 'Tu perro acaba de llegar a la familia (cachorro o adoptado) y quieres hacer las cosas bien desde el principio para prevenir problemas futuros.',
+      icon: Heart,
+      title: 'Fortalecer vuestro vínculo',
+      body: 'Construiréis una relación basada en la confianza, el respeto y una comunicación más clara, para que os entendáis mejor en vuestro día a día.',
     },
     {
-      id: 'miedos',
-      mode: 'split',
-      strong: 'Gestión de miedos y ansiedad: ',
-      rest: 'Tu perro sufre en situaciones cotidianas (ruidos, visitas, soledad) y no sabes cómo ayudarle a ganar seguridad y autonomía.',
+      icon: ShieldCheck,
+      title: 'Saber cómo actuar',
+      body: 'Aprenderás a identificar las señales antes de que aparezcan los conflictos y a responder de una forma más segura y adaptada a cada situación.',
     },
     {
-      id: 'paseo',
-      mode: 'split',
-      strong: 'Dificultades en el paseo: ',
-      rest: 'Los paseos son un momento de tensión. Tu perro tira de la correa, ladra a otros perros o personas, se bloquea por miedo o vive en un estado de alerta constante que os impide disfrutar.',
+      icon: Sparkles,
+      title: 'Crear un hogar consciente',
+      body: 'Desarrollarás una forma de convivir con tu perro que respete sus necesidades y también las de tu familia, creando un ambiente de calma, aprendizaje y bienestar para todos.',
     },
   ]
 
-const outcomes: readonly { icon: LucideIcon; title: string; body: string }[] = [
-  {
-    icon: Dog,
-    title: 'Reconocen el lenguaje del perro',
-    body: 'Ya no interpretan su conducta como mala o desobediente, sino que entienden sus señales de incomodidad, estrés o necesidad.',
-  },
-  {
-    icon: Home,
-    title: 'Generan espacios seguros',
-    body: 'Diseñaremos un entorno donde tanto humanos como perros tengan sus necesidades cubiertas, eliminando la tensión constante en casa.',
-  },
-  {
-    icon: Heart,
-    title: 'Vínculo de confianza profunda',
-    body: 'Tu perro dejará de ser una fuente de preocupación para convertirse en un compañero confiable y comprendido.',
-  },
-  {
-    icon: ShieldAlert,
-    title: 'Previenen situaciones de riesgo',
-    body: 'Aprenderás a anticiparte a los conflictos y a actuar con seguridad antes de que se conviertan en un problema.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Crean un hogar consciente',
-    body: 'Lograrás que la educación de tu perro esté alineada con tus valores, creando un ambiente de respeto mutuo y aprendizaje diario.',
-  },
-]
+function TickIcon({ className }: { className?: string }) {
+  return (
+    <img
+      src={tickCircle}
+      alt=""
+      width={24}
+      height={24}
+      className={cn('shrink-0', className)}
+      decoding="async"
+      aria-hidden
+    />
+  )
+}
 
+/** Contenido principal + barra lateral — Figma 1104:6789. */
 export function ServiceProgramMainColumn({ className }: { className?: string }) {
+  const rootRef = useRef<HTMLDivElement>(null)
+  useScrollEnter(rootRef)
+
   return (
     <div
+      ref={rootRef}
       className={cn(
         'mx-auto mt-24 flex w-full max-w-[1440px] flex-col gap-10 px-4 pb-20 sm:gap-12 sm:px-8 lg:mt-[116px] lg:flex-row lg:gap-10 lg:px-20 lg:pb-28',
         className,
       )}
     >
-      <div className="order-2 flex min-w-0 flex-1 flex-col gap-14 lg:order-1 lg:gap-16">
+      <div className="order-2 flex min-w-0 flex-1 flex-col gap-40 lg:order-1 lg:gap-52">
         <section
-          style={sectionEnterStyle(60)}
-          className="section-enter flex max-w-[680px] flex-col gap-4 lg:pl-0"
+          id="program-4-intro"
+          data-scroll-enter
+          className="scroll-enter flex max-w-[680px] scroll-mt-28 flex-col gap-4"
+          aria-labelledby="program-8-intro-heading"
         >
-          <h2 className="text-[26px] font-semibold leading-8 text-foreground">
+          <h2
+            id="program-8-intro-heading"
+            className="text-[26px] font-semibold leading-8 text-foreground"
+          >
             ¿Sientes que la convivencia con tu perro se ha vuelto estresante, te
             genera dudas o sientes que has perdido el control de la situación?
           </h2>
-          <div className="max-w-[784px] space-y-2 text-base leading-5 text-foreground-secondary">
-            <p>
-              Durante 8 semanas te acompañaré paso a paso, con atención y cuidado,
-              para reestructurar la convivencia en tu hogar. No aplicaremos técnicas
-              estandarizadas.
-            </p>
-            <p>
-              Analizaremos a fondo vuestro contexto real para diseñar juntos un
-              camino a medida, sin castigos ni imposiciones, logrando que humanos y
-              perros podáis convivir desde la calma, la comprensión y el vínculo
-              auténtico.
-            </p>
-          </div>
+          <p className="max-w-[784px] text-base leading-5 text-foreground-secondary">
+            Cada familia y cada perro son diferentes. Por eso este
+            acompañamiento es totalmente personalizado. Durante cuatro semanas
+            tendrás las herramientas, el apoyo y las pautas necesarias para
+            comprender mejor a tu perro y crear una convivencia más tranquila,
+            respetuosa y equilibrada.
+          </p>
         </section>
 
         <section
           id="como-es-programa"
-          style={sectionEnterStyle(140)}
-          className="section-enter flex scroll-mt-28 flex-col gap-4"
+          className="flex scroll-mt-28 flex-col gap-4"
           aria-labelledby="program-8-how-heading"
         >
           <h2
+            data-scroll-enter
             id="program-8-how-heading"
-            className="max-w-[680px] text-[26px] font-semibold leading-8 text-foreground"
+            className="scroll-enter max-w-[680px] text-[26px] font-semibold leading-8 text-foreground"
           >
-            ¿Cómo es el programa personalizado de 8 semanas?
+            ¿Cómo es el programa personalizado de 4 semanas?
           </h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
             <ServiceInfoCard
-              className="lg:col-start-1 lg:row-start-1"
-              icon={<MapPin className="size-8 text-foreground-brand" strokeWidth={1.5} />}
+              data-scroll-enter
+              className="scroll-enter lg:col-start-1 lg:row-start-1"
+              icon={
+                <MapPin
+                  className="size-8 text-foreground-brand"
+                  strokeWidth={1.5}
+                />
+              }
               title="Localización"
             >
               <p className="mb-2">
@@ -149,16 +168,26 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
               </p>
             </ServiceInfoCard>
             <ServiceInfoCard
-              className="lg:col-start-2 lg:row-start-1"
-              icon={<Clock className="size-8 text-foreground-brand" strokeWidth={1.5} />}
+              data-scroll-enter
+              className="scroll-enter lg:col-start-2 lg:row-start-1"
+              icon={
+                <Clock
+                  className="size-8 text-foreground-brand"
+                  strokeWidth={1.5}
+                />
+              }
               title="Duración"
             >
-              <p>8 semanas.</p>
+              <p>4 semanas.</p>
             </ServiceInfoCard>
             <ServiceInfoCard
-              className="lg:col-start-3 lg:row-start-1"
+              data-scroll-enter
+              className="scroll-enter lg:col-start-3 lg:row-start-1"
               icon={
-                <ClipboardList className="size-8 text-foreground-brand" strokeWidth={1.5} />
+                <ClipboardList
+                  className="size-8 text-foreground-brand"
+                  strokeWidth={1.5}
+                />
               }
               title="Sesión inicial"
             >
@@ -168,8 +197,14 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
               </p>
             </ServiceInfoCard>
             <ServiceInfoCard
-              className="lg:col-start-1 lg:row-start-2"
-              icon={<ListTodo className="size-8 text-foreground-brand" strokeWidth={1.5} />}
+              data-scroll-enter
+              className="scroll-enter lg:col-start-1 lg:row-start-2"
+              icon={
+                <ListTodo
+                  className="size-8 text-foreground-brand"
+                  strokeWidth={1.5}
+                />
+              }
               title="Seguimiento"
             >
               <p>
@@ -178,40 +213,39 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
               </p>
             </ServiceInfoCard>
             <ServiceInfoCard
-              className="lg:col-start-2 lg:row-start-2"
-              icon={<Video className="size-8 text-foreground-brand" strokeWidth={1.5} />}
+              data-scroll-enter
+              className="scroll-enter lg:col-start-2 lg:row-start-2"
+              icon={
+                <Video
+                  className="size-8 text-foreground-brand"
+                  strokeWidth={1.5}
+                />
+              }
               title="Revisión de vídeos"
             >
               <p>
-                Analizo vuestras interacciones reales y te acompaño para aplicar las
-                pautas con seguridad y confianza.
+                Analizo vuestras interacciones reales y te acompaño para aplicar
+                las pautas con seguridad y confianza.
               </p>
             </ServiceInfoCard>
 
             <article
+              data-scroll-enter
               className={cn(
-                'flex min-h-[220px] flex-col gap-3 rounded-2xl border border-border-subtle-0 bg-surface-subtle-0 p-6 sm:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-start-2 lg:min-h-[280px]',
+                'scroll-enter flex min-h-[220px] flex-col items-center gap-3 rounded-2xl border border-border-subtle-0 bg-surface-subtle-0 p-6 sm:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-start-2 lg:min-h-[280px]',
               )}
             >
-              <h3 className="text-xl font-semibold leading-6 text-foreground-brand">
+              <h3 className="w-full text-xl font-semibold leading-6 text-foreground-brand">
                 Usamos la Metodología Crianza Multiespecie
               </h3>
-              <ul className="flex flex-col gap-3">
-                {[
-                  'No usamos violencia, ni castigos, ni técnicas aversivas.',
-                  'Respetamos a todos los individuos.',
-                  'Nos adaptamos a cada integrante de la familia',
-                ].map((t) => (
+              <ul className="flex w-full flex-col gap-3">
+                {methodologyPoints.map((point) => (
                   <li
-                    key={t}
+                    key={point}
                     className="flex gap-2 text-[14px] font-semibold leading-4 text-foreground-secondary"
                   >
-                    <CircleCheck
-                      className="mt-0.5 size-5 shrink-0 text-foreground-brand"
-                      strokeWidth={2}
-                      aria-hidden
-                    />
-                    <span>{t}</span>
+                    <TickIcon className="mt-0.5 size-5" />
+                    <span>{point}</span>
                   </li>
                 ))}
               </ul>
@@ -219,7 +253,7 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
                 to="/#home-method-heading"
                 brandVariant="secondary"
                 brandSize="md"
-                className="mt-1 w-fit"
+                className="mt-auto w-fit"
                 leftSlot={null}
                 rightSlot={null}
               >
@@ -229,55 +263,47 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
           </div>
         </section>
 
-        <div style={sectionEnterStyle(220)} className="section-enter">
+        {/* Timeline header marked for scroll-enter; steps keep their own ST. */}
+        <div>
           <ServiceProgramTimelineSection />
         </div>
 
         <section
-          style={sectionEnterStyle(300)}
-          className="section-enter flex flex-col gap-6"
+          className="flex max-w-[600px] flex-col gap-6"
           aria-labelledby="program-8-audience-heading"
         >
-          <div className="flex max-w-[600px] flex-col gap-4">
-            <h2
-              id="program-8-audience-heading"
-              className="text-[26px] font-semibold leading-8 text-foreground"
-            >
-              ¿Cómo sé si es para mí?
-            </h2>
-            <p className="text-base leading-5 text-foreground-secondary">
-              Estas son situaciones comunes en las que puedo ayudarte.
-            </p>
-          </div>
-          <ul className="flex max-w-[600px] flex-col gap-3">
-            {paraMiCases.map((c) => (
-              <li key={c.id} className="flex gap-2">
-                <CircleCheck
-                  className="mt-0.5 size-5 shrink-0 text-foreground-brand"
-                  strokeWidth={2}
-                  aria-hidden
-                />
-                {c.mode === 'plain' ? (
-                  <p className="text-[14px] font-semibold leading-4 text-foreground-secondary">
-                    {c.text}
-                  </p>
-                ) : (
-                  <p className="text-[14px] leading-4 text-foreground-secondary">
-                    <span className="font-semibold">{c.strong}</span>
-                    <span className="font-normal">{c.rest}</span>
-                  </p>
-                )}
+          <h2
+            data-scroll-enter
+            id="program-8-audience-heading"
+            className="scroll-enter text-[26px] font-semibold leading-8 text-foreground"
+          >
+            ¿Te sientes identificada con alguna de estas situaciones?
+          </h2>
+          <ul className="flex flex-col gap-8">
+            {audienceCases.map((item) => (
+              <li
+                key={item.title}
+                data-scroll-enter
+                className="scroll-enter flex gap-2"
+              >
+                <TickIcon className="mt-0.5 size-6" />
+                <div className="flex min-w-0 flex-1 flex-col gap-1 text-foreground-secondary">
+                  <p className="text-lg font-semibold leading-6">{item.title}</p>
+                  <p className="text-base leading-5">{item.body}</p>
+                </div>
               </li>
             ))}
           </ul>
         </section>
 
         <section
-          style={sectionEnterStyle(380)}
-          className="section-enter flex flex-col gap-6"
+          className="flex flex-col gap-6"
           aria-labelledby="program-8-outcomes-heading"
         >
-          <div className="flex max-w-[600px] flex-col gap-4">
+          <div
+            data-scroll-enter
+            className="scroll-enter flex max-w-[600px] flex-col gap-4"
+          >
             <h2
               id="program-8-outcomes-heading"
               className="text-[26px] font-semibold leading-8 text-foreground"
@@ -285,33 +311,44 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
               Lo que vas a conseguir
             </h2>
             <p className="text-base leading-5 text-foreground-secondary">
-              Cuando una familia termina este proceso, no solo ha aprendido técnicas
-              o reglas: ha cambiado su manera de mirar, de escuchar y de convivir.
+              Cuando una familia termina este proceso, no solo ha aprendido
+              técnicas o reglas: ha cambiado su manera de mirar, de escuchar y
+              de convivir.
             </p>
           </div>
           <div className="flex flex-col gap-7 rounded-2xl bg-surface-subtle-1 p-9">
             {outcomes.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="flex gap-4">
+              <div
+                key={title}
+                data-scroll-enter
+                className="scroll-enter flex gap-4"
+              >
                 <div className="inline-flex h-fit shrink-0 rounded-xl border border-border-subtle-0 bg-surface-subtle-0 p-2">
-                  <Icon className="size-8 text-foreground-brand" strokeWidth={1.5} aria-hidden />
+                  <Icon
+                    className="size-8 text-foreground-brand"
+                    strokeWidth={1.5}
+                    aria-hidden
+                  />
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col gap-3">
                   <h3 className="text-xl font-semibold leading-6 text-foreground-brand">
                     {title}
                   </h3>
-                  <p className="text-base leading-5 text-foreground-secondary">{body}</p>
+                  <p className="text-base leading-5 text-foreground-secondary">
+                    {body}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        <div style={sectionEnterStyle(460)} className="section-enter">
+        <div data-scroll-enter className="scroll-enter">
           <ServiceProgramFaq className="pl-0 lg:pl-0" />
         </div>
       </div>
 
-      <div style={sectionEnterStyle(180)} className="section-enter order-1 lg:order-2">
+      <div data-scroll-enter className="scroll-enter order-1 lg:order-2">
         <ServicePricingAside
           {...servicePricingAsideProgram8Weeks}
           className="max-lg:mx-auto max-lg:w-full"

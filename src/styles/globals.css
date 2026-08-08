@@ -296,58 +296,140 @@ html {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* Home hero — soft mesh + tiled pattern (orbs removed; floor fade lives in HomeHero.tsx) */
-@keyframes home-hero-pattern-drift {
-  0% {
-    background-position: 0 0;
+/* Home hero — stacked photo settle + doodle pop (Figma 1100:12979 motion, one-shot) */
+@keyframes home-hero-stack-back {
+  from {
+    opacity: 0;
+    transform: rotate(1.4deg) scale(0.88);
   }
-  100% {
-    background-position: 240px 200px;
-  }
-}
-
-@keyframes home-hero-mesh-ambient {
-  0%,
-  100% {
-    opacity: 0.28;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: translate3d(0.6%, -0.5%, 0) scale(1.008);
+  to {
+    opacity: 1;
+    transform: rotate(-5.62deg) scale(1);
   }
 }
 
-.home-hero-mesh {
-  background-image:
-    radial-gradient(
-      ellipse 100% 70% at 78% -8%,
-      color-mix(in srgb, var(--Primitive-color-orange-orange-100) 32%, transparent),
-      transparent 52%
-    ),
-    radial-gradient(
-      ellipse 90% 65% at 50% 100%,
-      color-mix(in srgb, var(--Primitive-color-gray-gray-200) 14%, transparent),
-      transparent 55%
-    );
-  background-repeat: no-repeat;
-  background-size: 100% 100%, 100% 100%;
-  animation: home-hero-mesh-ambient 32s ease-in-out infinite;
+@keyframes home-hero-stack-front {
+  from {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(6.3deg) scale(1);
+  }
 }
 
-.home-hero-pattern {
-  background-repeat: repeat;
-  animation: home-hero-pattern-drift 72s linear infinite;
+@keyframes home-hero-doodle-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Filled brush path — clip wipe preserves silhouette (stroke conversion would thin it) */
+@keyframes home-hero-squiggle-draw {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes home-hero-reduced-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.home-hero-stack-back {
+  opacity: 0;
+  transform-origin: center center;
+  animation: home-hero-stack-back 700ms var(--ease-out) both;
+  animation-delay: 120ms;
+}
+
+.home-hero-stack-front {
+  opacity: 0;
+  transform-origin: center center;
+  animation: home-hero-stack-front 850ms var(--ease-out) both;
+  animation-delay: 160ms;
+}
+
+.home-hero-doodle {
+  opacity: 0;
+  transform-origin: center center;
+  animation: home-hero-doodle-in 500ms var(--ease-out) both;
+}
+
+.home-hero-squiggle {
+  opacity: 0;
+  animation: home-hero-squiggle-draw 800ms var(--ease-out) both;
+  animation-delay: 600ms;
+}
+
+.home-section-reveal .home-hero-stack-back,
+.home-section-reveal .home-hero-stack-front,
+.home-section-reveal .home-hero-doodle,
+.home-section-reveal .home-hero-squiggle {
+  animation-play-state: paused;
+}
+
+.home-section-reveal[data-inview='true'] .home-hero-stack-back,
+.home-section-reveal[data-inview='true'] .home-hero-stack-front,
+.home-section-reveal[data-inview='true'] .home-hero-doodle,
+.home-section-reveal[data-inview='true'] .home-hero-squiggle {
+  animation-play-state: running;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-hero-mesh,
-  .home-hero-pattern {
-    animation: none !important;
+  .home-hero-stack-back,
+  .home-hero-stack-front,
+  .home-hero-doodle,
+  .home-hero-squiggle {
+    animation: home-hero-reduced-fade 180ms var(--ease-out) both !important;
   }
 
-  .home-hero-mesh {
-    opacity: 0.34;
+  .home-hero-stack-back {
+    transform: rotate(-5.62deg);
+  }
+
+  .home-hero-stack-front {
+    transform: rotate(6.3deg);
+  }
+
+  .home-hero-doodle {
+    transform: none;
+  }
+
+  .home-hero-squiggle {
+    clip-path: none;
+  }
+}
+
+/* Session / program hero collage — hide until GSAP reveals */
+.session-hero-layer,
+.program-hero-layer {
+  opacity: 0;
+}
+
+/* Scroll-batched section items — hide until useScrollEnter reveals */
+.scroll-enter {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-enter {
     transform: none;
   }
 }
@@ -423,23 +505,24 @@ html {
   }
 }
 
-/* Home help — horizontal auto-scroll (duplicate row + translate -50%) */
-@keyframes home-help-marquee {
+@keyframes session-hero-copy-reduced-fade {
+  from {
+    opacity: 0;
+  }
   to {
-    transform: translate3d(-50%, 0, 0);
+    opacity: 1;
   }
 }
 
-.home-help-marquee-track {
-  display: flex;
-  width: max-content;
-  gap: 1.5rem;
-  animation: home-help-marquee 55s linear infinite;
-}
-
-.home-help-marquee-wrap:hover .home-help-marquee-track,
-.home-help-marquee-wrap:focus-within .home-help-marquee-track {
-  animation-play-state: paused;
+/* Service heroes copy — opacity fade under reduced motion (matches collage 180ms) */
+@media (prefers-reduced-motion: reduce) {
+  .session-hero-copy.section-enter,
+  .program-hero-copy.section-enter {
+    animation: session-hero-copy-reduced-fade 180ms var(--ease-out) both !important;
+    animation-delay: var(--section-enter-delay, 0ms) !important;
+    opacity: unset !important;
+    transform: none !important;
+  }
 }
 
 @keyframes consent-banner-slide-in {

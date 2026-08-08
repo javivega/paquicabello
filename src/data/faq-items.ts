@@ -1,45 +1,45 @@
 export const faqItems = [
   {
     id: 'faq-0',
-    question: '¿Deben implicarse todos los adultos?',
+    question: '¿Tenemos que participar todos los adultos de la casa?',
     answer:
-      'Todos los adultos deben implicarse para acompañar el proceso y supervisar las interacciones entre ambos',
+      'Sí. Es recomendable que todos los adultos implicados en la convivencia participen en el proceso para mantener unas pautas coherentes y supervisar las interacciones.',
   },
   {
     id: 'faq-1',
-    question: '¿Cómo es el enfoque en las sesiones?',
+    question: '¿Qué hacemos durante las sesiones?',
     answer:
-      'Nos vemos 1 vez a la semana, te propongo 3 objetivos semanales para accionar desde ese mismo momento, con pasos concretos y adaptados a cada necesidad/dificultad con calma y sin juicios: observamos el contexto, explicamos lo que vemos y proponemos pasos concretos que encajen en tu día a día.',
+      'Nos vemos una vez a la semana y, en cada sesión, definimos hasta tres objetivos concretos para trabajar durante la semana. Observamos lo que está ocurriendo, entendemos por qué ocurre y planteamos pasos adaptados a vuestro día a día, siempre con calma y sin juicios.',
   },
   {
     id: 'faq-2',
-    question: '¿Se puede combinar online y presencial?',
+    question: '¿Puedo combinar sesiones online y presenciales?',
     answer:
-      'Sí. podemos combinar ambas modalidades.'
+      'Sí. Podemos combinar sesiones online y presenciales según lo que necesitéis en cada momento.',
   },
   {
     id: 'faq-3',
-    question: 'Son sesiones de adiestramiento?',
+    question: '¿Esto es adiestramiento?',
     answer:
-      'No son sesiones de adiestramiento. Se trabaja la gestión del entorno, el vínculo, la comunicación y las necesidades básicas',
+      'No. El acompañamiento no se centra en adiestrar al perro, sino en comprender y mejorar la convivencia, trabajando aspectos como el entorno, el vínculo, la comunicación y sus necesidades.',
   },
   {
     id: 'faq-4',
-    question: '¿Qué se define en la primera sesión?',
+    question: '¿Qué veremos en la primera sesión?',
     answer:
-      'Cada caso es distinto. En la primera sesión, después de conocer todo lo que te preocupa, planteamos un plan de acción personalizado, definimos objetivos y revisamos qué podemos conseguir.',
+      'En la primera sesión conocemos vuestra situación y todo aquello que os preocupa. A partir de ahí, definimos objetivos y un plan de acción adaptado a vuestro caso.',
   },
   {
     id: 'faq-5',
-    question: '¿Puedo llevar vídeos o notas?',
+    question: '¿Puedo llevar vídeos de lo que ocurre en casa?',
     answer:
-      'Sí, puedes traer videos cortos o notas sobre las situaciones que te preocupan, cuanto más contexto compartas mejor, así podemos precisar más.',
+      'Sí. Puedes traer vídeos cortos o notas sobre las situaciones que te preocupan. Cuanto más contexto tengamos, mejor podremos entender lo que está ocurriendo.',
   },
   {
     id: 'faq-6',
-    question: '¿Cómo sé qué servicio me conviene?',
+    question: '¿Cómo sé qué tipo de acompañamiento necesito?',
     answer:
-      'Puedes escribirme contándome lo que te preocupa o envíame un WhatsApp y lo vemos juntas, depende si tu problema requiere de un acompañamiento más amplio o es una duda puntual',
+      'Puedes escribirme y contarme qué te preocupa. Juntas veremos si necesitas un acompañamiento más completo o si una sesión puntual es suficiente para resolver tu duda.',
   },
 ] as const
 

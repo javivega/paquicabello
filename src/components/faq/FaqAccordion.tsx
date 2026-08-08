@@ -85,9 +85,11 @@ export function FaqAccordion({ className, animated = false }: FaqAccordionProps)
           className={cn(
             'overflow-hidden rounded-2xl border border-border-subtle-1 bg-canvas',
             'shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)]',
-            'motion-safe:transition-[transform,box-shadow] motion-safe:duration-200',
-            'motion-safe:hover:-translate-y-0.5 hover:shadow-[0_6px_24px_0_rgb(0_0_0_/_0.07)]',
+            'motion-safe:transition-[transform,box-shadow] motion-safe:duration-200 motion-safe:ease-[var(--ease-out)]',
             'data-[open]:shadow-[0_6px_24px_0_rgb(0_0_0_/_0.07)]',
+            // Touch devices fire sticky :hover — gate lift to fine pointers only.
+            '[@media(hover:hover)_and_(pointer:fine)]:motion-safe:hover:-translate-y-0.5',
+            '[@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_6px_24px_0_rgb(0_0_0_/_0.07)]',
             animated && 'section-enter',
           )}
         >
@@ -109,14 +111,24 @@ export function FaqAccordion({ className, animated = false }: FaqAccordionProps)
                 {item.question}
               </span>
               <ChevronDown
-                className="mt-0.5 size-5 shrink-0 text-foreground-secondary transition-transform duration-200 motion-reduce:transition-none"
+                className="mt-0.5 size-5 shrink-0 text-foreground-secondary transition-transform duration-200 ease-[var(--ease-out)] motion-reduce:transition-none"
                 strokeWidth={2}
                 aria-hidden
               />
             </Accordion.Trigger>
           </Accordion.Header>
-          <Accordion.Panel className="border-t border-border-subtle-1 px-6 pb-6 pt-0 text-[15px] leading-7 text-foreground-secondary">
-            <p className="pt-4">{item.answer}</p>
+          <Accordion.Panel
+            className={cn(
+              'h-[var(--accordion-panel-height)] overflow-hidden',
+              'motion-safe:transition-[height,opacity] motion-safe:duration-200 motion-safe:ease-[var(--ease-out)]',
+              'data-[starting-style]:h-0 data-[starting-style]:opacity-0',
+              'data-[ending-style]:h-0 data-[ending-style]:opacity-0',
+              'motion-reduce:transition-none',
+            )}
+          >
+            <div className="border-t border-border-subtle-1 px-6 pb-6 pt-4 text-[15px] leading-7 text-foreground-secondary">
+              <p>{item.answer}</p>
+            </div>
           </Accordion.Panel>
         </Accordion.Item>
       ))}

@@ -1,9 +1,9 @@
-import { Check } from 'lucide-react'
+import tickCircle from '@/img/pricing-tick-circle.svg'
 import type { ReactNode } from 'react'
 
-import avatarImage from '@/img/avatar.png'
-import { BrandLinkButton } from '@/components/ui/button'
-import { CONTACT_PATH } from '@/lib/routes'
+import avatarImage from '@/img/avatar.webp'
+import { BrandAnchorButton, BrandLinkButton } from '@/components/ui/button'
+import { CONTACT_PATH, whatsappContactHref } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
 export type ServicePricingAsideProps = {
@@ -15,6 +15,8 @@ export type ServicePricingAsideProps = {
   features: readonly ReactNode[]
   avatarLine1: string
   avatarLine2: string
+  /** Pre-filled WhatsApp opener for the primary Contactar CTA. */
+  contactHref: string
 }
 
 /** Props bundle for `<ServicePricingAside {...servicePricingAsideSessionExpress} />` etc. */
@@ -34,8 +36,6 @@ const programFeatures: readonly ReactNode[] = [
     <span> por videoconferencia.</span>
   </>,
   'Presencial en Fuengirola, Mijas, Benalmádena, Torremolinos y Marbella',
-  'Seguimiento personalizado por WhatsApp',
-  'Revisión de vídeos para analizar interacciones',
 ]
 
 /** Sesión exprés — same card shell, session-specific copy. */
@@ -43,21 +43,23 @@ export const servicePricingAsideSessionExpress = {
   cardId: 'session-pricing-card',
   ariaLabel: 'Precio sesión exprés',
   price: '60,00€',
-  subtitle: 'Sesión exprés de 90 minutos',
+  subtitle: 'Sesión exprés de 60 minutos',
   features: sessionFeatures,
   avatarLine1: 'Una sesión con',
   avatarLine2: 'Paqui Cabello',
+  contactHref: whatsappContactHref('session'),
 } satisfies ServicePricingAsideContentProps
 
-/** Programa 8 semanas — same card shell, program-specific copy. */
+/** Programa 4 semanas — same card shell, program-specific copy. */
 export const servicePricingAsideProgram8Weeks = {
   cardId: 'program-8-pricing-card',
-  ariaLabel: 'Precio programa de 8 semanas',
-  price: '150,00€',
-  subtitle: 'Programa personalizado de 8 semanas',
+  ariaLabel: 'Precio programa de 4 semanas',
+  price: '180,00€',
+  subtitle: 'Programa personalizado de 4 semanas',
   features: programFeatures,
-  avatarLine1: 'Tu educadora:',
+  avatarLine1: 'Un programa con',
   avatarLine2: 'Paqui Cabello',
+  contactHref: whatsappContactHref('program'),
 } satisfies ServicePricingAsideContentProps
 
 /** Tarifa lateral sticky — Figma; content via props or `servicePricingAside*` presets. */
@@ -70,6 +72,7 @@ export function ServicePricingAside({
   features,
   avatarLine1,
   avatarLine2,
+  contactHref,
 }: ServicePricingAsideProps) {
   return (
     <aside
@@ -82,7 +85,7 @@ export function ServicePricingAside({
     >
       <div
         id={cardId}
-        className="flex w-full flex-col gap-5 rounded-3xl border-2 border-border-subtle-0 bg-canvas px-0.5 pb-6 shadow-[6px_6px_0px_0px_rgba(255,78,0,0.12)] sm:gap-6 sm:pb-8"
+        className="flex w-full flex-col gap-5 rounded-3xl border-2 border-border-subtle-0 bg-canvas px-0.5 pb-6 sm:gap-6 sm:pb-8"
       >
         <header className="flex flex-col gap-3 border-b border-border-subtle-0 px-5 pb-4 pt-6 sm:gap-4 sm:px-6 sm:pb-4 sm:pt-7 lg:px-[22px] lg:pt-8">
           <p className="text-[clamp(1.75rem,4.2vw+0.6rem,2.25rem)] font-semibold leading-none tracking-tight text-foreground-brand sm:text-[2rem] sm:leading-none lg:text-[36px] lg:leading-10">
@@ -98,9 +101,13 @@ export function ServicePricingAside({
               key={i}
               className="flex gap-2.5 text-left text-[15px] leading-snug text-foreground-secondary sm:text-sm sm:leading-5"
             >
-              <Check
-                className="mt-0.5 size-5 shrink-0 text-foreground-brand"
-                strokeWidth={2}
+              <img
+                src={tickCircle}
+                alt=""
+                width={20}
+                height={20}
+                className="mt-0.5 size-5 shrink-0"
+                decoding="async"
                 aria-hidden
               />
               <span className="min-w-0">{line}</span>
@@ -113,6 +120,7 @@ export function ServicePricingAside({
             alt="Retrato de Paqui Cabello"
             width={60}
             height={60}
+            loading="lazy"
             decoding="async"
             className="size-[56px] shrink-0 rounded-full border border-border-subtle-0 object-cover ring-1 ring-border-subtle-0 sm:size-[60px]"
           />
@@ -123,8 +131,8 @@ export function ServicePricingAside({
           </p>
         </div>
         <div className="flex flex-col gap-2 px-5 sm:flex-row sm:flex-wrap sm:px-6 sm:gap-2">
-          <BrandLinkButton
-            to={CONTACT_PATH}
+          <BrandAnchorButton
+            href={contactHref}
             brandVariant="primary"
             brandSize="md"
             className="w-full sm:w-auto"
@@ -132,7 +140,7 @@ export function ServicePricingAside({
             rightSlot={null}
           >
             Contactar
-          </BrandLinkButton>
+          </BrandAnchorButton>
           <BrandLinkButton
             to={CONTACT_PATH}
             brandVariant="secondary"

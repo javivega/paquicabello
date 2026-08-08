@@ -1,6 +1,9 @@
 /* Design tokens from Figma — primitives first, then semantic aliases */
 
 :root {
+  /* Motion — site entrance / settle curve (matches existing globals.css literals) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
   --Primitive-color-blue-blue-50: #fbfaff;
   --Primitive-color-blue-blue-100: #f7f5ff;
   --Primitive-color-blue-blue-200: #efebfe;

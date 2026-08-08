@@ -1,9 +1,11 @@
+import { useRef } from 'react'
+
 import animalnature from '@/img/Servicios/animalnature.png'
 import creciendoentreperros from '@/img/Servicios/creciendoentreperros.png'
 import dieresis from '@/img/Servicios/dieresis.png'
 import edogtorial from '@/img/Servicios/edogtorial.png'
 import serviciosPartnerLogo from '@/img/Servicios/logo.png'
-import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
+import { useScrollEnter } from '@/hooks/useScrollEnter'
 import { cn } from '@/lib/utils'
 
 const partnerLogos = [
@@ -47,8 +49,12 @@ export function HomeLogosBand({
   className,
   slotsClassName,
 }: HomeLogosBandProps) {
+  const rootRef = useRef<HTMLElement>(null)
+  useScrollEnter(rootRef)
+
   return (
     <section
+      ref={rootRef}
       className={cn(
         'w-full bg-surface-subtle-0 py-10 text-foreground',
         className,
@@ -59,9 +65,9 @@ export function HomeLogosBand({
         Centros de formación
       </h2>
       <p
-        style={sectionEnterStyle(50)}
+        data-scroll-enter
         className={cn(
-          'section-enter mx-auto max-w-4xl px-4 text-center text-lg leading-6 text-foreground sm:px-6',
+          'scroll-enter mx-auto max-w-4xl px-4 text-center text-lg leading-6 text-foreground sm:px-6',
         )}
       >
         Formada en +30 escuelas de de entrenamiento y psicología canina
@@ -77,9 +83,9 @@ export function HomeLogosBand({
           return (
             <div
               key={logo.alt}
-              style={sectionEnterStyle(100 + i * 55)}
+              data-scroll-enter
               className={cn(
-                'section-enter flex shrink-0 items-center justify-center',
+                'scroll-enter flex shrink-0 items-center justify-center',
                 slot.w,
                 slot.h,
               )}

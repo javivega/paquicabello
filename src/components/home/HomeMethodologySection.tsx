@@ -1,214 +1,284 @@
-import { BrandLinkButton } from '@/components/ui/button'
-import { CONTACT_PATH, SERVICES_PATH } from '@/lib/routes'
+import { BrandAnchorButton, BrandLinkButton } from '@/components/ui/button'
+import methodCadaMiembro from '@/img/method/method-cada-miembro.webp'
+import methodCompromiso from '@/img/method/method-compromiso.webp'
+import methodDisfruta from '@/img/method/method-disfruta.webp'
+import methodFamilia from '@/img/method/method-familia.webp'
+import methodLimites from '@/img/method/method-limites.webp'
+import methodSinCastigos from '@/img/method/method-sin-castigos.webp'
+import { SERVICES_PATH, whatsappContactHref } from '@/lib/routes'
 import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useRef } from 'react'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const pillars = [
   {
+    id: 'familia',
     title: 'Una familia en la que todos cuentan',
-    body: 'Tu perro no es un añadido más, forma parte del núcleo familiar, con emociones muy parecidas a las tuyas y aunque no habla como nosotras, tiene un repertorio de señales comunicativas que expresan en todo momento su estado emocional.',
+    body: 'Tu perro no es un añadido, es parte de la familia. Tiene emociones, necesidades y una forma propia de comunicarse. Aunque no utilice palabras, a través de su comportamiento y de su lenguaje corporal te está diciendo constantemente cómo se siente. Aprender a entender esas señales es el primer paso para construir una convivencia más tranquila, segura y respetuosa para todos',
+    illustration: methodFamilia,
   },
   {
-    title: 'Libre de violencia',
-    body: 'Construimos vínculos desde la confianza, sin gritos, castigos, ni métodos invasivos. La comunicación respetuosa es el camino.',
+    id: 'sin-castigos',
+    title: 'Educación sin castigos',
+    body: 'No creo en los gritos, los castigos ni en los métodos que generan miedo o inseguridad. Te acompaño para comprender qué necesita tu perro y ayudarle a aprender desde la confianza, el respeto y una comunicación clara.',
+    illustration: methodSinCastigos,
   },
   {
-    title: 'Respeto y límites recíprocos',
-    body: 'Fomentamos una relación basada en el respeto mutuo, reconociendo las necesidades caninas y estableciendolímites seguros y que protejan a todos los miembros de la familia',
+    id: 'limites',
+    title: 'Límites que cuidan',
+    body: 'Respetar a tu perro no significa dejarle hacer todo. Los límites también forman parte de una convivencia sana cuando son claros, coherentes y tienen en cuenta las necesidades de todos los miembros de la familia.',
+    illustration: methodLimites,
   },
   {
-    title: 'Cada miembro de la familia importa',
-    body: 'Cada miembro de la familia importa y es tratado según su forma única de ser, sin importar la especie.',
-  },
-  {
+    id: 'compromiso',
     title: 'Compromiso de todos',
-    body: 'Una convivencia segura entre niños y perros es posible ¡Por supuesto! Durante años nos han dicho que había que controlar al perro en un transportín, al final el perro se quedaba relegado/apartado de la vida familiar, la realidad es que da mejores resultados integrarlo en la vida familiar con límites que protejan y sean seguros para todos los miembros de la familia.',
+    body: 'Una convivencia segura entre niños y perros es posible ¡Por supuesto! Durante años nos han dicho que había que controlar al perro en un transportín, en ocasiones, el perro se quedaba relegado/apartado de la vida familiar, la realidad es que da mejores resultados integrarlo en la vida familiar con límites que protejan y sean seguros para los todos miembros de la familia.',
+    illustration: methodCompromiso,
+  },
+  {
+    id: 'cada-miembro',
+    title: 'Cada miembro de la familia importa',
+    body: 'Cada familia es única, y también lo son las personas y los perros que la forman. Por eso busco soluciones que tengan en cuenta las necesidades de todos, creando una convivencia basada en el respeto, la comprensión y el bienestar compartido.',
+    illustration: methodCadaMiembro,
+  },
+  {
+    id: 'disfruta',
+    title: 'Disfruta de una convivencia más tranquila con tu perro',
+    body: 'Convivir con tu perro puede ser mucho más sencillo de lo que imaginas. Entender sus necesidades y saber cómo acompañarlo en cada situación marcará la diferencia en vuestro día a día. Juntos trabajaremos para que recuperéis la calma, la confianza y el disfrute de vivir en familia.',
+    illustration: methodDisfruta,
   },
 ] as const
 
-const lgPlacements = [
-  'lg:col-span-5 lg:row-span-2 lg:col-start-1 lg:row-start-1',
-  'lg:col-span-7 lg:col-start-6 lg:row-start-1',
-  'lg:col-span-7 lg:col-start-6 lg:row-start-2',
-  'lg:col-span-6 lg:col-start-1 lg:row-start-3',
-  'lg:col-span-6 lg:col-start-7 lg:row-start-3',
-] as const
+/** Pin offset from viewport top — clears the navbar and leaves breathing room. */
+const STACK_PIN_START = 'top 168px'
 
-type Prominence = 'hero' | 'side' | 'base'
-
-function prominenceFor(i: number): Prominence {
-  if (i === 0) return 'hero'
-  if (i === 1 || i === 2) return 'side'
-  return 'base'
-}
-
-type MethodologyPillarCellProps = {
-  index: number
+type MethodologyPillarCardProps = {
   titleId: string
   title: string
   body: string
-  enterDelayMs?: number
+  illustration: string
+  index: number
+  className?: string
 }
 
-function MethodologyPillarCell({
-  index,
+function MethodologyPillarCard({
   titleId,
   title,
   body,
-  enterDelayMs,
-}: MethodologyPillarCellProps) {
-  const p = prominenceFor(index)
-
+  illustration,
+  index,
+  className,
+}: MethodologyPillarCardProps) {
   return (
     <article
       aria-labelledby={titleId}
-      style={enterDelayMs != null ? sectionEnterStyle(enterDelayMs) : undefined}
-      className={cn(
-        'col-span-12 flex flex-col rounded-2xl border border-border-subtle-1 bg-canvas',
-        'shadow-[0_1px_3px_0_rgb(0_0_0/_0.05)]',
-        'motion-safe:transition-[transform,box-shadow] motion-safe:duration-200',
-        'motion-safe:hover:-translate-y-0.5 hover:shadow-[0_6px_24px_0_rgb(0_0_0_/_0.07)]',
-        lgPlacements[index],
-        enterDelayMs != null && 'section-enter',
-      )}
+      className={cn('method-stack-card relative w-full', className)}
+      style={{ zIndex: index + 1 }}
     >
+      {/* Inner surface takes scale so pin transforms stay conflict-free. */}
       <div
         className={cn(
-          'flex flex-1 flex-col',
-          p === 'hero' && 'gap-6 p-7 sm:p-8 lg:justify-start lg:gap-10 lg:p-9',
-          p === 'side' && 'gap-3 p-5 sm:p-6',
-          p === 'base' && 'gap-3 p-6 sm:p-7',
+          'method-stack-card-inner flex w-full origin-top flex-col gap-8 rounded-xl border border-border-subtle-0 bg-canvas p-6 shadow-[0_12px_40px_-24px_rgba(28,28,28,0.28)] sm:p-8 lg:flex-row lg:items-start lg:gap-10 lg:p-9',
         )}
       >
-        <div
-          className={cn(
-            'rounded-full bg-foreground-brand',
-            p === 'hero' ? 'size-2.5' : 'size-2',
-          )}
-          aria-hidden
-        />
-        <div className="flex flex-col gap-2 lg:gap-3">
-          <h3
-            id={titleId}
-            className={cn(
-              'text-balance font-semibold leading-snug text-foreground',
-              p === 'hero' &&
-                'text-2xl sm:text-[1.75rem] lg:text-[2rem] lg:leading-snug xl:text-[2.25rem]',
-              p === 'side' && 'text-xl sm:text-[1.25rem] lg:leading-snug',
-              p === 'base' && 'text-xl sm:text-[1.25rem] lg:leading-snug',
-            )}
-          >
-            {title}
-          </h3>
-          <p
-            className={cn(
-              'text-pretty text-foreground-secondary',
-              p === 'hero' && 'text-base leading-7 sm:text-[17px] sm:leading-[1.75]',
-              p !== 'hero' && 'text-[15px] leading-6',
-            )}
-          >
-            {body}
-          </p>
+        <div className="flex min-w-0 flex-1 flex-col gap-10">
+          <div
+            className="size-2.5 shrink-0 rounded-full bg-foreground-brand"
+            aria-hidden
+          />
+          <div className="flex max-w-[540px] flex-col gap-3">
+            <h3
+              id={titleId}
+              className="text-balance text-[clamp(1.5rem,2vw+0.75rem,2.25rem)] font-semibold leading-tight text-foreground sm:text-[36px] sm:leading-10"
+            >
+              {title}
+            </h3>
+            <p className="max-w-[460px] text-pretty text-base leading-5 text-foreground-secondary">
+              {body}
+            </p>
+          </div>
         </div>
+
+        <figure className="mx-auto flex h-[min(320px,70vw)] w-full max-w-[400px] shrink-0 items-center justify-center lg:mx-0">
+          <img
+            src={illustration}
+            alt=""
+            width={400}
+            height={320}
+            className="h-auto max-h-full w-full object-contain"
+            decoding="async"
+            loading="lazy"
+          />
+        </figure>
       </div>
     </article>
   )
 }
 
 export function HomeMethodologySection({ className }: { className?: string }) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const stackRef = useRef<HTMLDivElement>(null)
+
+  useGSAP(
+    () => {
+      const stack = stackRef.current
+      if (!stack) return
+
+      const cards = gsap.utils.toArray<HTMLElement>('.method-stack-card')
+      if (cards.length < 2) return
+
+      const mm = gsap.matchMedia()
+
+      mm.add('(prefers-reduced-motion: no-preference)', () => {
+        const last = cards[cards.length - 1]
+
+        cards.forEach((card, i) => {
+          // Pin each card so the next one stacks over it.
+          ScrollTrigger.create({
+            trigger: card,
+            start: STACK_PIN_START,
+            endTrigger: last,
+            end: STACK_PIN_START,
+            pin: true,
+            pinSpacing: false,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          })
+
+          const next = cards[i + 1]
+          if (!next) return
+
+          const inner = card.querySelector<HTMLElement>('.method-stack-card-inner')
+          if (!inner) return
+
+          // Scale the inner surface only — avoids fighting the pin transform.
+          gsap.fromTo(
+            inner,
+            { scale: 1 },
+            {
+              scale: 0.96,
+              ease: 'none',
+              force3D: true,
+              scrollTrigger: {
+                trigger: next,
+                start: 'top 60%',
+                end: STACK_PIN_START,
+                scrub: 0.9,
+                invalidateOnRefresh: true,
+              },
+            },
+          )
+        })
+
+        // Recalc after lazy images settle the card heights.
+        const images = stack.querySelectorAll('img')
+        let pending = images.length
+        if (pending === 0) {
+          ScrollTrigger.refresh()
+          return
+        }
+
+        const onDone = () => {
+          pending -= 1
+          if (pending <= 0) ScrollTrigger.refresh()
+        }
+        images.forEach((img) => {
+          if (img.complete) onDone()
+          else {
+            img.addEventListener('load', onDone, { once: true })
+            img.addEventListener('error', onDone, { once: true })
+          }
+        })
+      })
+
+      return () => mm.revert()
+    },
+    { scope: sectionRef },
+  )
+
   return (
     <section
-      className={cn(
-        'w-full bg-surface-subtle-1 py-16 sm:py-20 lg:py-24',
-        className,
-      )}
+      ref={sectionRef}
+      className={cn('w-full bg-canvas py-16 sm:pt-20 sm:pb-24 lg:pt-24 lg:pb-28', className)}
       aria-labelledby="home-method-heading"
     >
-      <div className="mx-auto flex max-w-[1289px] flex-col items-center gap-10 px-4 sm:px-6 lg:gap-12">
-        <div className="flex w-full max-w-[640px] flex-col gap-4 text-left lg:mx-auto lg:text-center">
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-4 sm:px-6 lg:gap-12 lg:px-20">
+        <header className="flex w-full max-w-[672px] flex-col items-center gap-4 text-center">
           <p
             style={sectionEnterStyle(50)}
-            className={cn(
-              'section-enter inline-flex w-fit rounded-lg border border-border-subtle-1 bg-canvas px-2 py-1 text-[14px] leading-4 text-foreground-accent lg:mx-auto',
-            )}
+            className="section-enter inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"
           >
             Metodología
           </p>
           <h2
             id="home-method-heading"
             style={sectionEnterStyle(120)}
-            className={cn(
-              'section-enter text-balance text-[clamp(1.75rem,3vw+1rem,2.875rem)] font-semibold leading-tight text-foreground sm:text-[46px] sm:leading-[56px]',
-            )}
+            className="section-enter text-balance text-[clamp(1.75rem,3vw+1rem,2.875rem)] font-semibold leading-tight text-foreground sm:text-[46px] sm:leading-[56px]"
           >
-            Educación canina basada en{' '}
-            <span className="text-foreground-brand">
-              respeto, ciencia y vínculo
-            </span>
+            Una forma diferente de entender la{' '}
+            <span className="text-foreground-brand">educación canina</span>
           </h2>
           <div
             style={sectionEnterStyle(190)}
-            className={cn(
-              'section-enter space-y-2 text-lg leading-7 text-foreground-secondary lg:mx-auto lg:max-w-[640px]',
-            )}
+            className="section-enter max-w-[640px] space-y-2 text-lg leading-6 text-foreground-secondary"
           >
-            <p>Educar es acompañar y fortalecer el vínculo.</p>
             <p>
-            Trabajamos desde la
-            evidencia científica y una mirada multiespecie, dejando atrás los castigos y los modelos
-            basados en la dominancia. Nuestro objetivo no es la obediencia, sino construir
-            seguridad, equilibrio emocional y relaciones de confianza.
+              No se trata de que tu perro haga caso a cualquier precio, sino de
+              entender por qué se comporta como lo hace y ayudarle de una forma
+              respetuosa.
+            </p>
+            <p>
+              Así construimos una convivencia más tranquila, un vínculo más
+              fuerte y una relación en la que ambos os sintáis seguros.
             </p>
           </div>
+        </header>
+
+        <div className="flex flex-wrap justify-center gap-3">
+          <BrandAnchorButton
+            href={whatsappContactHref('general')}
+            brandVariant="primary"
+            brandSize="md"
+            leftSlot={null}
+            rightSlot={null}
+            className="section-enter"
+            style={sectionEnterStyle(250)}
+          >
+            Contactar
+          </BrandAnchorButton>
+          <BrandLinkButton
+            to={SERVICES_PATH}
+            brandVariant="secondary"
+            brandSize="md"
+            leftSlot={null}
+            rightSlot={null}
+            className="section-enter"
+            style={sectionEnterStyle(310)}
+          >
+            Explorar servicios
+          </BrandLinkButton>
         </div>
 
         <div
-          className={cn(
-            'grid w-full max-w-6xl grid-cols-12 gap-4 sm:gap-5',
-            'lg:grid-rows-[1fr_1fr_auto] lg:min-h-[min(540px,68vh)] lg:gap-5',
-          )}
+          ref={stackRef}
+          className="method-stack relative flex w-full max-w-[1024px] flex-col"
         >
-          {pillars.map((p, i) => (
-            <MethodologyPillarCell
-              key={p.title}
+          {pillars.map((pillar, i) => (
+            <MethodologyPillarCard
+              key={pillar.id}
+              titleId={`home-method-pillar-title-${pillar.id}`}
+              title={pillar.title}
+              body={pillar.body}
+              illustration={pillar.illustration}
               index={i}
-              titleId={`home-method-pillar-title-${i}`}
-              title={p.title}
-              body={p.body}
-              enterDelayMs={260 + i * 70}
+              className={i < pillars.length - 1 ? 'mb-5' : undefined}
             />
           ))}
-        </div>
-
-        <div className="flex flex-wrap justify-center gap-3">
-          <span
-            className="section-enter inline-flex"
-            style={sectionEnterStyle(620)}
-          >
-            <BrandLinkButton
-              to={CONTACT_PATH}
-              brandVariant="primary"
-              brandSize="md"
-              leftSlot={null}
-              rightSlot={null}
-            >
-              Contactar
-            </BrandLinkButton>
-          </span>
-          <span
-            className="section-enter inline-flex"
-            style={sectionEnterStyle(690)}
-          >
-            <BrandLinkButton
-              to={SERVICES_PATH}
-              brandVariant="secondary"
-              brandSize="md"
-              leftSlot={null}
-              rightSlot={null}
-            >
-              Explorar servicios
-            </BrandLinkButton>
-          </span>
         </div>
       </div>
     </section>

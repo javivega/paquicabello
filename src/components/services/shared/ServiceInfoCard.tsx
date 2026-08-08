@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -7,18 +7,20 @@ export function ServiceInfoCard({
   icon,
   title,
   children,
+  ...rest
 }: {
   className?: string
   icon: ReactNode
   title: string
   children: ReactNode
-}) {
+} & Omit<ComponentPropsWithoutRef<'article'>, 'title'>) {
   return (
     <article
       className={cn(
         'flex min-h-[220px] flex-col gap-4 rounded-2xl border border-border-subtle-1 bg-surface-subtle-1 p-6 lg:min-h-[280px]',
         className,
       )}
+      {...rest}
     >
       <div className="inline-flex w-fit shrink-0 self-start rounded-xl border border-border-subtle-0 bg-surface-subtle-0 p-2">
         {icon}

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+import { FullBleedPage } from '@/components/layout/FullBleedPage'
 import { CONTACT_PATH } from '@/lib/routes'
 import { cn } from '@/lib/utils'
 
@@ -9,12 +10,10 @@ import { cn } from '@/lib/utils'
  */
 export function CookiesPolicyPage() {
   return (
-    <main
+    <FullBleedPage
+      as="main"
       id="politica-de-cookies"
-      className={cn(
-        'relative w-screen max-w-none flex-1 shrink-0 scroll-mt-28 bg-canvas',
-        'ml-[calc(50%-50vw)]',
-      )}
+      className="flex-1 scroll-mt-28"
     >
       <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <article className="flex flex-col gap-10 text-foreground-secondary">
@@ -317,6 +316,6 @@ export function CookiesPolicyPage() {
           </section>
         </article>
       </div>
-    </main>
+    </FullBleedPage>
   )
 }

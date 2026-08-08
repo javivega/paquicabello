@@ -1,7 +1,7 @@
 import { Button as ButtonPrimitive } from '@base-ui/react/button'
 import type { VariantProps } from 'class-variance-authority'
 import { ArrowUpRight } from 'lucide-react'
-import type { ReactNode } from 'react'
+import type { AnchorHTMLAttributes, ReactNode } from 'react'
 import { Link, type LinkProps } from 'react-router-dom'
 
 import {
@@ -13,6 +13,16 @@ import { cn } from '@/lib/utils'
 
 type BrandVariant = VariantProps<typeof brandButtonVariants>['brandVariant']
 type BrandSize = VariantProps<typeof brandButtonVariants>['brandSize']
+
+type BrandChromeProps = VariantProps<typeof brandButtonVariants> & {
+  className?: string
+  leftSlot?: ReactNode | null
+  rightSlot?: ReactNode | null
+  /** When false, left icon skips the circular ring (e.g. WhatsApp glyph). */
+  leftSlotRing?: boolean
+  presentation?: 'interactive' | 'hover'
+  children?: ReactNode
+}
 
 function BrandButtonLabel({
   brandVariant: brandVariantProp,
@@ -41,21 +51,13 @@ function BrandButtonLabel({
   )
 }
 
-type BrandButtonProps = Omit<ButtonPrimitive.Props, 'className'> &
-  VariantProps<typeof brandButtonVariants> & {
-    className?: string
-    leftSlot?: ReactNode | null
-    rightSlot?: ReactNode | null
-    presentation?: 'interactive' | 'hover'
-  }
-
 function brandButtonClassName({
   brandVariant,
   brandSize,
   presentation,
   className,
 }: Pick<
-  BrandButtonProps,
+  BrandChromeProps,
   'brandVariant' | 'brandSize' | 'presentation' | 'className'
 >) {
   return cn(
@@ -74,6 +76,67 @@ function brandButtonClassName({
   )
 }
 
+function resolveSlot(slot: ReactNode | null | undefined) {
+  if (slot === null) return null
+  if (slot === undefined) {
+    return <ArrowUpRight aria-hidden strokeWidth={1.5} />
+  }
+  return slot
+}
+
+function BrandButtonChrome({
+  brandVariant = 'primary',
+  brandSize = 'md',
+  leftSlot,
+  rightSlot,
+  leftSlotRing = true,
+  children,
+}: Pick<
+  BrandChromeProps,
+  | 'brandVariant'
+  | 'brandSize'
+  | 'leftSlot'
+  | 'rightSlot'
+  | 'leftSlotRing'
+  | 'children'
+>) {
+  const left = resolveSlot(leftSlot)
+  const right = resolveSlot(rightSlot)
+
+  return (
+    <>
+      {left != null ? (
+        <span
+          className={
+            leftSlotRing
+              ? iconRingVariants({ brandVariant, brandSize })
+              : 'inline-flex shrink-0 items-center justify-center p-0.5 [&_svg]:size-4'
+          }
+          data-part="icon-left"
+        >
+          {left}
+        </span>
+      ) : null}
+      {children != null ? (
+        <BrandButtonLabel brandVariant={brandVariant} brandSize={brandSize}>
+          {children}
+        </BrandButtonLabel>
+      ) : null}
+      {right != null ? (
+        <span
+          className={iconRingVariants({ brandVariant, brandSize })}
+          data-part="icon-right"
+        >
+          {right}
+        </span>
+      ) : null}
+    </>
+  )
+}
+
+type BrandButtonProps = Omit<ButtonPrimitive.Props, 'className'> &
+  BrandChromeProps
+
 function BrandButton({
   className,
   brandVariant = 'primary',
@@ -81,25 +144,11 @@ function BrandButton({
   presentation = 'interactive',
   leftSlot,
   rightSlot,
+  leftSlotRing,
   children,
   type,
   ...props
 }: BrandButtonProps) {
-  const showLeft = leftSlot !== null
-  const showRight = rightSlot !== null
-  const left =
-    leftSlot === undefined ? (
-      <ArrowUpRight aria-hidden strokeWidth={1.5} />
-    ) : (
-      leftSlot
-    )
-  const right =
-    rightSlot === undefined ? (
-      <ArrowUpRight aria-hidden strokeWidth={1.5} />
-    ) : (
-      rightSlot
-    )
-
   return (
     <ButtonPrimitive
       data-slot="button"
@@ -112,36 +161,20 @@ function BrandButton({
       })}
       {...props}
     >
-      {showLeft ? (
-        <span
-          className={iconRingVariants({ brandVariant, brandSize })}
-          data-part="icon-left"
-        >
-          {left}
-        </span>
-      ) : null}
-      <BrandButtonLabel brandVariant={brandVariant} brandSize={brandSize}>
+      <BrandButtonChrome
+        brandVariant={brandVariant}
+        brandSize={brandSize}
+        leftSlot={leftSlot}
+        rightSlot={rightSlot}
+        leftSlotRing={leftSlotRing}
+      >
         {children}
-      </BrandButtonLabel>
-      {showRight ? (
-        <span
-          className={iconRingVariants({ brandVariant, brandSize })}
-          data-part="icon-right"
-        >
-          {right}
-        </span>
-      ) : null}
+      </BrandButtonChrome>
     </ButtonPrimitive>
   )
 }
 
-type BrandLinkButtonProps = Omit<LinkProps, 'className'> &
-  VariantProps<typeof brandButtonVariants> & {
-    className?: string
-    leftSlot?: ReactNode | null
-    rightSlot?: ReactNode | null
-    presentation?: 'interactive' | 'hover'
-  }
+type BrandLinkButtonProps = Omit<LinkProps, 'className'> & BrandChromeProps
 
 /** Same visuals as {@link BrandButton}, rendered as a client-side router link. */
 function BrandLinkButton({
@@ -151,24 +184,10 @@ function BrandLinkButton({
   presentation = 'interactive',
   leftSlot,
   rightSlot,
+  leftSlotRing,
   children,
   ...props
 }: BrandLinkButtonProps) {
-  const showLeft = leftSlot !== null
-  const showRight = rightSlot !== null
-  const left =
-    leftSlot === undefined ? (
-      <ArrowUpRight aria-hidden strokeWidth={1.5} />
-    ) : (
-      leftSlot
-    )
-  const right =
-    rightSlot === undefined ? (
-      <ArrowUpRight aria-hidden strokeWidth={1.5} />
-    ) : (
-      rightSlot
-    )
-
   return (
     <Link
       data-slot="link-button"
@@ -183,29 +202,68 @@ function BrandLinkButton({
       )}
       {...props}
     >
-      {showLeft ? (
-        <span
-          className={iconRingVariants({ brandVariant, brandSize })}
-          data-part="icon-left"
-        >
-          {left}
-        </span>
-      ) : null}
-      <BrandButtonLabel brandVariant={brandVariant} brandSize={brandSize}>
+      <BrandButtonChrome
+        brandVariant={brandVariant}
+        brandSize={brandSize}
+        leftSlot={leftSlot}
+        rightSlot={rightSlot}
+        leftSlotRing={leftSlotRing}
+      >
         {children}
-      </BrandButtonLabel>
-      {showRight ? (
-        <span
-          className={iconRingVariants({ brandVariant, brandSize })}
-          data-part="icon-right"
-        >
-          {right}
-        </span>
-      ) : null}
+      </BrandButtonChrome>
     </Link>
+  )
+}
+
+type BrandAnchorButtonProps = Omit<
+  AnchorHTMLAttributes<HTMLAnchorElement>,
+  'className'
+> &
+  BrandChromeProps
+
+/** Same visuals as {@link BrandButton}, for external / absolute URLs. */
+function BrandAnchorButton({
+  className,
+  brandVariant = 'primary',
+  brandSize = 'md',
+  presentation = 'interactive',
+  leftSlot,
+  rightSlot,
+  leftSlotRing,
+  children,
+  target = '_blank',
+  rel,
+  ...props
+}: BrandAnchorButtonProps) {
+  return (
+    <a
+      data-slot="anchor-button"
+      target={target}
+      rel={rel ?? (target === '_blank' ? 'noreferrer' : undefined)}
+      className={cn(
+        brandButtonClassName({
+          brandVariant,
+          brandSize,
+          presentation,
+          className,
+        }),
+        'no-underline',
+      )}
+      {...props}
+    >
+      <BrandButtonChrome
+        brandVariant={brandVariant}
+        brandSize={brandSize}
+        leftSlot={leftSlot}
+        rightSlot={rightSlot}
+        leftSlotRing={leftSlotRing}
+      >
+        {children}
+      </BrandButtonChrome>
+    </a>
   )
 }
 
 const Button = BrandButton
 
-export { BrandButton, BrandLinkButton, Button }
+export { BrandAnchorButton, BrandButton, BrandLinkButton, Button }
