@@ -9,7 +9,7 @@ import { FullBleedPage } from '@/components/layout/FullBleedPage'
 /** “Sobre mí” — Figma node 1104:8563. */
 export function AboutPage() {
   return (
-    <FullBleedPage className="flex flex-col gap-40 lg:gap-52">
+    <FullBleedPage className="page-section-stack flex flex-col">
       <AboutHero />
       <AboutTrajectorySection />
       <AboutTurnSection />

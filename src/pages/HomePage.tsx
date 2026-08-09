@@ -19,7 +19,7 @@ export function HomePage() {
       <SectionReveal>
         <HomeHelpSection />
       </SectionReveal>
-      <SectionReveal>
+      <SectionReveal threshold={0} rootMargin="0px 0px -4% 0px">
         <HomeMethodologySection />
       </SectionReveal>
       <SectionReveal>

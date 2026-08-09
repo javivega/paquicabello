@@ -112,7 +112,7 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
         className,
       )}
     >
-      <div className="order-2 flex min-w-0 flex-1 flex-col gap-40 lg:order-1 lg:gap-52">
+      <div className="page-section-stack order-2 flex min-w-0 flex-1 flex-col lg:order-1">
         <section
           id="program-4-intro"
           data-scroll-enter

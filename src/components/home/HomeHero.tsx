@@ -63,7 +63,8 @@ const heroDoodles = [
   },
   {
     src: doodleHeartTop,
-    className: 'absolute left-[52%] top-[-1%] w-[11%] max-w-none',
+    className:
+      'absolute left-[44%] top-[-1%] w-[11%] max-w-none lg:left-[52%]',
     tiltClassName: 'origin-center -rotate-[54deg]',
     delay: '985ms',
   },
@@ -149,25 +150,29 @@ export function HomeHero({ className }: { className?: string }) {
     () => {
       const mm = gsap.matchMedia()
 
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        // Compress scrub into the first stretch of leaving the hero so the
-        // full drift is visible while the photo is still on-screen.
-        // Distances are larger than the original 48px plan values — those
-        // read as "no motion" over a ~1300px-tall hero.
-        const tl = gsap.timeline({
-          defaults: { ease: 'none' },
-          scrollTrigger: {
-            trigger: rootRef.current,
-            start: 'top top',
-            end: '+=70%',
-            scrub: 0.45,
-          },
-        })
+      // Parallax scrub only on lg+ — stacked mobile layout doesn't need it.
+      mm.add(
+        '(min-width: 1024px) and (prefers-reduced-motion: no-preference)',
+        () => {
+          // Compress scrub into the first stretch of leaving the hero so the
+          // full drift is visible while the photo is still on-screen.
+          // Distances are larger than the original 48px plan values — those
+          // read as "no motion" over a ~1300px-tall hero.
+          const tl = gsap.timeline({
+            defaults: { ease: 'none' },
+            scrollTrigger: {
+              trigger: rootRef.current,
+              start: 'top top',
+              end: '+=70%',
+              scrub: 0.45,
+            },
+          })
 
-        tl.to('.home-hero-photo', { y: 160 }, 0)
-        tl.to('.home-hero-doodle-drift', { y: (i) => 100 + i * 18 }, 0)
-        tl.to('.home-hero-squiggle-drift', { y: 120 }, 0)
-      })
+          tl.to('.home-hero-photo', { y: 160 }, 0)
+          tl.to('.home-hero-doodle-drift', { y: (i) => 100 + i * 18 }, 0)
+          tl.to('.home-hero-squiggle-drift', { y: 120 }, 0)
+        },
+      )
 
       return () => mm.revert()
     },

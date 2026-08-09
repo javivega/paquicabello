@@ -284,19 +284,19 @@ export function HomeHelpFlipDeck({
               >
                 <div
                   className={cn(
-                    'home-help-card-face home-help-card-front absolute inset-0 flex flex-col items-end gap-6 rounded-3xl bg-surface-subtle-0 p-8',
+                    'home-help-card-face home-help-card-front absolute inset-0 flex flex-col items-end gap-4 rounded-3xl bg-surface-subtle-0 p-5 sm:gap-6 sm:p-8',
                     CARD_BORDER,
                     CARD_SHADOW,
                     flipped && 'pointer-events-none',
                   )}
                   aria-hidden={flipped}
                 >
-                  <p className="w-full text-lg leading-6 text-foreground-secondary">
+                  <p className="w-full text-base leading-5 text-foreground-secondary sm:text-lg sm:leading-6">
                     {active.frontEyebrow}
                   </p>
                   <h3
                     id={titleId}
-                    className="w-full flex-1 text-[26px] font-semibold leading-8 text-foreground"
+                    className="w-full flex-1 text-[20px] font-semibold leading-6 text-foreground sm:text-[26px] sm:leading-8"
                   >
                     {active.frontTitle}
                   </h3>
@@ -317,7 +317,7 @@ export function HomeHelpFlipDeck({
                 <div
                   id={backId}
                   className={cn(
-                    'home-help-card-face home-help-card-back absolute inset-0 flex flex-col items-end gap-6 rounded-3xl p-8',
+                    'home-help-card-face home-help-card-back absolute inset-0 flex flex-col items-end gap-4 rounded-3xl p-5 sm:gap-6 sm:p-8',
                     'bg-[var(--Semantictokens-Color-Background-Strong-0-default)]',
                     CARD_BORDER,
                     CARD_SHADOW,
@@ -325,10 +325,10 @@ export function HomeHelpFlipDeck({
                   )}
                   aria-hidden={!flipped}
                 >
-                  <p className="w-full text-lg leading-6 text-on-strong">
+                  <p className="w-full text-base leading-5 text-on-strong sm:text-lg sm:leading-6">
                     ¿Qué puede haber detrás?
                   </p>
-                  <ul className="w-full flex-1 list-none space-y-8 p-0 text-[26px] font-semibold leading-8 text-on-strong">
+                  <ul className="w-full flex-1 list-none space-y-4 p-0 text-[20px] font-semibold leading-6 text-on-strong sm:space-y-8 sm:text-[26px] sm:leading-8">
                     {active.backItems.map((item) => (
                       <li key={item} className="home-help-back-item">
                         {item}

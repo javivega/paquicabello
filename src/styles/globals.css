@@ -161,6 +161,11 @@ html {
   @apply font-quicksand text-sm font-normal leading-[1.1429];
 }
 
+/* Vertical rhythm between major marketing sections (About, service columns, …). */
+@utility page-section-stack {
+  @apply gap-24 sm:gap-32 lg:gap-40;
+}
+
 @layer base {
   /* Google Fonts: Quicksand (see index.html). Explicit stack so it wins over any theme utility quirks. */
   html {
