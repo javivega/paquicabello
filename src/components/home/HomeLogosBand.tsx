@@ -70,18 +70,18 @@ export function HomeLogosBand({
           'scroll-enter mx-auto max-w-4xl px-4 text-center text-lg leading-6 text-foreground sm:px-6',
         )}
       >
-        Formada en +30 escuelas de de entrenamiento y psicología canina
+        Formada en +15 escuelas de entrenamiento y psicología canina
       </p>
-      <div
+      <ul
         className={cn(
-          'mx-auto mt-4 flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-6 px-4 sm:gap-x-16 lg:gap-x-20',
+          'mx-auto mt-4 flex max-w-6xl list-none flex-wrap items-center justify-center gap-x-10 gap-y-6 p-0 px-4 sm:gap-x-16 lg:gap-x-20',
           slotsClassName,
         )}
       >
         {partnerLogos.map((logo, i) => {
           const slot = logoSlots[i]
           return (
-            <div
+            <li
               key={logo.alt}
               data-scroll-enter
               className={cn(
@@ -97,10 +97,10 @@ export function HomeLogosBand({
                 loading="lazy"
                 decoding="async"
               />
-            </div>
+            </li>
           )
         })}
-      </div>
+      </ul>
     </section>
   )
 }

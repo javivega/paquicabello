@@ -39,14 +39,15 @@ type NavbarProps = {
   activeId?: string
 }
 
-function useNavActiveId(activeIdOverride?: string) {
+function useNavActiveId(activeIdOverride?: string): string | null {
   const { pathname, hash } = useLocation()
   if (activeIdOverride) return activeIdOverride
   if (pathname === '/servicios' || pathname.startsWith('/servicios/'))
     return 'servicios'
   if (pathname === ABOUT_PATH) return 'sobre-mi'
   if (pathname === '/' && hash === '#sobre-mi') return 'sobre-mi'
-  return 'contacta'
+  if (pathname === CONTACT_PATH) return 'contacta'
+  return null
 }
 
 const CONTACT_NAV_ID = 'contacta'
@@ -175,7 +176,7 @@ export function Navbar({
                     {...(isServicios
                       ? {
                           'aria-expanded': desktopServiciosOpen,
-                          'aria-haspopup': 'menu' as const,
+                          'aria-controls': 'desktop-servicios-submenu',
                           onFocus: () => setDesktopServiciosOpen(true),
                           onBlur: (e) => {
                             if (
@@ -206,6 +207,8 @@ export function Navbar({
 
                   {isServicios ? (
                     <div
+                      id="desktop-servicios-submenu"
+                      hidden={!desktopServiciosOpen}
                       className={cn(
                         'absolute left-1/2 top-[calc(100%+0.5rem)] z-20 w-64 -translate-x-1/2',
                         'transition-[opacity,visibility,transform] duration-200',
@@ -224,12 +227,11 @@ export function Navbar({
                       }}
                     >
                       <div className="rounded-2xl border border-border-subtle-0 bg-navbar-surface p-2 shadow-[0px_0px_10px_0px_var(--Primitive-color-orange-orange-200)]">
-                        <ul className="m-0 list-none p-0" role="menu">
+                        <ul className="m-0 list-none p-0">
                           {serviciosSubItems.map((subItem) => (
-                            <li key={subItem.id} role="none">
+                            <li key={subItem.id}>
                               <Link
                                 to={subItem.to}
-                                role="menuitem"
                                 className={cn(
                                   'paragraph-md flex w-full rounded-xl px-3 py-2.5 text-navbar-link transition-[background-color,color]',
                                   'hover:bg-[var(--Primitive-color-orange-orange-100)] hover:text-[var(--Primitive-color-orange-orange-800)]',
@@ -314,6 +316,7 @@ export function Navbar({
                         </button>
                         <div
                           id="mobile-servicios-submenu"
+                          hidden={!mobileServiciosOpen}
                           className={cn(
                             'overflow-hidden px-1 transition-[max-height,opacity] duration-200',
                             mobileServiciosOpen

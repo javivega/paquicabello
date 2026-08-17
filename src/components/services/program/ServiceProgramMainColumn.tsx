@@ -89,7 +89,7 @@ function TickIcon({ className }: { className?: string }) {
   return (
     <img
       src={tickCircle}
-      alt=""
+      alt="Incluido"
       width={24}
       height={24}
       className={cn('shrink-0', className)}
@@ -117,10 +117,10 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
           id="program-4-intro"
           data-scroll-enter
           className="scroll-enter flex max-w-[680px] scroll-mt-28 flex-col gap-4"
-          aria-labelledby="program-8-intro-heading"
+          aria-labelledby="program-4-intro-heading"
         >
           <h2
-            id="program-8-intro-heading"
+            id="program-4-intro-heading"
             className="text-[26px] font-semibold leading-8 text-foreground"
           >
             ¿Sientes que la convivencia con tu perro se ha vuelto estresante, te
@@ -138,11 +138,11 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
         <section
           id="como-es-programa"
           className="flex scroll-mt-28 flex-col gap-4"
-          aria-labelledby="program-8-how-heading"
+          aria-labelledby="program-4-how-heading"
         >
           <h2
             data-scroll-enter
-            id="program-8-how-heading"
+            id="program-4-how-heading"
             className="scroll-enter max-w-[680px] text-[26px] font-semibold leading-8 text-foreground"
           >
             ¿Cómo es el programa personalizado de 4 semanas?
@@ -192,7 +192,7 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
               title="Sesión inicial"
             >
               <p>
-                Videollamada de 60 min para conoceros a fondo y adaptar el
+                Videollamada o sesión presencial de 60 minutos para conoceros a fondo y adaptar el
                 acompañamiento a vuestra realidad.
               </p>
             </ServiceInfoCard>
@@ -250,7 +250,7 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
                 ))}
               </ul>
               <BrandLinkButton
-                to="/#home-method-heading"
+                to={{ pathname: '/', hash: '#about-method-heading' }}
                 brandVariant="secondary"
                 brandSize="md"
                 className="mt-auto w-fit"
@@ -270,11 +270,11 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
 
         <section
           className="flex max-w-[600px] flex-col gap-6"
-          aria-labelledby="program-8-audience-heading"
+          aria-labelledby="program-4-audience-heading"
         >
           <h2
             data-scroll-enter
-            id="program-8-audience-heading"
+            id="program-4-audience-heading"
             className="scroll-enter text-[26px] font-semibold leading-8 text-foreground"
           >
             ¿Te sientes identificada con alguna de estas situaciones?
@@ -288,7 +288,7 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
               >
                 <TickIcon className="mt-0.5 size-6" />
                 <div className="flex min-w-0 flex-1 flex-col gap-1 text-foreground-secondary">
-                  <p className="text-lg font-semibold leading-6">{item.title}</p>
+                  <h3 className="text-lg font-semibold leading-6">{item.title}</h3>
                   <p className="text-base leading-5">{item.body}</p>
                 </div>
               </li>
@@ -298,14 +298,14 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
 
         <section
           className="flex flex-col gap-6"
-          aria-labelledby="program-8-outcomes-heading"
+          aria-labelledby="program-4-outcomes-heading"
         >
           <div
             data-scroll-enter
             className="scroll-enter flex max-w-[600px] flex-col gap-4"
           >
             <h2
-              id="program-8-outcomes-heading"
+              id="program-4-outcomes-heading"
               className="text-[26px] font-semibold leading-8 text-foreground"
             >
               Lo que vas a conseguir

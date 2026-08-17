@@ -157,8 +157,13 @@ export function PrivacyPolicyPage() {
             </p>
           </section>
 
-          <section className="flex flex-col gap-4 rounded-2xl border border-border-subtle-0 bg-surface-subtle-0 p-6">
-            <h2 className="headline-2xs text-foreground">Contacto</h2>
+          <section
+            className="flex flex-col gap-4 rounded-2xl border border-border-subtle-0 bg-surface-subtle-0 p-6"
+            aria-labelledby="privacy-contact-heading"
+          >
+            <h2 id="privacy-contact-heading" className="headline-2xs text-foreground">
+              Contacto
+            </h2>
             <p className="paragraph-md">
               Para ejercer sus derechos de protección de datos o resolver dudas
               sobre esta política, puede{' '}

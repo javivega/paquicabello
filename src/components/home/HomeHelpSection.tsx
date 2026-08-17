@@ -30,9 +30,9 @@ export function HomeHelpSection({ className }: { className?: string }) {
             style={enterHeading}
             className="section-enter text-balance text-[clamp(1.75rem,3vw+1rem,2.875rem)] font-semibold leading-tight sm:text-[46px] sm:leading-[56px]"
           >
-            <span className="text-foreground">Tu perro no es difícil</span>
+            <span className="text-foreground">Te acompaño para que puedas: </span>
             <span className="text-foreground-brand">
-              , probablemente nadie te ha enseñado a entenderlo
+              entenderle y convivir mejor.
             </span>
           </h2>
           <div
@@ -47,11 +47,7 @@ export function HomeHelpSection({ className }: { className?: string }) {
               convivencia más tranquila y consciente.
             </p>
             <p>
-              <span>Te acompaño para que puedas: </span>
-              <span className="font-semibold">
-                comprender su comportamiento, ajustar el entorno y las dinámicas,
-                construir una convivencia más tranquila y consciente
-              </span>
+              <span> Porque cuando entiendes lo que necesita, todo empieza a encajar.</span>
             </p>
           </div>
           <div className="flex flex-wrap gap-3 pt-2">

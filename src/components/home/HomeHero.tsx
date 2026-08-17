@@ -33,36 +33,43 @@ const enterCredentialYears = sectionEnterStyle(480)
 const heroDoodles = [
   {
     src: doodleSpark4,
+    alt: 'Destello decorativo',
     className: 'absolute left-[22.5%] top-[6.4%] w-[0.3%] max-w-none',
     delay: '655ms',
   },
   {
     src: doodleSpark5,
+    alt: 'Destello decorativo',
     className: 'absolute left-[19%] top-[7.9%] w-[2.8%] max-w-none',
     delay: '710ms',
   },
   {
     src: doodleSpark6,
+    alt: 'Destello decorativo',
     className: 'absolute left-[16%] top-[11%] w-[4.8%] max-w-none',
     delay: '765ms',
   },
   {
     src: doodleSpark1,
+    alt: 'Destello decorativo',
     className: 'absolute left-[79.5%] top-[13%] w-[2%] max-w-none',
     delay: '820ms',
   },
   {
     src: doodleSpark2,
+    alt: 'Destello decorativo',
     className: 'absolute left-[82.5%] top-[12.3%] w-[1.2%] max-w-none',
     delay: '875ms',
   },
   {
     src: doodleSpark3,
+    alt: 'Destello decorativo',
     className: 'absolute left-[84%] top-[15%] w-[4.5%] max-w-none',
     delay: '930ms',
   },
   {
     src: doodleHeartTop,
+    alt: 'Corazón decorativo',
     className:
       'absolute left-[44%] top-[-1%] w-[11%] max-w-none lg:left-[52%]',
     tiltClassName: 'origin-center -rotate-[54deg]',
@@ -70,6 +77,7 @@ const heroDoodles = [
   },
   {
     src: doodleHeartBottom,
+    alt: 'Corazón decorativo',
     className: 'absolute left-[89%] top-[80%] w-[5.5%] max-w-none',
     delay: '1040ms',
   },
@@ -112,7 +120,7 @@ function HomeHeroPhoto({ className }: { className?: string }) {
         <div className="home-hero-squiggle-drift absolute -left-[5%] top-[61%] w-[83%]">
           <img
             src={doodleSquiggle}
-            alt=""
+            alt="Garabato decorativo"
             className="home-hero-squiggle w-full max-w-none"
             decoding="async"
           />
@@ -121,7 +129,7 @@ function HomeHeroPhoto({ className }: { className?: string }) {
           const img = (
             <img
               src={doodle.src}
-              alt=""
+              alt={doodle.alt}
               className="home-hero-doodle w-full max-w-none"
               style={{ animationDelay: doodle.delay }}
               decoding="async"
@@ -242,29 +250,27 @@ export function HomeHero({ className }: { className?: string }) {
             >
               <img
                 src={heroVerify}
-                alt=""
+                alt="Marca de verificación"
                 className="pointer-events-none absolute -left-8 -top-7 size-[172px] -rotate-15 opacity-20"
                 width={172}
                 height={172}
                 decoding="async"
-                aria-hidden
               />
               <span className="relative inline-flex size-8 items-center justify-center overflow-hidden rounded-lg border border-border-subtle-0 bg-canvas p-1">
                 <img
                   src={multiespecieIcon}
-                  alt=""
+                  alt="Logo de Crianza Multiespecie"
                   className="size-full object-contain"
                   width={32}
                   height={32}
                   decoding="async"
-                  aria-hidden
                 />
               </span>
               <p className="relative text-[14px] leading-4">
                 Profesional Miembro Autorizado de la Red de Expertos de
               </p>
               <p className="relative paragraph-md-bold">
-                Crianza Multiespecie by creciendo entre perros
+                Crianza Multiespecie by Tamara Hernánz, de creciendo entre perros
               </p>
               <p className="relative border-t border-border-divider pt-1 text-[14px] leading-4">
                 Número de Afiliada:{' '}
@@ -279,23 +285,21 @@ export function HomeHero({ className }: { className?: string }) {
               <p className="flex items-center gap-1">
                 <img
                   src={heroTeacher}
-                  alt=""
+                  alt="Icono de formadora"
                   className="size-8 shrink-0"
                   width={32}
                   height={32}
                   decoding="async"
-                  aria-hidden
                 />
                 <strong className="paragraph-md-bold text-foreground-brand">
-                  +7 años
+                  +10 años
                 </strong>
               </p>
               <p className="paragraph-md-bold text-foreground-secondary">
                 de formación continua
               </p>
               <p className="text-[14px] leading-4 text-foreground-secondary">
-                30 formaciones reconocidas en diferentes aspectos de la
-                psicología canina.
+                +3.600 horas de formaciones reconocidas en diferentes aspectos de educación canina.
               </p>
             </div>
           </div>

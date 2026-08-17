@@ -15,6 +15,12 @@ import { useRef } from 'react'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
+const enterChip = sectionEnterStyle(50)
+const enterHeading = sectionEnterStyle(120)
+const enterBody = sectionEnterStyle(190)
+const enterCtaPrimary = sectionEnterStyle(250)
+const enterCtaSecondary = sectionEnterStyle(310)
+
 const pillars = [
   {
     id: 'familia',
@@ -107,7 +113,7 @@ function MethodologyPillarCard({
         <figure className="mx-auto flex h-[min(320px,70vw)] w-full max-w-[400px] shrink-0 items-center justify-center lg:mx-0">
           <img
             src={illustration}
-            alt=""
+            alt={`Ilustración: ${title}`}
             width={400}
             height={320}
             className="h-auto max-h-full w-full object-contain"
@@ -210,21 +216,21 @@ export function HomeMethodologySection({ className }: { className?: string }) {
       <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-12 px-4 sm:px-6 lg:gap-12 lg:px-20">
         <header className="flex w-full max-w-[672px] flex-col items-center gap-4 text-center">
           <p
-            style={sectionEnterStyle(50)}
+            style={enterChip}
             className="section-enter inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"
           >
             Metodología
           </p>
           <h2
             id="home-method-heading"
-            style={sectionEnterStyle(120)}
+            style={enterHeading}
             className="section-enter text-balance text-[clamp(1.75rem,3vw+1rem,2.875rem)] font-semibold leading-tight text-foreground sm:text-[46px] sm:leading-[56px]"
           >
             Una forma diferente de entender la{' '}
             <span className="text-foreground-brand">educación canina</span>
           </h2>
           <div
-            style={sectionEnterStyle(190)}
+            style={enterBody}
             className="section-enter max-w-[640px] space-y-2 text-lg leading-6 text-foreground-secondary"
           >
             <p>
@@ -247,7 +253,7 @@ export function HomeMethodologySection({ className }: { className?: string }) {
             leftSlot={null}
             rightSlot={null}
             className="section-enter"
-            style={sectionEnterStyle(250)}
+            style={enterCtaPrimary}
           >
             Contactar
           </BrandAnchorButton>
@@ -258,7 +264,7 @@ export function HomeMethodologySection({ className }: { className?: string }) {
             leftSlot={null}
             rightSlot={null}
             className="section-enter"
-            style={sectionEnterStyle(310)}
+            style={enterCtaSecondary}
           >
             Explorar servicios
           </BrandLinkButton>

@@ -291,8 +291,11 @@ export function CookiesPolicyPage() {
             </p>
           </section>
 
-          <section className="flex flex-col gap-4 rounded-2xl border border-border-subtle-0 bg-surface-subtle-0 p-6">
-            <h2 className="headline-2xs text-foreground">
+          <section
+            className="flex flex-col gap-4 rounded-2xl border border-border-subtle-0 bg-surface-subtle-0 p-6"
+            aria-labelledby="cookies-consent-heading"
+          >
+            <h2 id="cookies-consent-heading" className="headline-2xs text-foreground">
               Gestión del consentimiento
             </h2>
             <p className="paragraph-md">

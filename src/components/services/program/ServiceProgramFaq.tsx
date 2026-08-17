@@ -3,6 +3,6 @@ import { cn } from '@/lib/utils'
 
 export function ServiceProgramFaq({ className }: { className?: string }) {
   return (
-    <FaqStackedSection headingId="program-8-faq-heading" className={cn(className)} />
+    <FaqStackedSection headingId="program-4-faq-heading" className={cn(className)} />
   )
 }

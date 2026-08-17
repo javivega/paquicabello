@@ -279,7 +279,7 @@ export function HomeHelpFlipDeck({
           <div className="size-full [perspective:1800px]">
             <div ref={flipperRef} className="relative size-full">
               <article
-                aria-labelledby={titleId}
+                aria-label={active.frontTitle}
                 className="absolute inset-0 [transform-style:preserve-3d]"
               >
                 <div
@@ -290,6 +290,7 @@ export function HomeHelpFlipDeck({
                     flipped && 'pointer-events-none',
                   )}
                   aria-hidden={flipped}
+                  {...(flipped ? { inert: true } : {})}
                 >
                   <p className="w-full text-base leading-5 text-foreground-secondary sm:text-lg sm:leading-6">
                     {active.frontEyebrow}
@@ -324,6 +325,7 @@ export function HomeHelpFlipDeck({
                     !flipped && 'pointer-events-none',
                   )}
                   aria-hidden={!flipped}
+                  {...(!flipped ? { inert: true } : {})}
                 >
                   <p className="w-full text-base leading-5 text-on-strong sm:text-lg sm:leading-6">
                     ¿Qué puede haber detrás?
@@ -385,7 +387,7 @@ export function HomeHelpFlipDeck({
             leftSlot={
               <img
                 src={arrowLeft}
-                alt=""
+                alt="Flecha izquierda"
                 width={20}
                 height={20}
                 className="size-5"
@@ -402,7 +404,7 @@ export function HomeHelpFlipDeck({
             leftSlot={
               <img
                 src={arrowRight}
-                alt=""
+                alt="Flecha derecha"
                 width={20}
                 height={20}
                 className="size-5"

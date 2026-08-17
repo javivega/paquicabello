@@ -158,7 +158,7 @@ export function AboutMethodSection({ className }: { className?: string }) {
     <section
       ref={rootRef}
       className={cn('w-full', className)}
-      aria-labelledby="about-method-heading"
+      aria-labelledby="about-method-title"
     >
       <div
         className={cn(
@@ -170,7 +170,10 @@ export function AboutMethodSection({ className }: { className?: string }) {
         <MethodCollage className="mx-auto lg:mx-0" />
 
         <div className="flex min-w-0 flex-1 flex-col gap-8 lg:max-w-[642px] lg:pl-20">
-          <div className="flex max-w-[680px] flex-col gap-4">
+          <div
+            id="about-method-heading"
+            className="flex max-w-[680px] scroll-mt-28 flex-col gap-4"
+          >
             <p
               data-scroll-enter
               className="scroll-enter inline-flex w-fit rounded-lg border border-border-subtle-1 bg-surface-subtle-1 px-2 py-1 text-[14px] leading-4 text-foreground-accent"
@@ -179,7 +182,7 @@ export function AboutMethodSection({ className }: { className?: string }) {
             </p>
             <h2
               data-scroll-enter
-              id="about-method-heading"
+              id="about-method-title"
               className="scroll-enter text-balance text-[26px] font-semibold leading-8 text-foreground-brand"
             >
               La Metodología Crianza Multiespecie

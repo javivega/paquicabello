@@ -13,12 +13,14 @@ import { sectionEnterStyle } from '@/lib/sectionEnterStyle'
 import { cn } from '@/lib/utils'
 
 type Feature = {
+  id: string
   label: ReactNode
   align?: 'center' | 'start'
 }
 
 const sessionFeatures: Feature[] = [
   {
+    id: 'session-anywhere',
     align: 'center',
     label: (
       <>
@@ -28,6 +30,7 @@ const sessionFeatures: Feature[] = [
     ),
   },
   {
+    id: 'session-presencial',
     label:
       'Presencial en Fuengirola, Mijas, Benalmádena, Torremolinos y Marbella',
   },
@@ -35,6 +38,7 @@ const sessionFeatures: Feature[] = [
 
 const programFeatures: Feature[] = [
   {
+    id: 'program-anywhere',
     align: 'center',
     label: (
       <>
@@ -44,11 +48,15 @@ const programFeatures: Feature[] = [
     ),
   },
   {
+    id: 'program-presencial',
     label:
       'Presencial en Fuengirola, Mijas, Benalmádena, Torremolinos y Marbella',
   },
-  { label: 'Seguimiento personalizado por WhatsApp' },
-  { label: 'Revisión de vídeos para analizar interacciones' },
+  { id: 'program-whatsapp', label: 'Seguimiento personalizado por WhatsApp' },
+  {
+    id: 'program-videos',
+    label: 'Revisión de vídeos para analizar interacciones',
+  },
 ]
 
 function Price({ amount }: { amount: string }) {
@@ -64,9 +72,9 @@ function Price({ amount }: { amount: string }) {
 function FeatureList({ features }: { features: Feature[] }) {
   return (
     <ul className="flex flex-col gap-2">
-      {features.map((feature, i) => (
+      {features.map((feature) => (
         <li
-          key={i}
+          key={feature.id}
           className={cn(
             'flex gap-2 text-left text-[14px] leading-4 text-foreground-secondary',
             feature.align === 'center' ? 'items-center' : 'items-start',
@@ -74,10 +82,11 @@ function FeatureList({ features }: { features: Feature[] }) {
         >
           <img
             src={tickCircle}
-            alt=""
+            alt="Incluido"
             width={20}
             height={20}
             className="size-5 shrink-0"
+            aria-hidden
           />
           <span className="min-w-0 flex-1">{feature.label}</span>
         </li>
@@ -157,7 +166,7 @@ export function Paywall({
               <Price amount="60,00€" />
               <div className="flex flex-col gap-1 text-foreground-secondary">
                 <h3 id={sessionTitleId} className="paragraph-md-bold">
-                  Sesión exprés de 60 minutos
+                  Sesión exprés de 60 minutos.
                 </h3>
                 <div className="space-y-2 text-[14px] leading-4">
                   <p>
@@ -214,7 +223,7 @@ export function Paywall({
               <Price amount="180,00€" />
               <div className="flex flex-col gap-1 text-foreground-secondary">
                 <h3 id={programTitleId} className="paragraph-md-bold">
-                  Programa personalizado 4 semanas
+                  Programa personalizado de 4 semanas
                 </h3>
                 <p className="text-[14px] leading-4">
                   Te acompaño paso a paso para mejorar la convivencia con tu
@@ -264,7 +273,7 @@ export function Paywall({
           >
             <img
               src={verifyMark}
-              alt=""
+              alt="Marca de verificación"
               width={172}
               height={172}
               className="size-full"
@@ -272,7 +281,7 @@ export function Paywall({
           </div>
           <img
             src={affiliateBadge}
-            alt=""
+            alt="Insignia de afiliada de Crianza Multiespecie"
             width={44}
             height={44}
             className="relative size-11"

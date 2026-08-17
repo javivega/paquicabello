@@ -165,13 +165,12 @@ function TrajectoryCollage({ className }: { className?: string }) {
             <div className="relative size-full rotate-[4.61deg] overflow-hidden rounded-lg bg-canvas shadow-[0_0_10px_var(--Primitive-color-orange-orange-200)]">
               <img
                 src={trajectoryInset}
-                alt=""
+                alt="Paqui Cabello con un perro"
                 width={207}
                 height={276}
                 className="absolute inset-0 size-full max-w-none object-contain"
                 loading="lazy"
                 decoding="async"
-                aria-hidden
               />
             </div>
           </TrajLayer>

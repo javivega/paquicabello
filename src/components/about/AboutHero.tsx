@@ -227,12 +227,11 @@ function AboutHeroCollage({ className }: { className?: string }) {
                       <div className="relative size-full rotate-[-0.68deg]">
                         <img
                           src={doodleSquiggle}
-                          alt=""
+                          alt="Garabato decorativo"
                           width={590}
                           height={597}
                           className="absolute inset-0 block size-full max-w-none select-none"
                           decoding="async"
-                          aria-hidden
                         />
                       </div>
                     </AboutHeroLayer>
@@ -288,20 +287,19 @@ export function AboutHero({ className }: { className?: string }) {
           >
             ¿Quién soy?
           </p>
+          <p
+            data-scroll-enter
+            className="scroll-enter text-[26px] leading-8 text-foreground-secondary"
+          >
+            👋 ¡Hola!
+          </p>
           <h1
             data-scroll-enter
             id="about-hero-heading"
             className="scroll-enter text-balance text-[clamp(2.25rem,4vw+1rem,52px)] font-semibold leading-[1.08] text-foreground-brand sm:leading-[56px]"
           >
-            👋 ¡Hola!
+            Soy Paqui, educadora canina
           </h1>
-          <p
-            data-scroll-enter
-            className="scroll-enter max-w-[784px] text-[26px] leading-8 text-foreground-secondary"
-          >
-            Soy Paqui,{' '}
-            <span className="font-semibold">educadora canina.</span>
-          </p>
           <div
             data-scroll-enter
             className="scroll-enter max-w-[784px] space-y-2 text-[18px] leading-6 text-foreground-secondary"

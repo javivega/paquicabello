@@ -82,7 +82,7 @@ export function Footer({ className }: FooterProps) {
               <span className="absolute inset-x-1/4 top-0 bottom-[37.39%]">
                 <img
                   src={footerLogoMark}
-                  alt=""
+                  alt="Marca Paqui Cabello"
                   width={38}
                   height={41}
                   className="absolute inset-0 size-full max-w-none object-contain"
@@ -93,7 +93,7 @@ export function Footer({ className }: FooterProps) {
               <span className="absolute inset-[75.12%_0_0.05%_0]">
                 <img
                   src={footerLogoWordmark}
-                  alt=""
+                  alt="Paqui Cabello"
                   width={76}
                   height={16}
                   className="absolute inset-0 size-full max-w-none object-contain"
@@ -126,7 +126,7 @@ export function Footer({ className }: FooterProps) {
               </Link>
             </FooterColumn>
 
-            <div className="flex shrink-0 gap-10" aria-label="Redes sociales">
+            <nav className="flex shrink-0 gap-10" aria-label="Redes sociales">
               <a
                 href="https://instagram.com"
                 target="_blank"
@@ -154,7 +154,7 @@ export function Footer({ className }: FooterProps) {
               >
                 <WhatsAppIcon className="size-6" />
               </a>
-            </div>
+            </nav>
           </div>
         </div>
 

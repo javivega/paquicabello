@@ -13,43 +13,71 @@ const STEPS = [
     n: '01',
     title: 'Contáctame',
     body: [
-      'Cuéntame qué os preocupa y cómo es vuestra convivencia. Puedes escribirme directamente por WhatsApp y estaré encantada de conoceros, resolver tus primeras dudas y orientarte sobre cómo puedo ayudaros.',
+      {
+        id: 'contact-1',
+        text: 'Cuéntame qué os preocupa y cómo es vuestra convivencia. Puedes escribirme directamente por WhatsApp y estaré encantada de conoceros, resolver tus primeras dudas y orientarte sobre cómo puedo ayudaros.',
+      },
     ],
   },
   {
     n: '02',
     title: 'Sesión inicial',
     body: [
-      'Una vez me hayas contado qué está ocurriendo en casa, agendaremos una videollamada de 60 minutos para conoceros mejor a ti, a tu familia y, por supuesto, a tu perro.',
-      'Hablaremos de vuestra historia, analizaremos la situación y definiremos un plan de trabajo adaptado a vuestra realidad.',
+      {
+        id: 'initial-1',
+        text: 'Una vez me hayas contado qué está ocurriendo en casa, agendaremos una videollamada de 60 minutos para conoceros mejor a ti, a tu familia y, por supuesto, a tu perro.',
+      },
+      {
+        id: 'initial-2',
+        text: 'Hablaremos de vuestra historia, analizaremos la situación y definiremos un plan de trabajo adaptado a vuestra realidad.',
+      },
     ],
   },
   {
     n: '03',
     title: 'Primeras pautas y revisión de vídeos',
     body: [
-      'Después de la sesión empezaréis a aplicar las primeras pautas, siempre adaptadas a vuestro día a día y al ritmo de vuestra familia.',
-      'Además, podréis compartir conmigo pequeños vídeos de situaciones cotidianas. Esto me permitirá observar cómo se comunica vuestro perro, comprender mejor lo que está ocurriendo y ajustar las recomendaciones para acompañaros de una forma mucho más personalizada.',
+      {
+        id: 'pautas-1',
+        text: 'Después de la sesión empezaréis a aplicar las primeras pautas, siempre adaptadas a vuestro día a día y al ritmo de vuestra familia.',
+      },
+      {
+        id: 'pautas-2',
+        text: 'Además, podréis compartir conmigo pequeños vídeos de situaciones cotidianas. Esto me permitirá observar cómo se comunica vuestro perro, comprender mejor lo que está ocurriendo y ajustar las recomendaciones para acompañaros de una forma mucho más personalizada.',
+      },
     ],
   },
   {
     n: '04',
     title: 'Seguimos avanzando juntos',
     body: [
-      'Cada pequeño avance nos ayudará a dar el siguiente paso. A lo largo del programa irás recibiendo nuevas pautas y recomendaciones adaptadas a vuestra evolución, para que los cambios sean reales, sostenibles y encajen en vuestro día a día.',
+      {
+        id: 'avance-1',
+        text: 'Cada pequeño avance nos ayudará a dar el siguiente paso. A lo largo del programa irás recibiendo nuevas pautas y recomendaciones adaptadas a vuestra evolución, para que los cambios sean reales, sostenibles y encajen en vuestro día a día.',
+      },
     ],
   },
   {
     n: '05',
     title: 'Acompañamiento continuo',
     body: [
-      'Durante todo el proceso estaré a tu lado para resolver tus dudas, ayudarte a adaptar las pautas cuando sea necesario y acompañaros en cada avance. No tendrás que esperar a la siguiente sesión para sentirte acompañada.',
+      {
+        id: 'acomp-1',
+        text: 'Durante todo el proceso estaré a tu lado para resolver tus dudas, ayudarte a adaptar las pautas cuando sea necesario y acompañaros en cada avance. No tendrás que esperar a la siguiente sesión para sentirte acompañada.',
+      },
     ],
   },
 ] as const
 
 const easeOut = 'ease-[var(--ease-out)]'
 const FOCAL = '45%' as const
+
+function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+}
 
 /** Timeline — scroll-active steps + scrubbed spine (ScrollTrigger). */
 export function ServiceProgramTimelineSection({
@@ -62,7 +90,7 @@ export function ServiceProgramTimelineSection({
   const spineFillRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLElement | null)[]>([])
   const [activeIndex, setActiveIndex] = useState(0)
-  const [reduceMotion, setReduceMotion] = useState(false)
+  const [reduceMotion] = useState(prefersReducedMotion)
 
   useGSAP(
     () => {
@@ -76,7 +104,6 @@ export function ServiceProgramTimelineSection({
       const mm = gsap.matchMedia()
 
       mm.add('(prefers-reduced-motion: reduce)', () => {
-        setReduceMotion(true)
         gsap.set(spine, { scaleY: 1, transformOrigin: '50% 0%' })
         items.forEach((item, i) => {
           ScrollTrigger.create({
@@ -90,7 +117,6 @@ export function ServiceProgramTimelineSection({
       })
 
       mm.add('(prefers-reduced-motion: no-preference)', () => {
-        setReduceMotion(false)
         gsap.set(spine, { scaleY: 0, transformOrigin: '50% 0%' })
 
         gsap.to(spine, {
@@ -193,7 +219,7 @@ export function ServiceProgramTimelineSection({
 
       <div
         role="region"
-        aria-labelledby="program-4-timeline-heading"
+        aria-label="Pasos del programa"
         tabIndex={0}
         onKeyDown={onRegionKeyDown}
         className={cn(
@@ -291,17 +317,17 @@ export function ServiceProgramTimelineSection({
                   >
                     {step.n}
                   </p>
-                  <p
+                  <h3
                     className={cn(
                       'mt-3 text-xl font-semibold leading-7 motion-safe:transition-colors motion-safe:duration-200',
                       isActive ? 'text-foreground' : 'text-foreground-secondary',
                     )}
                   >
                     {step.title}
-                  </p>
+                  </h3>
                   <div className="mt-2 max-w-prose space-y-2 text-base leading-6 text-foreground-secondary">
                     {step.body.map((paragraph) => (
-                      <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+                      <p key={paragraph.id}>{paragraph.text}</p>
                     ))}
                   </div>
                 </div>

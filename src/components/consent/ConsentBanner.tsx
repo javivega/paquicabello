@@ -17,7 +17,6 @@ export function ConsentBanner() {
   return (
     <section
       className="consent-banner-enter fixed inset-x-3 bottom-3 z-[200] mx-auto max-w-[880px] rounded-2xl border border-border-subtle-1 bg-canvas p-4 shadow-[0_10px_40px_rgb(0_0_0_/_0.12)] sm:inset-x-6 sm:bottom-6 sm:p-5"
-      role="region"
       aria-label="Aviso de cookies"
     >
       <p className="paragraph-xs text-foreground-secondary">

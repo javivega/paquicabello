@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 type FullBleedPageProps = {
   children: ReactNode
   className?: string
-  /** Defaults to `div`; use `main` for document landmark pages (e.g. policies). */
+  /** Defaults to `main` (one document landmark per route). Override only if needed. */
   as?: ElementType
   id?: string
 }
@@ -17,7 +17,7 @@ const fullBleedBase =
 export function FullBleedPage({
   children,
   className,
-  as: Comp = 'div',
+  as: Comp = 'main',
   id,
 }: FullBleedPageProps) {
   return (

@@ -51,7 +51,7 @@ function TickIcon({ className }: { className?: string }) {
   return (
     <img
       src={tickCircle}
-      alt=""
+      alt="Incluido"
       width={20}
       height={20}
       className={cn('shrink-0', className)}
@@ -219,7 +219,7 @@ export function ServiceSessionExpressMainColumn({
                 ))}
               </ul>
               <BrandLinkButton
-                to="/#home-method-heading"
+                to={{ pathname: '/', hash: '#about-method-heading' }}
                 brandVariant="secondary"
                 brandSize="md"
                 className="mt-auto w-fit"
@@ -252,7 +252,7 @@ export function ServiceSessionExpressMainColumn({
               >
                 <TickIcon className="mt-0.5 size-6" />
                 <div className="flex min-w-0 flex-1 flex-col gap-1 text-foreground-secondary">
-                  <p className="text-lg font-semibold leading-6">{item.title}</p>
+                  <h3 className="text-lg font-semibold leading-6">{item.title}</h3>
                   <p className="text-base leading-5">{item.body}</p>
                 </div>
               </li>

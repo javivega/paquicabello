@@ -82,28 +82,31 @@ function ProgramHeroLayer({
 
 function PhotoCard({
   src,
+  alt,
   width,
   height,
   imgClassName,
   fetchPriority,
 }: {
   src: string
+  alt: string
   width: number
   height: number
   imgClassName: string
   fetchPriority?: 'high'
 }) {
+  const decorative = alt === ''
   return (
     <div className="relative size-full overflow-hidden rounded-3xl border border-border-subtle-0 bg-canvas shadow-[0_0_10px_var(--Primitive-color-orange-orange-200)]">
       <img
         src={src}
-        alt=""
+        alt={alt}
         width={width}
         height={height}
         className={cn('absolute max-w-none', imgClassName)}
         fetchPriority={fetchPriority}
         decoding="async"
-        aria-hidden
+        {...(decorative ? { 'aria-hidden': true as const } : {})}
       />
     </div>
   )
@@ -349,6 +352,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <PhotoCard
             src={photo1}
+            alt="Paqui Cabello con un perro"
             width={600}
             height={480}
             imgClassName="inset-0 size-full object-cover"
@@ -363,6 +367,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <PhotoCard
             src={photo2}
+            alt="Familia con su perro durante el programa"
             width={600}
             height={900}
             imgClassName="left-[-13.63%] top-[-23.26%] h-[172.49%] w-[115.01%] object-cover"
@@ -377,6 +382,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <PhotoCard
             src={photo3}
+            alt="Perro acompañado en una sesión"
             width={800}
             height={539}
             imgClassName="left-[-4.12%] top-[2.05%] h-[153.33%] w-[227.99%] object-cover"
@@ -390,6 +396,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <PhotoCard
             src={photo4}
+            alt="Tutor y perro en el exterior"
             width={800}
             height={1200}
             imgClassName="left-[-72.26%] top-[-53.63%] h-[359.47%] w-[239.68%] object-cover"
@@ -403,7 +410,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleHeart}
-            alt=""
+            alt="Corazón decorativo"
             width={81}
             height={73}
             className="size-full max-w-none object-contain"
@@ -419,7 +426,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleMotion1}
-            alt=""
+            alt="Línea de movimiento"
             width={10}
             height={19}
             className="size-full max-w-none object-contain"
@@ -435,7 +442,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleMotion2}
-            alt=""
+            alt="Trazo de movimiento"
             width={14}
             height={11}
             className="size-full max-w-none object-contain"
@@ -451,7 +458,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleMotion3}
-            alt=""
+            alt="Curva de movimiento"
             width={19}
             height={5}
             className="size-full max-w-none object-contain"
@@ -467,7 +474,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleSparkH}
-            alt=""
+            alt="Destello horizontal"
             width={17}
             height={4}
             className="size-full max-w-none object-contain"
@@ -483,7 +490,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleSparkV}
-            alt=""
+            alt="Destello vertical"
             width={4}
             height={20}
             className="size-full max-w-none object-contain"
@@ -499,7 +506,7 @@ function ProgramHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleSparkDot}
-            alt=""
+            alt="Punto destello"
             width={12}
             height={12}
             className="size-full max-w-none object-contain"
@@ -550,8 +557,7 @@ export function ServiceProgramHero({
             style={sectionEnterStyle(180)}
             className="section-enter program-hero-copy text-balance text-[clamp(2rem,4vw+1rem,46px)] font-semibold leading-[1.15] text-foreground-brand lg:leading-[56px]"
           >
-            Transforma la convivencia en tu hogar con tu perro en tan solo 4
-            semanas
+            4 semanas para mejorar la convivencia con tu perro
           </h1>
           <p
             style={sectionEnterStyle(280)}
@@ -559,7 +565,8 @@ export function ServiceProgramHero({
           >
             Un programa personalizado de 4 semanas para integrar a tu perro en
             la vida familiar, sin gritos, castigos ni miedo. Solo respeto,
-            comprensión y acompañamiento real.
+            comprensión y acompañamiento real. Porque no necesitas un perro perfecto, 
+            necesitas entender qué está pasando y saber cómo acompañarlo.
           </p>
         </div>
 

@@ -1,5 +1,5 @@
 import { Dialog } from '@base-ui/react/dialog'
-import { useEffect, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 
 import { BrandButton } from '@/components/ui/button'
 import { useConsent } from '@/context/ConsentContext'
@@ -17,17 +17,21 @@ function ToggleRow({
   disabled?: boolean
   onChange?: (checked: boolean) => void
 }) {
+  const descriptionId = useId()
   return (
     <div className="flex items-center justify-between gap-4 rounded-xl border border-border-subtle-1 bg-surface-subtle-0 px-4 py-3">
       <div className="min-w-0">
         <p className="paragraph-md-bold text-foreground">{label}</p>
-        <p className="paragraph-xs mt-1 text-foreground-secondary">{description}</p>
+        <p id={descriptionId} className="paragraph-xs mt-1 text-foreground-secondary">
+          {description}
+        </p>
       </div>
       <button
         type="button"
         role="switch"
         aria-checked={checked}
         aria-label={label}
+        aria-describedby={descriptionId}
         disabled={disabled}
         onClick={() => onChange?.(!checked)}
         className="relative inline-flex h-7 w-12 shrink-0 items-center rounded-full border border-border-subtle-1 bg-surface-subtle-1 p-0.5 transition-colors disabled:cursor-not-allowed disabled:opacity-70"

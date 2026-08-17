@@ -294,7 +294,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleHeart}
-            alt=""
+            alt="Corazón decorativo"
             width={42}
             height={38}
             className="size-full max-w-none object-contain"
@@ -312,13 +312,12 @@ function SessionHeroCollage({ className }: { className?: string }) {
           <div className="relative size-full overflow-hidden rounded-[4px] bg-surface-subtle-0 shadow-[0_0_5px_var(--Primitive-color-orange-orange-200)]">
             <img
               src={photoPaqui}
-              alt=""
+              alt="Paqui Cabello"
               width={900}
               height={900}
               className="absolute left-[-0.65%] top-[-4.55%] h-[161.65%] w-[193.98%] max-w-none object-cover"
               fetchPriority="high"
               decoding="async"
-              aria-hidden
             />
           </div>
         </SessionHeroLayer>
@@ -332,13 +331,12 @@ function SessionHeroCollage({ className }: { className?: string }) {
           <div className="relative size-full overflow-hidden rounded-[4px] bg-surface-subtle-0 shadow-[0_0_5px_var(--Primitive-color-orange-orange-200)]">
             <img
               src={photoClient}
-              alt=""
+              alt="Cliente con su perro"
               width={900}
               height={601}
               className="absolute left-[-39.98%] top-[-0.06%] h-[100.12%] w-[179.95%] max-w-none object-cover"
               fetchPriority="high"
               decoding="async"
-              aria-hidden
             />
           </div>
         </SessionHeroLayer>
@@ -352,7 +350,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
           <div className="relative size-full overflow-hidden rounded-full border border-border-subtle-0 bg-canvas shadow-[0_0_6px_var(--Primitive-color-orange-orange-200)]">
             <img
               src={dogCircle}
-              alt=""
+              alt="Perro en círculo"
               width={420}
               height={630}
               className="absolute left-[-8.47%] top-[-50.77%] h-[175.38%] w-[116.94%] max-w-none object-cover"
@@ -370,7 +368,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
           <div className="relative size-full overflow-hidden rounded-xl border border-border-subtle-0 bg-canvas shadow-[0_0_5px_var(--Primitive-color-orange-orange-200)]">
             <img
               src={dogSquare}
-              alt=""
+              alt="Perro en marco cuadrado"
               width={440}
               height={296}
               className="absolute left-[-2.93%] top-[5.08%] h-[121.97%] w-[181.35%] max-w-none object-cover"
@@ -387,7 +385,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleSparkH}
-            alt=""
+            alt="Destello horizontal"
             width={17}
             height={4}
             className="size-full max-w-none object-contain"
@@ -403,7 +401,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleSparkV}
-            alt=""
+            alt="Destello vertical"
             width={4}
             height={20}
             className="size-full max-w-none object-contain"
@@ -419,7 +417,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleSparkDot}
-            alt=""
+            alt="Punto destello"
             width={12}
             height={12}
             className="size-full max-w-none object-contain"
@@ -436,7 +434,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleMotion1}
-            alt=""
+            alt="Línea de movimiento"
             width={10}
             height={19}
             className="size-full max-w-none object-contain"
@@ -453,7 +451,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleMotion2}
-            alt=""
+            alt="Trazo de movimiento"
             width={14}
             height={11}
             className="size-full max-w-none object-contain"
@@ -470,7 +468,7 @@ function SessionHeroCollage({ className }: { className?: string }) {
         >
           <img
             src={doodleMotion3}
-            alt=""
+            alt="Curva de movimiento"
             width={19}
             height={5}
             className="size-full max-w-none object-contain"
@@ -521,7 +519,7 @@ export function ServiceSessionExpressHero({
             style={sectionEnterStyle(280)}
             className="section-enter session-hero-copy text-balance text-[clamp(2rem,4vw+1rem,46px)] font-semibold leading-[1.15] text-foreground-brand lg:leading-[56px]"
           >
-            Resuelve tus dudas sobre la conducta de tu perro en 60 minutos
+            Resuelve tus dudas sobre la convivencia con tu perro en 60 minutos
           </h1>
           <p
             style={sectionEnterStyle(400)}

@@ -53,12 +53,12 @@ export function FaqSectionIntro({
         personas como tú suele tener.
       </p>
       {footer ? (
-        <span
+        <div
           style={animated ? sectionEnterStyle(250) : undefined}
           className={cn(animated && 'section-enter inline-flex w-fit')}
         >
           {footer}
-        </span>
+        </div>
       ) : null}
     </div>
   )

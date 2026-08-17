@@ -52,7 +52,7 @@ export const servicePricingAsideSessionExpress = {
 
 /** Programa 4 semanas — same card shell, program-specific copy. */
 export const servicePricingAsideProgram8Weeks = {
-  cardId: 'program-8-pricing-card',
+  cardId: 'program-4-pricing-card',
   ariaLabel: 'Precio programa de 4 semanas',
   price: '180,00€',
   subtitle: 'Programa personalizado de 4 semanas',
@@ -96,14 +96,14 @@ export function ServicePricingAside({
           </p>
         </header>
         <ul className="flex flex-col gap-2.5 px-5 sm:px-6">
-          {features.map((line, i) => (
+          {features.map((line) => (
             <li
-              key={i}
+              key={line}
               className="flex gap-2.5 text-left text-[15px] leading-snug text-foreground-secondary sm:text-sm sm:leading-5"
             >
               <img
                 src={tickCircle}
-                alt=""
+                alt="Incluido"
                 width={20}
                 height={20}
                 className="mt-0.5 size-5 shrink-0"

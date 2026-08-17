@@ -107,14 +107,14 @@ export function AboutPrinciplesSection({ className }: { className?: string }) {
           </p>
         </div>
 
-        <ul
+        <div
           className={cn(
-            'grid list-none grid-cols-1 gap-x-10 gap-y-10 p-0',
+            'grid grid-cols-1 gap-x-10 gap-y-10',
             'lg:grid-cols-2',
           )}
         >
           {principles.map(({ id, icon: Icon, title, body }) => (
-            <li
+            <article
               key={id}
               data-scroll-enter
               className="scroll-enter flex gap-4"
@@ -136,9 +136,9 @@ export function AboutPrinciplesSection({ className }: { className?: string }) {
                   {body}
                 </p>
               </div>
-            </li>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   )

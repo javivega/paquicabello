@@ -22,7 +22,7 @@ export function ServiceInfoCard({
       )}
       {...rest}
     >
-      <div className="inline-flex w-fit shrink-0 self-start rounded-xl border border-border-subtle-0 bg-surface-subtle-0 p-2">
+      <div className="inline-flex w-fit shrink-0 self-start rounded-xl border border-border-subtle-0 bg-surface-subtle-0 p-2" aria-hidden>
         {icon}
       </div>
       <h3 className="text-xl font-semibold leading-6 text-foreground-brand">
