@@ -96,9 +96,9 @@ export function ServicePricingAside({
           </p>
         </header>
         <ul className="flex flex-col gap-2.5 px-5 sm:px-6">
-          {features.map((line) => (
+          {features.map((line, index) => (
             <li
-              key={line}
+              key={index}
               className="flex gap-2.5 text-left text-[15px] leading-snug text-foreground-secondary sm:text-sm sm:leading-5"
             >
               <img
