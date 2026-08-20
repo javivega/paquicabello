@@ -525,11 +525,10 @@ export function ServiceSessionExpressHero({
             style={sectionEnterStyle(400)}
             className="section-enter session-hero-copy max-w-[784px] text-lg leading-6 text-foreground-secondary"
           >
-            Si hay algo que te preocupa de la convivencia con tu perro, no
-            tienes por qué resolverlo sola. En esta sesión analizaremos lo que
-            está ocurriendo, entenderemos por qué sucede y te ofreceré pautas
-            prácticas y personalizadas para que puedas empezar a aplicarlas
-            desde ese mismo día.
+            Si hay algo que te preocupa de la convivencia con tu perro,
+            no tienes por qué afrontarlo sola. En esta sesión analizaremos qué
+            está ocurriendo, trataremos de entender qué hay detrás y
+            exploraremos formas de abordarlo adaptadas a vuestra situación.
           </p>
           <div
             style={sectionEnterStyle(700)}

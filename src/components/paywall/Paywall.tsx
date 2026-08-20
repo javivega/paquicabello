@@ -170,13 +170,13 @@ export function Paywall({
                 </h3>
                 <div className="space-y-2 text-[14px] leading-4">
                   <p>
-                    Si tienes una duda concreta o te preocupa una situación
-                    específica, esta sesión es para ti.
+                    Si tienes una duda concreta o te preocupa
+                    una situación específica, esta sesión es para ti.
                   </p>
                   <p>
-                    Analizaremos lo que está ocurriendo y te llevarás pautas
-                    claras y adaptadas a vuestra realidad para que sepas cómo
-                    actuar desde ese mismo momento.
+                    Pondremos en contexto lo que está ocurriendo, resolveremos tus dudas y
+                    veremos qué puedes tener en cuenta para acompañar mejor
+                    a tu perro en vuestro día a día.
                   </p>
                 </div>
               </div>

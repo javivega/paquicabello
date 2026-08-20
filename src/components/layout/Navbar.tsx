@@ -6,6 +6,7 @@ import logoUrl from '@/img/logo.svg'
 import {
   ABOUT_PATH,
   CONTACT_PATH,
+  CRIANZA_MULTIESPECIE_PATH,
   PROGRAM_4_WEEKS_PATH,
   SESSION_EXPRESS_PATH,
 } from '@/lib/routes'
@@ -19,6 +20,11 @@ export type NavbarItem = {
 
 const defaultItems: NavbarItem[] = [
   { id: 'servicios', label: 'Servicios', to: '/servicios' },
+  {
+    id: 'crianza-multiespecie',
+    label: 'Crianza Multiespecie®',
+    to: CRIANZA_MULTIESPECIE_PATH,
+  },
   { id: 'sobre-mi', label: 'Sobre mí', to: ABOUT_PATH },
   { id: 'contacta', label: 'Contacta', to: CONTACT_PATH },
 ]
@@ -44,6 +50,7 @@ function useNavActiveId(activeIdOverride?: string): string | null {
   if (activeIdOverride) return activeIdOverride
   if (pathname === '/servicios' || pathname.startsWith('/servicios/'))
     return 'servicios'
+  if (pathname === CRIANZA_MULTIESPECIE_PATH) return 'crianza-multiespecie'
   if (pathname === ABOUT_PATH) return 'sobre-mi'
   if (pathname === '/' && hash === '#sobre-mi') return 'sobre-mi'
   if (pathname === CONTACT_PATH) return 'contacta'

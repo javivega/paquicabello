@@ -7,6 +7,11 @@ import { HomePage } from '@/pages/HomePage'
 const AboutPage = lazy(() =>
   import('@/pages/AboutPage').then((m) => ({ default: m.AboutPage })),
 )
+const CrianzaMultiespeciePage = lazy(() =>
+  import('@/pages/CrianzaMultiespeciePage').then((m) => ({
+    default: m.CrianzaMultiespeciePage,
+  })),
+)
 const ContactPage = lazy(() =>
   import('@/pages/ContactPage').then((m) => ({ default: m.ContactPage })),
 )
@@ -41,6 +46,10 @@ export default function App() {
         <Route element={<RootLayout />}>
           <Route index element={<HomePage />} />
           <Route path="sobre-mi" element={<AboutPage />} />
+          <Route
+            path="crianza-multiespecie"
+            element={<CrianzaMultiespeciePage />}
+          />
           <Route path="contacto" element={<ContactPage />} />
           <Route path="politica-de-cookies" element={<CookiesPolicyPage />} />
           <Route

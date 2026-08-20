@@ -2,6 +2,7 @@ import {
   ABOUT_PATH,
   CONTACT_PATH,
   COOKIES_POLICY_PATH,
+  CRIANZA_MULTIESPECIE_PATH,
   PRIVACY_POLICY_PATH,
   PROGRAM_4_WEEKS_PATH,
   SERVICES_PATH,
@@ -27,6 +28,11 @@ const PAGE_META_BY_PATH: Record<string, PageMeta> = {
     title: `Sobre mí — ${SITE_NAME}`,
     description:
       'Conoce a Paqui Cabello, educadora canina. Educación respetuosa, sin castigos, adaptada a cada familia y su perro.',
+  },
+  [CRIANZA_MULTIESPECIE_PATH]: {
+    title: `Crianza Multiespecie® — ${SITE_NAME}`,
+    description:
+      'Una convivencia segura y respetuosa entre perros, bebés y niños. Acompañamiento con la Metodología Crianza Multiespecie®.',
   },
   [SERVICES_PATH]: {
     title: `Servicios — ${SITE_NAME}`,
