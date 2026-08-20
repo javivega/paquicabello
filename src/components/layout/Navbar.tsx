@@ -2,7 +2,7 @@ import { useEffect, useId, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ChevronDown, Menu, X } from 'lucide-react'
 
-import logoUrl from '@/img/logo.svg'
+import { SiteLogo } from '@/components/layout/SiteLogo'
 import {
   ABOUT_PATH,
   CONTACT_PATH,
@@ -149,15 +149,7 @@ export function Navbar({
             className="min-w-0 shrink focus-visible:rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--Semantictokens-Color-Icon-Accent)]"
             onClick={() => setMobileOpen(false)}
           >
-            <img
-              src={logoUrl}
-              alt="Paqui cabello"
-              width={165}
-              height={32}
-              className="h-7 w-[140px] object-contain object-left sm:h-8 sm:w-[165px]"
-              decoding="async"
-              fetchPriority="low"
-            />
+            <SiteLogo />
           </Link>
 
           <ul className="hidden min-w-0 list-none items-center gap-2 p-0 md:flex md:flex-nowrap">

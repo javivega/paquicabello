@@ -100,10 +100,12 @@ function HomeHeroPhoto({ className }: { className?: string }) {
           <div className="relative size-full overflow-hidden rounded-lg shadow-[0_0_9px_var(--Primitive-color-orange-orange-200)]">
             <img
               src="/images/hero-portrait.webp"
+              srcSet="/images/hero-portrait.webp 800w, /images/hero-portrait-1120.webp 1120w"
+              sizes="(min-width: 1024px) 530px, min(92vw, 530px)"
               alt="Paqui Cabello"
               className="absolute left-0 top-[-12%] h-[170%] w-[180%] max-w-none object-cover object-[45%_20%]"
-              width={1120}
-              height={1120}
+              width={800}
+              height={800}
               fetchPriority="high"
               decoding="async"
             />

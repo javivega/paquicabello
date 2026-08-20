@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 
 import animalnature from '@/img/Servicios/animalnature.webp'
-import creciendoentreperros from '@/img/Servicios/creciendoentreperros.webp'
+import creciendoentreperros from '@/img/Servicios/creciendoentreperros-sm.webp'
 import dieresis from '@/img/Servicios/dieresis.webp'
 import edogtorial from '@/img/Servicios/edogtorial.webp'
 import serviciosPartnerLogo from '@/img/Servicios/logo.webp'
@@ -12,22 +12,32 @@ const partnerLogos = [
   {
     src: animalnature,
     alt: 'Logotipo Animal Nature',
+    width: 210,
+    height: 63,
   },
   {
     src: creciendoentreperros,
     alt: 'Logotipo Creciendo entre perros',
+    width: 140,
+    height: 79,
   },
   {
     src: dieresis,
     alt: 'Logotipo Diéresis',
+    width: 172,
+    height: 89,
   },
   {
     src: edogtorial,
     alt: 'Logotipo Edogtorial',
+    width: 126,
+    height: 59,
   },
   {
     src: serviciosPartnerLogo,
     alt: 'Logotipo de centro de formación colaborador',
+    width: 126,
+    height: 124,
   },
 ] as const
 
@@ -93,8 +103,8 @@ export function HomeLogosBand({
               <img
                 src={logo.src}
                 alt={logo.alt}
-                width={214}
-                height={124}
+                width={logo.width}
+                height={logo.height}
                 className="max-h-full max-w-full object-contain object-center"
                 loading="lazy"
                 decoding="async"
