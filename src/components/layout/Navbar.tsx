@@ -217,7 +217,10 @@ export function Navbar({
                       id="desktop-servicios-submenu"
                       hidden={!desktopServiciosOpen}
                       className={cn(
-                        'absolute left-1/2 top-[calc(100%+0.5rem)] z-20 w-64 -translate-x-1/2',
+                        /* pt-2 keeps the visual gap without a dead zone: the hit
+                           area starts at top-full so mouseLeave does not fire
+                           while moving from the trigger into the panel. */
+                        'absolute left-1/2 top-full z-20 w-64 -translate-x-1/2 pt-2',
                         'transition-[opacity,visibility,transform] duration-200',
                         desktopServiciosOpen
                           ? 'visible translate-y-0 opacity-100'
