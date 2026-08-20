@@ -8,7 +8,6 @@ import doodleSpark4 from '@/img/hero-doodle-spark-4.svg'
 import doodleSpark5 from '@/img/hero-doodle-spark-5.svg'
 import doodleSpark6 from '@/img/hero-doodle-spark-6.svg'
 import doodleSquiggle from '@/img/hero-doodle-squiggle.svg'
-import heroPortrait from '@/img/hero-portrait.webp'
 import heroTeacher from '@/img/hero-teacher.svg'
 import heroVerify from '@/img/hero-verify.svg'
 import multiespecieIcon from '@/img/multiespecie.png'
@@ -100,11 +99,11 @@ function HomeHeroPhoto({ className }: { className?: string }) {
         <div className="home-hero-stack-front absolute inset-[4%_6%_8%_5%]">
           <div className="relative size-full overflow-hidden rounded-lg shadow-[0_0_9px_var(--Primitive-color-orange-orange-200)]">
             <img
-              src={heroPortrait}
+              src="/images/hero-portrait.webp"
               alt="Paqui Cabello"
               className="absolute left-0 top-[-12%] h-[170%] w-[180%] max-w-none object-cover object-[45%_20%]"
-              width={2048}
-              height={2048}
+              width={1120}
+              height={1120}
               fetchPriority="high"
               decoding="async"
             />

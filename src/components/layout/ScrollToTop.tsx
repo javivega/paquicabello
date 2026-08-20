@@ -1,25 +1,37 @@
 import { useEffect } from 'react'
+import { useLenis } from 'lenis/react'
+import type Lenis from 'lenis'
 import { useLocation } from 'react-router-dom'
 
-function scrollToHash(hash: string) {
+function scrollToHash(hash: string, lenis: Lenis | undefined) {
   const id = decodeURIComponent(hash.replace(/^#/, ''))
   if (!id) return false
   const el = document.getElementById(id)
   if (!el) return false
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  if (lenis) {
+    lenis.scrollTo(el, { offset: 0 })
+  } else {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
   return true
 }
 
 /**
  * Resets window scroll on pathname changes, or scrolls to `location.hash`
  * when present (e.g. “Más información” → main-column anchors).
+ * Prefers Lenis when the smooth-scroll provider is active.
  */
 export function ScrollToTop() {
   const { pathname, hash } = useLocation()
+  const lenis = useLenis()
 
   useEffect(() => {
     if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true })
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      }
       return
     }
 
@@ -31,7 +43,7 @@ export function ScrollToTop() {
 
     const tryScroll = () => {
       if (cancelled) return
-      if (scrollToHash(hash)) return
+      if (scrollToHash(hash, lenis)) return
       attempts += 1
       if (attempts < 12) {
         timer = window.setTimeout(() => {
@@ -47,7 +59,7 @@ export function ScrollToTop() {
       cancelAnimationFrame(raf)
       window.clearTimeout(timer)
     }
-  }, [pathname, hash])
+  }, [pathname, hash, lenis])
 
   return null
 }

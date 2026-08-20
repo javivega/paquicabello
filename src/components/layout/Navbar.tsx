@@ -156,6 +156,7 @@ export function Navbar({
               height={32}
               className="h-7 w-[140px] object-contain object-left sm:h-8 sm:w-[165px]"
               decoding="async"
+              fetchPriority="low"
             />
           </Link>
 

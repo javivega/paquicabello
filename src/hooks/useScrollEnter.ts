@@ -7,16 +7,13 @@ const SCROLL_ENTER_EASE = 'cubic-bezier(0.22, 1, 0.36, 1)'
 
 const SELECTOR = '[data-scroll-enter]'
 
-/** Viewport fraction — matches prior ScrollTrigger `start: 'top 88%'`. */
-const ENTER_LINE = 0.88
-
 /**
  * One-shot scroll entrances for `[data-scroll-enter]` descendants.
  * Use with class `scroll-enter` for CSS pre-hide (avoids FOUC).
  *
  * Peers that cross the enter line in the same tick are batched and
- * staggered (ScrollTrigger.batch feel). IntersectionObserver plus a
- * scroll/resize geometry fallback (also catches “already past” targets).
+ * staggered (ScrollTrigger.batch feel). IntersectionObserver only —
+ * no scroll/resize getBoundingClientRect reads (avoids forced reflow).
  */
 export function useScrollEnter(scopeRef: RefObject<HTMLElement | null>) {
   useLayoutEffect(() => {
@@ -96,29 +93,16 @@ export function useScrollEnter(scopeRef: RefObject<HTMLElement | null>) {
         },
         {
           root: null,
+          // ~12% from bottom ≈ prior ENTER_LINE 0.88
           rootMargin: '0px 0px -12% 0px',
           threshold: 0,
         },
       )
 
-      const checkGeometry = () => {
-        const line = window.innerHeight * ENTER_LINE
-        for (const el of elements) {
-          if (el.getBoundingClientRect().top < line) {
-            queue(el)
-          }
-        }
-      }
-
       elements.forEach((el) => io.observe(el))
-      checkGeometry()
-      window.addEventListener('scroll', checkGeometry, { passive: true })
-      window.addEventListener('resize', checkGeometry)
 
       return () => {
         io.disconnect()
-        window.removeEventListener('scroll', checkGeometry)
-        window.removeEventListener('resize', checkGeometry)
         if (raf) cancelAnimationFrame(raf)
         if (timer) window.clearTimeout(timer)
       }

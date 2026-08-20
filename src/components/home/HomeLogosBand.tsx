@@ -1,10 +1,10 @@
 import { useRef } from 'react'
 
-import animalnature from '@/img/Servicios/animalnature.png'
-import creciendoentreperros from '@/img/Servicios/creciendoentreperros.png'
-import dieresis from '@/img/Servicios/dieresis.png'
-import edogtorial from '@/img/Servicios/edogtorial.png'
-import serviciosPartnerLogo from '@/img/Servicios/logo.png'
+import animalnature from '@/img/Servicios/animalnature.webp'
+import creciendoentreperros from '@/img/Servicios/creciendoentreperros.webp'
+import dieresis from '@/img/Servicios/dieresis.webp'
+import edogtorial from '@/img/Servicios/edogtorial.webp'
+import serviciosPartnerLogo from '@/img/Servicios/logo.webp'
 import { useScrollEnter } from '@/hooks/useScrollEnter'
 import { cn } from '@/lib/utils'
 
@@ -93,6 +93,8 @@ export function HomeLogosBand({
               <img
                 src={logo.src}
                 alt={logo.alt}
+                width={214}
+                height={124}
                 className="max-h-full max-w-full object-contain object-center"
                 loading="lazy"
                 decoding="async"
