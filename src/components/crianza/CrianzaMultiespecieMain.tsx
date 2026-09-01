@@ -244,18 +244,12 @@ export function CrianzaMultiespecieMain({
                 decoding="async"
               />
             </span>
-            <div className="relative flex flex-col gap-2">
-              <div>
-                <p className="text-[14px] leading-4">
-                  Profesional Miembro Autorizado de la Red de Expertos de
-                </p>
-                <p className="paragraph-md-bold">
-                  Crianza Multiespecie by creciendo entre perros
-                </p>
-              </div>
-              <p className="border-t border-border-divider pt-1 text-[14px] leading-4">
-                Número de Afiliada:{' '}
-                <strong className="font-semibold">2025003</strong>
+            <div className="relative">
+              <p className="text-[14px] leading-4">
+                Profesional Miembro Autorizado de la Red de Expertos de
+              </p>
+              <p className="paragraph-md-bold">
+                Crianza Multiespecie by creciendo entre perros
               </p>
             </div>
           </div>

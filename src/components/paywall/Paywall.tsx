@@ -286,16 +286,10 @@ export function Paywall({
             height={44}
             className="relative size-11"
           />
-          <div className="relative flex flex-col gap-2 text-foreground-secondary">
-            <div className="text-lg leading-6">
-              <p>Profesional Miembro Autorizado de la Red de Expertos de</p>
-              <p className="font-semibold">
-                Crianza Multiespecie by creciendo entre perros
-              </p>
-            </div>
-            <p className="border-t border-border-divider pt-1 pr-2 text-[14px] leading-4">
-              <span>Número de Afiliada: </span>
-              <span className="font-semibold">2025003</span>
+          <div className="relative text-lg leading-6 text-foreground-secondary">
+            <p>Profesional Miembro Autorizado de la Red de Expertos de</p>
+            <p className="font-semibold">
+              Crianza Multiespecie by creciendo entre perros
             </p>
           </div>
         </div>

@@ -273,10 +273,6 @@ export function HomeHero({ className }: { className?: string }) {
               <p className="relative paragraph-md-bold">
                 Crianza Multiespecie by Tamara Hernánz, de creciendo entre perros
               </p>
-              <p className="relative border-t border-border-divider pt-1 text-[14px] leading-4">
-                Número de Afiliada:{' '}
-                <strong className="font-semibold">2025003</strong>
-              </p>
             </div>
 
             <div
