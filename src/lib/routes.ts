@@ -1,7 +1,7 @@
 /** “Sobre mí” landing (Figma node 1042:6846). */
 export const ABOUT_PATH = '/sobre-mi' as const
 
-/** Página de la Metodología Crianza Multiespecie. */
+/** Página de la Metodología Crianza Multiespecie®. */
 export const CRIANZA_MULTIESPECIE_PATH = '/crianza-multiespecie' as const
 
 /** Página de contacto (Figma node 1042:6959). */

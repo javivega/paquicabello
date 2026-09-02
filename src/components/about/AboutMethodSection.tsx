@@ -185,7 +185,7 @@ export function AboutMethodSection({ className }: { className?: string }) {
               id="about-method-title"
               className="scroll-enter text-balance text-[26px] font-semibold leading-8 text-foreground-brand"
             >
-              La Metodología Crianza Multiespecie
+              La Metodología Crianza Multiespecie®
             </h2>
             <div
               data-scroll-enter

@@ -260,7 +260,7 @@ export function HomeHero({ className }: { className?: string }) {
               <span className="relative inline-flex size-8 items-center justify-center overflow-hidden rounded-lg border border-border-subtle-0 bg-canvas p-1">
                 <img
                   src={multiespecieIcon}
-                  alt="Logo de Crianza Multiespecie"
+                  alt="Logo de Crianza Multiespecie®"
                   className="size-full object-contain"
                   width={32}
                   height={32}
@@ -271,7 +271,7 @@ export function HomeHero({ className }: { className?: string }) {
                 Profesional Miembro Autorizado de la Red de Expertos de
               </p>
               <p className="relative paragraph-md-bold">
-                Crianza Multiespecie by Tamara Hernánz, de creciendo entre perros
+                Crianza Multiespecie® by Tamara Hernánz, de creciendo entre perros
               </p>
             </div>
 

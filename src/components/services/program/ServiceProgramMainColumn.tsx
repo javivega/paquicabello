@@ -236,7 +236,7 @@ export function ServiceProgramMainColumn({ className }: { className?: string }) 
               )}
             >
               <h3 className="w-full text-xl font-semibold leading-6 text-foreground-brand">
-                Usamos la Metodología Crianza Multiespecie
+                Usamos la Metodología Crianza Multiespecie®
               </h3>
               <ul className="flex w-full flex-col gap-3">
                 {methodologyPoints.map((point) => (

@@ -281,7 +281,7 @@ export function Paywall({
           </div>
           <img
             src={affiliateBadge}
-            alt="Insignia de afiliada de Crianza Multiespecie"
+            alt="Insignia de afiliada de Crianza Multiespecie®"
             width={44}
             height={44}
             className="relative size-11"
@@ -289,7 +289,7 @@ export function Paywall({
           <div className="relative text-lg leading-6 text-foreground-secondary">
             <p>Profesional Miembro Autorizado de la Red de Expertos de</p>
             <p className="font-semibold">
-              Crianza Multiespecie by creciendo entre perros
+              Crianza Multiespecie® by creciendo entre perros
             </p>
           </div>
         </div>
