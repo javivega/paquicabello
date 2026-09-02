@@ -554,6 +554,67 @@ html {
   }
 }
 
+@keyframes logos-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.logos-marquee-track {
+  animation: logos-marquee 48s linear infinite;
+}
+
+.logos-marquee-logo {
+  filter: grayscale(2) contrast(1.3) brightness(0.50);
+  opacity: 0.7;
+}
+
+.logos-marquee-viewport {
+  --logos-fade: clamp(2.5rem, 10vw, 7.5rem);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--logos-fade),
+    #000 calc(100% - var(--logos-fade)),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--logos-fade),
+    #000 calc(100% - var(--logos-fade)),
+    transparent
+  );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .logos-marquee-viewport:hover .logos-marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logos-marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    row-gap: 0.5rem;
+  }
+
+  .logos-marquee-track [data-marquee-clone] {
+    display: none;
+  }
+
+  .logos-marquee-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
 @keyframes consent-banner-slide-in {
   from {
     opacity: 0;
